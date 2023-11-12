@@ -1,37 +1,42 @@
+// SERVER
 const { SQL } = require("../SQL") ;
+// COMPENENT
 const fs = require("fs");
+// DATA
+const { Links_Server } = require("../links")
 //
 //
-//
-//
-exports.data = (req, res, next) =>{
-  const select = "SELECT * FROM users";
-
-  SQL.query(select, (err, data) =>{
-    if (err) return res.status(500).json(err);
-    return res.status(200).json(data);
-  })
-}
-//
-//
-//
-exports.data_id = (req, res, next) =>{
-  const select = "SELECT * FROM users WHERE id = ?";
-
-  SQL.query(select, [req.params.id], (err, data) =>{
-    if (err) return res.status(500).json(err);
-    return res.status(200).json(data);
-  })
-}
 //
 //
 //
 exports.data_user = (req, res, next) =>{
-  const select = "SELECT * FROM users WHERE id = ?";
-
+//
+// VARIABLE
+//  
+  const select = `SELECT * FROM ${Links_Server[0].table} WHERE ${Links_Server[0].id} = ?`;
+//
+// REQUETTE SQL
+//
   SQL.query(select, [req.auth.userId], (err, data) =>{
     if (err) return res.status(500).json(err);
-    return res.status(200).json(data);
+//
+// VARIABLE
+//    
+const user = {
+  [Links_Server[0].pseudo]: data[0][Links_Server[0].pseudo],
+  [Links_Server[0].name]: data[0][Links_Server[0].name],
+  [Links_Server[0].photo_profil]: data[0][Links_Server[0].photo_profil],
+  [Links_Server[0].age]: data[0][Links_Server[0].age],
+  [Links_Server[0].taille]: data[0][Links_Server[0].taille],
+  [Links_Server[0].poids]: data[0][Links_Server[0].poids],
+  [Links_Server[0].masse_grasse]: data[0][Links_Server[0].masse_grasse],
+  [Links_Server[0].objectif]: data[0][Links_Server[0].objectif],
+  [Links_Server[0].follower_total]: data[0][Links_Server[0].follower_total],
+}
+//
+// RENDER FINAL
+//
+    return res.status(200).json(user);
   })
 }
   //

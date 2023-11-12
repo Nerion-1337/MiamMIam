@@ -1,0 +1,131 @@
+//
+//
+// SIZE
+//
+//
+$size-img0: clamp(5px, calc((20 / $width) * 100vw), 20px);
+$size-img1: clamp(10px, calc((30 / $width) * 100vw), 30px);
+$size-img2: clamp(10px, calc((40 / $width) * 100vw), 40px);
+$size-img3: clamp(10px, calc((50 / $width) * 100vw), 50px);
+$size-img4: clamp(10px, calc((60 / $width) * 100vw), 60px);
+$size-img5: clamp(10px, calc((70 / $width) * 100vw), 70px);
+$size-img6: clamp(10px, calc((80 / $width) * 100vw), 80px);
+$size-img7: clamp(10px, calc((90 / $width) * 100vw), 90px);
+$size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
+.size-img0{
+    width: $size-img0;
+    height: $size-img0;
+    overflow: hidden;
+    &::before{
+        width: $size-img0;
+        height: $size-img0;
+    }
+    &::after{
+        width: $size-img0;
+        height: $size-img0;
+    }
+}
+.size-img1{
+    width: $size-img1;
+    height: $size-img1;
+    overflow: hidden;
+    &::before{
+        width: $size-img1;
+        height: $size-img1;
+    }
+    &::after{
+        width: $size-img1;
+        height: $size-img1;
+    }
+}
+.size-img2{
+    width: $size-img2;
+    height: $size-img2;
+    overflow: hidden;
+    &::before{
+        width: $size-img2;
+        height: $size-img2;
+    }
+    &::after{
+        width: $size-img2;
+        height: $size-img2;
+    }
+}
+.size-img3{
+    width: $size-img3;
+    height: $size-img3;
+    overflow: hidden;
+    &::before{
+        width: $size-img3;
+        height: $size-img3;
+    }
+    &::after{
+        width: $size-img3;
+        height: $size-img3;
+    }
+}
+.size-img4{
+    width: $size-img4;
+    height: $size-img4;
+    overflow: hidden;
+    &::before{
+        width: $size-img4;
+        height: $size-img4;
+    }
+    &::after{
+        width: $size-img4;
+        height: $size-img4;
+    }
+}
+.size-img5{
+    width: $size-img5;
+    height: $size-img5;
+    overflow: hidden;
+    &::before{
+        width: $size-img5;
+        height: $size-img5;
+    }
+    &::after{
+        width: $size-img5;
+        height: $size-img5;
+    }
+}
+.size-img6{
+    width: $size-img6;
+    height: $size-img6;
+    overflow: hidden;
+    &::before{
+        width: $size-img6;
+        height: $size-img6;
+    }
+    &::after{
+        width: $size-img6;
+        height: $size-img6;
+    }
+}
+.size-img7{
+    width: $size-img7;
+    height: $size-img7;
+    overflow: hidden;
+    &::before{
+        width: $size-img7;
+        height: $size-img7;
+    }
+    &::after{
+        width: $size-img7;
+        height: $size-img7;
+    }
+}
+.size-img8{
+    width: $size-img8;
+    height: $size-img8;
+    overflow: hidden;
+    &::before{
+        width: $size-img8;
+        height: $size-img8;
+    }
+    &::after{
+        width: $size-img8;
+        height: $size-img8;
+    }
+}

@@ -1,15 +1,22 @@
-const express = require("express");
+// SECURITE
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+// FRAMEWORK
+const express = require("express");
 const http = require("http");
 require("dotenv").config({ path: "./.env" });
 const app = express();
 const cors = require("cors");
 const path = require("path");
+//GOOGLE
+const passport = require("passport");
+const session = require('express-session');
+require("./controllers/google")
+//
 app.use(express.json());
 app.use(helmet({ crossOriginResourcePolicy: false }));
 
-app.use(cors({ origin: "http://127.0.0.1:5500" }));
+app.use(cors({ origin: process.env.URL_CLIENT }));
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
@@ -20,6 +27,16 @@ const limiter = rateLimit({
 
 // Apply the rate limiting middleware to all requests
 app.use(limiter);
+
+app.use(session({
+  secret: process.env.TOKEN_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
+// Initialiser Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //routes
 app.use("/api", require("./routes"));

@@ -1,0 +1,42 @@
+.type-modal0{
+    display: none;
+}
+
+.type-modal0.active{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0, 0.7);
+    @extend %center;
+    z-index: 1000;
+}
+
+.type-modal0 .close{
+    position: fixed;
+    top: clamp(10px, calc((50 / $width) * 100vw), 50px);
+    left: clamp(10px, calc((50 / $width) * 100vw), 50px);
+    font-size: clamp(25px, calc((80 / $width) * 100vw), 80px);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    @extend %center;
+    transition: .5s;
+    &:hover{
+        scale: 1.2;
+    }
+}
+
+.type-modal0 article{
+    padding: clamp(50px, calc((80 / $width) * 100vw), 80px)
+             clamp(60px, calc((120 / $width) * 100vw), 120px);
+    @extend %center;
+    flex-direction: column;
+    gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+    border: 8px solid transparent;
+    border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.3),
+    5px 5px 15px rgba(255, 255, 255, 0.3),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.3),
+    inset 5px 5px 15px rgba(255, 255, 255, 0.3);
+}

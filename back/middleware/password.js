@@ -3,10 +3,10 @@ const password = require("password-validator");
 const passSchema = new password();
 
 passSchema
-.is().min(8)                                    // Minimum length 8
-.is().max(100)                                  // Maximum length 100
+.is().min(10)                                    // Minimum length 8
+.is().max(40)                                  // Maximum length 100
 .has().uppercase(2)                              // Minimum de majuscule contenu
-.has().lowercase(2)                              // Minimum de minuscule contenu
+.has().lowercase(1)                              // Minimum de minuscule contenu
 .has().digits(2)                                // Minimum de nombre contenu
 .has().not().spaces()                           // Pas d'espace
 .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist

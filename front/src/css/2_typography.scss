@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+//
+//
+$width: 1600;
+$height: 1000;
+$lineH: 48;
+//
+//
+// SIZE
+//
+//
+$sizeMax0: 5;
+$sizeMin0: 0;
+.size-typo0{
+    font-size: clamp(calc($sizeMin0 * 1px), calc(($sizeMax0 / $width) * 100vw), calc($sizeMax0 * 1px));
+    line-height: clamp(calc($sizeMin0 * 1px), calc(($sizeMax0 / $width) * 100vw), calc($sizeMax0 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax1: 10;
+$sizeMin1: 5;
+.size-typo1{
+    font-size: clamp(calc($sizeMin1 * 1px), calc(($sizeMax1 / $width) * 100vw), calc($sizeMax1 * 1px));
+    line-height: clamp(calc($sizeMin1 * 1px), calc(($sizeMax1 / $width) * 100vw), calc($sizeMax1 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax2: 12;
+$sizeMin2: 6;
+.size-typo2{
+    font-size: clamp(calc($sizeMin2 * 1px), calc(($sizeMax2 / $width) * 100vw), calc($sizeMax2 * 1px));
+    line-height: clamp(calc($sizeMin2 * 1px), calc(($sizeMax2 / $width) * 100vw), calc($sizeMax2 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax3: 15;
+$sizeMin3: 7.5;
+.size-typo3{
+    font-size: clamp(calc($sizeMin3 * 1px), calc(($sizeMax3 / $width) * 100vw), calc($sizeMax3 * 1px));
+    line-height: clamp(calc($sizeMin3 * 1px), calc(($sizeMax3 / $width) * 100vw), calc($sizeMax3 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax4: 18;
+$sizeMin4: 9;
+.size-typo4{
+    font-size: clamp(calc($sizeMin4 * 1px), calc(($sizeMax4 / $width) * 100vw), calc($sizeMax4 * 1px));
+    line-height: clamp(calc($sizeMin4 * 1px), calc(($sizeMax4 / $width) * 100vw), calc($sizeMax4 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax5: 20;
+$sizeMin5: 10;
+.size-typo5{
+    font-size: clamp(calc($sizeMin5 * 1px), calc(($sizeMax5 / $width) * 100vw), calc($sizeMax5 * 1px));
+    line-height: clamp(calc($sizeMin5 * 1px), calc(($sizeMax5 / $width) * 100vw), calc($sizeMax5 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax6: 24;
+$sizeMin6: 12;
+.size-typo6{
+    font-size: clamp(calc($sizeMin6 * 1px), calc(($sizeMax6 / $width) * 100vw), calc($sizeMax6 * 1px));
+    line-height: clamp(calc($sizeMin6 * 1px), calc(($sizeMax6 / $width) * 100vw), calc($sizeMax6 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Anton', sans-serif;
+}
+
+$sizeMax7: 30;
+$sizeMin7: 15;
+.size-typo7{
+    font-size: clamp(calc($sizeMin7 * 1px), calc(($sizeMax7 / $width) * 100vw), calc($sizeMax7 * 1px));
+    line-height: clamp(calc($sizeMin7 * 1px), calc(($sizeMax7 / $width) * 100vw), calc($sizeMax7 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Anton', sans-serif;
+}
+
+$sizeMax8: 34;
+$sizeMin8: 17;
+.size-typo8{
+    font-size: clamp(calc($sizeMin8 * 1px), calc(($sizeMax8 / $width) * 100vw), calc($sizeMax8 * 1px));
+    line-height: clamp(calc($sizeMin8 * 1px), calc(($sizeMax8 / $width) * 100vw), calc($sizeMax8 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax9: 38;
+$sizeMin9: 19;
+.size-typo9{
+    font-size: clamp(calc($sizeMin9 * 1px), calc(($sizeMax9 / $width) * 100vw), calc($sizeMax9 * 1px));
+    line-height: clamp(calc($sizeMin9 * 1px), calc(($sizeMax9 / $width) * 100vw), calc($sizeMax9 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+
+$sizeMax10: 46;
+$sizeMin10: 23;
+.size-typo10{
+    font-size: clamp(calc($sizeMin10 * 1px), calc(($sizeMax10 / $width) * 100vw), calc($sizeMax10 * 1px));
+    line-height: clamp(calc($sizeMin10 * 1px), calc(($sizeMax10 / $width) * 100vw), calc($sizeMax10 * 1px));
+    letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+}
+//
+//
+// COLOR
+//
+//
+$delaisColor: .5s;
+.cb{
+    color: #000000;
+}
+.cw{
+    color: #ffffff;
+}
+.c1{
+    color: var(--c1, $c1);
+    transition: color $delaisColor;
+}
+.c2{
+    color: var(--c2, $c2);
+    transition: color $delaisColor;
+}
+.c3{
+    color: var(--c3, $c3);
+    transition: color $delaisColor;
+}
+.c4{
+    color: var(--c4, $c4);
+    transition: color $delaisColor;
+}
+.c5{
+    color: var(--c5, $c5);
+    transition: color $delaisColor;
+}
+.c6{
+    color: var(--c6, $c6);
+    transition: color $delaisColor;
+}
+.c7{
+    color: var(--c7, $c7);
+    transition: color $delaisColor;
+}
+.c8{
+    color: var(--c8, $c8);
+    transition: color $delaisColor;
+}
+//
+//
+// TEXT
+//
+//
+.maj{
+    text-transform: uppercase;
+}
+.min{
+    text-transform: lowercase;
+}
+.center{
+    text-align: center;
+}

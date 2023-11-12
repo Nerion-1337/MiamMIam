@@ -1,10 +1,12 @@
 module.exports.Links_Server = [
     {
-        name: "01.utilisateur",
+        table: "01_utilisateur",
         id: "id",
         pseudo: "pseudo",
         email: "email",
+        valid: "confirm_email",
         password: "password",
+        check: "code_check",
         name: "name",
         photo_profil: "photo_profil",
         age: "age",
@@ -19,21 +21,21 @@ module.exports.Links_Server = [
         date_maj: "date_maj",
     },
     {
-        name: "02.adresse_ip",
+        table: "02_adresse_ip",
         id: "id",
         user_id: "user_id",
         adresse_ip: "adresse_ip",
         date_ajout: "date_ajout",
     },
     {
-        name: "03.user_lock",
+        table: "03_user_lock",
         id: "id",
         user_id: "user_id",
         user_id_lock: "user_id_lock",
         date_ajout: "date_ajout",
     },
     {
-        name: "04.media",
+        table: "04_media",
         id: "id",
         element_id_table: "user_recette_commentaire_alimentation_message_signalement_id",
         element_type_table: "type_user_recette_commentaire_alimentation_message_signalement",
@@ -41,7 +43,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "05.signalement",
+        table: "05_signalement",
         id: "id",
         user_id: "user_id",
         sujet: "sujet",
@@ -53,7 +55,7 @@ module.exports.Links_Server = [
         date_resolution: "date_resolution",
     },
     {
-        name: "06.follow",
+        table: "06_follow",
         id: "id",
         user_id: "user_id",
         element_id_table: "recette_user_id",
@@ -61,7 +63,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "07.likes",
+        table: "07_likes",
         id: "id",
         user_id: "user_id",
         element_id_table: "recette_commentaire_id",
@@ -70,7 +72,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "08.conversation",
+        table: "08_conversation",
         id: "id",
         user_id: "user_id",
         conversation_id: "conversation_id",
@@ -78,14 +80,14 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "09.classification_conversation",
+        table: "09_classification_conversation",
         id: "id",
         user_id: "user_id",
         conversation_id: "conversation_id",
         type: "type",
     },
     {
-        name: "10.messages",
+        table: "10_messages",
         id: "id",
         user_id: "user_id",
         conversation_id: "conversation_id",
@@ -94,7 +96,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "11.commentaire",
+        table: "11_commentaire",
         id: "id",
         user_id: "user_id",
         contenu: "contenu",
@@ -105,7 +107,7 @@ module.exports.Links_Server = [
         date_maj: "date_maj",
     },
     {
-        name: "12.commentaire_edit",
+        table: "12_commentaire_edit",
         id: "id",
         commentaire_id: "commentaire_id",
         contenu: "contenu",
@@ -113,7 +115,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "13.recettes",
+        table: "13_recettes",
         id: "id",
         user_id: "user_id",
         name: "name",
@@ -129,7 +131,7 @@ module.exports.Links_Server = [
         date_maj: "date_maj",
     },
     {
-        name: "14.recettes_edit",
+        table: "14_recettes_edit",
         id: "id",
         name: "name",
         description: "description",
@@ -141,7 +143,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "15.contenu_recette",
+        table: "15_contenu_recette",
         id: "id",
         recette_id: "recette_id",
         type: "type_recette_edit_delet",
@@ -153,7 +155,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "16.consommation",
+        table: "16_consommation",
         id: "id",
         user_id: "user_id",
         recette_id: "recette_id",
@@ -162,7 +164,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "17.macro_micro",
+        table: "17_macro_micro",
         id: "id",
         nom: "nom",
         description: "description",
@@ -171,7 +173,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "18.ustensil",
+        table: "18_ustensil",
         id: "id",
         nom: "nom",
         description: "description",
@@ -183,7 +185,7 @@ module.exports.Links_Server = [
         date_maj: "date_maj",
     },
     {
-        name: "19.ingredient",
+        table: "19_ingredient",
         id: "id",
         nom: "nom",
         description: "description",
@@ -196,7 +198,7 @@ module.exports.Links_Server = [
         date_maj: "date_maj",
     },
     {
-        name: "20.contenu_ingredient",
+        table: "20_contenu_ingredient",
         id: "id",
         macro_micro_id: "macro_micro_id",
         ingredient_id: "ingredient_id",
@@ -204,7 +206,7 @@ module.exports.Links_Server = [
         date_ajout: "date_ajout",
     },
     {
-        name: "21.recettes_deletes",
+        table: "21_recettes_deletes",
         id: "id",
         recette_id: "recette_id",
         user_id: "user_id",

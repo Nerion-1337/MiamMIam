@@ -1,0 +1,55 @@
+//
+// THEME
+//
+[data-theme="dark"]{
+    --cw: white;
+    --cb: black;
+    --c1: #111111;
+    --c2: #ffffff;
+    --c3: #9290904d;
+    --c4: #00000050;
+    --c5: #000000;    
+    --c6: #d6d4d4;
+    --c7: #6d071a;
+    --c8: #111111;
+    --c9: linear-gradient(225deg,#6d071a .14%,#d4af37  99.86%);
+    --c10: linear-gradient(225deg,#d4af37  .14%,#6d071a 99.86%);
+    --icon: url(../assets/icon-st-b.svg);
+    --blur: 20px;
+    --shadow:rgba(255,255,255,.5);
+    --brightness: brightness(0.7);
+    --circle: 6px;
+}
+
+[data-theme="light"]{
+    --cw: white;
+    --cb: black;
+    --c1: #d6d4d4;
+    --c2: #000000;
+    --c3: #9290904d;
+    --c4: #ffffff30;
+    --c5: #ffffff;
+    --c6: #111111;
+    --c7: #1a89ca;
+    --c8: #d6d4d4;
+    --c9: linear-gradient(225deg,#6d071a .14%,#d4af37  99.86%);
+    --c10: linear-gradient(225deg,#d4af37  .14%,#6d071a 99.86%);
+    --icon: url(../assets/icon-st-w.svg);
+    --blur: 20px;
+    --shadow:rgba(255,255,255,.5);
+    --brightness: brightness(0.7);
+    --circle: 6px;
+}
+//
+// OTHER
+//
+$cw: white;
+$cb: black;
+$c1: #EDEDED;
+$c2: #FFD15B;
+$c3: #9290904d;
+$c4: #ff0202ee;
+$c5: #9290904d;
+$c6: #9290904d;
+$c7: #9290904d;
+$c8: #9290904d;
