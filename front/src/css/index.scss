@@ -1,211 +1,5 @@
 //
 //
-// INPUT MODEL
-//
-//
-.inputBoxGlobal{
-  @extend %center;
-  flex-direction: column;
-  gap: clamp(6px, calc((12 / $width) * 100vw), 12px);
-}
-
-.inputBoxGlobal small{
-  display: none;
-  font-size:  clamp(10px, calc((20 / $width) * 100vw), 20px);
-  color: $cw;
-  flex-direction: column;
-}
-
-.inputBoxGlobal.error_input small{
-  @extend %center;
-}
-
-.inputBoxGlobal .inputBox{
-  position: relative;
-  width: clamp(150px, calc((325 / $width) * 100vw), 325px);
-  display: flex;
-  align-items: center;  
-}
-
-.inputBoxGlobal .inputBox input{
-  padding: 
-  clamp(8px, calc((14 / $width) * 100vw), 14px)
-  clamp(5px, calc((10 / $width) * 100vw), 10px)
-  clamp(8px, calc((16 / $width) * 100vw), 16px)
-  clamp(27px, calc((54 / $width) * 100vw), 54px);
-  border: none;
-  width: 100%;
-  color: $cb;
-  background: $c2;
-  font-weight: 500;
-  border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
-  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
-  transition: .5s;
-  outline: none;  
-}
-
-.inputBoxGlobal .inputBox span{
-  position: absolute;
-  left: 0;
-  padding-left: clamp(27px, calc((54 / $width) * 100vw), 54px);
-  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: rgba(0, 0, 0, 1);
-  font-family: 'Anton', sans-serif;
-  pointer-events: none;
-  border: 1px solid rgba(0,0,0,0);
-  border-radius: 20px;
-  transition: .5s, color 0s, background 0s;
-}
-
-.inputBoxGlobal .inputBox input:valid ~ span,
-.inputBoxGlobal .inputBox input:focus ~ span
-{
-  color: $cb;
-  background: $cw;
-  transform: translateX(25px) translateY(clamp(-24px, calc((-24 / $width) * 100vw), 0px));
-  font-size: clamp(5px, calc((12 / $width) * 100vw), 12px);
-  padding: 0 clamp(4px, calc((8 / $width) * 100vw), 8px);
-  border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
-  letter-spacing: 0.1em;
-  transition: .5s, color 1.5s, background 1s;
-}
-
-.inputBoxGlobal .inputBox input:valid,
-.inputBoxGlobal .inputBox input:focus
-{
-  border: 0px solid $c2;
-}
-
-.inputBoxGlobal .inputBox svg{
-position: absolute;
-left: clamp(8px, calc((12 / $width) * 100vw), 12px);
-width: clamp(17.5px, calc((35/ $width) * 100vw), 35px);
-height: clamp(15px, calc((30/ $width) * 100vw), 30px);
-color: $cw;
-border-right: 3px solid $cw;
-padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
-}
-
-.calendar{
-  position: absolute;
-  display: none;
-  border: 2px solid $c2;
-  border-radius: 5px;
-  z-index: 100;
-}
-
-.inputBoxGlobal .inputBox.active + .calendar
-{
-  display: block;
-}
-
-.renvoyer_email{
-  cursor: pointer;
-}
-//
-//
-// DROPDOWN MODEL
-//
-//
-.dorpdownBox{
-  margin-top: 20px;
-  position: relative;
-  width: clamp(150px, calc((300 / $width) * 100vw), 300px);
-}
-
-.dorpdownBox button{
-  position: absolute;
-  height: clamp(26px, calc((52 / $width) * 100vw), 52px);
-  background: transparent;
-  padding: 
-  clamp(8px, calc((14 / $width) * 100vw), 14px)
-  clamp(5px, calc((10 / $width) * 100vw), 10px)
-  clamp(8px, calc((16 / $width) * 100vw), 16px)
-  clamp(24px, calc((48 / $width) * 100vw), 48px);
-  margin: 0;
-  display: flex;
-  width: 100%;
-  border: 2px solid $c1;
-  color: $cb;
-  font-weight: 300;
-  border-radius: clamp(2px, calc((10 / $width) * 100vw), 10px);
-  font-size: clamp(8px, calc((16 / $width) * 100vw), 16px);
-  transition: .5s;
-  outline: none;
-  cursor: pointer;
-}
-
-.dorpdownBox span{
-  position: absolute;
-  left: 0;
-  padding: 
-  clamp(8px, calc((14 / $width) * 100vw), 14px)
-  clamp(5px, calc((10 / $width) * 100vw), 10px)
-  clamp(8px, calc((16 / $width) * 100vw), 16px)
-  clamp(24px, calc((48 / $width) * 100vw), 48px);
-  font-size: clamp(8px, calc((16 / $width) * 100vw), 16px);
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  color: rgba(0, 0, 0, 0.7);
-  pointer-events: none;
-  border: 1px solid rgba(0,0,0,0);
-  border-radius: 20px;
-  transition: .5s, color 0s, background 0s;
-}
-
-.dorpdownBox button.active ~ span
-{
-  color: $cw;
-  background: $c2;
-  transform: translateX(25px) translateY(-6px);
-  font-size: clamp(5px, calc((12 / $width) * 100vw), 12px);
-  padding: 0 clamp(4px, calc((8 / $width) * 100vw), 8px);
-  border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
-  letter-spacing: 0.1em;
-  transition: .5s, color 1.5s, background 2s;
-}
-
-.dorpdownBox button.active
-{
-  border: 2px solid $c2;
-}
-
-.dorpdownBox svg{
-position: absolute;
-left: clamp(8px, calc((12 / $width) * 100vw), 12px);
-top: clamp(9px, calc((14 / $width) * 100vw), 14px);
-width: clamp(15px, calc((30/ $width) * 100vw), 30px);
-height: 23px;
-color: $c2;
-border-right: 2px solid $c1;
-padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
-}
-
-.dorpdownBox .dropdownMenu{
-  position: absolute;
-  max-height: clamp(50px, calc((200 / $width) * 100vw), 200px);
-  width: clamp(150px, calc((300 / $width) * 100vw), 300px);
-  top: clamp(26px, calc((52 / $width) * 100vw), 52px);
-  background: $cw;
-  padding: clamp(5px, calc((10 / $width) * 100vw), 10px) ;
-  border: 2px solid $c1;
-  border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
-  overflow: scroll;
-  z-index: 100;
-  cursor: pointer;
-}
-.dorpdownBox .dropdownMenu li{
-  width: 100%;
-  line-height: clamp(15px, calc((30 / $width) * 100vw), 30px);
-  &:hover{
-    background: $c1;
-    color: white;
-  }
-}
-//
-//
 // HEADER
 //
 //
@@ -429,7 +223,7 @@ display: none;
   margin-left: clamp(1px, calc((3 / $width) * 100vw), 3px);
   padding-bottom: clamp(1px, calc((2 / $width) * 100vw), 2px);
   }
-  //
+//
 //
 // NAVIGATION CONNECTÉ
 //
@@ -443,6 +237,22 @@ display: none;
   align-items: center;
 }
 .aside_principal .content_aside .body_aside .body_main_nav .button_nav{
+  @extend %center;
+  flex-direction: column;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+//
+//
+// TOKEN INVALID
+//
+//
+.need_login{
+  width: 100%;
+  height: 85vh;
+}
+.need_login article{
+  width: 100%;
+  height: 100%;
   @extend %center;
   flex-direction: column;
   gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
@@ -497,6 +307,7 @@ display: none;
   inset -5px -5px 15px rgba(0, 0, 0, 0.2),
   inset 5px 5px 15px rgba(0,0,0,0.2);
 }
+
 .reset_password section small{
 color: $cb;
 }
@@ -505,11 +316,99 @@ color: $cb;
 // Home
 //
 //
-main{
+.main_home{
   position: relative;
   top: 70px;
   height: 250vh;
   width: 80%;
   //background-color: blue;
 }
+//
+//
+// PROFILE
+//
+//
+.main_setting{
+  position: relative;
+  width: 100%;
+  height: auto;
+  @extend %center;
+  flex-direction: column;
+  padding: clamp(25px, calc((50 / $width) * 100vw), 50px) 0;
+  gap: clamp(50px, calc((100 / $width) * 100vw), 100px) ;
+}
 
+.main_setting .update_setting{
+  position: relative;
+  width: 90%;
+  height: auto;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(50px, calc((100 / $width) * 100vw), 100px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px);
+  border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  box-shadow: -5px -5px 15px rgba(0, 0, 0, 0.2),
+  5px 5px 15px rgba(0,0,0,0.2);
+  display: flex;
+}
+
+.main_setting .update_setting .img_setting{
+  position: relative;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  padding-top: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(17.5px, calc((35 / $width) * 100vw), 35px);
+}
+
+.main_setting .update_setting .bloc_form{
+  position: relative;
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(40px, calc((80 / $width) * 100vw), 80px);
+}
+
+.main_setting .update_setting .bloc_form .input_setting_1{
+  position: relative;
+  width: 75%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: clamp(40px, calc((80 / $width) * 100vw), 80px);
+  row-gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.main_setting .signalement_setting{
+  position: relative;
+  width: 90%;
+  height: auto;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(50px, calc((80 / $width) * 100vw), 80px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px);
+  border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  box-shadow: -5px -5px 15px rgba(0, 0, 0, 0.2),
+  5px 5px 15px rgba(0,0,0,0.2);
+  @extend %center;
+  flex-direction: column;
+  gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+}
+
+.main_setting .signalement_setting .titre_signalement_setting{
+position: absolute;
+top: clamp(-30px, calc((-30 / $width) * 100vw), 0px);  
+left: 50%;
+transform: translate(-50%, 0%);
+backdrop-filter: blur(3px);
+padding: 
+clamp(7.5px, calc((15 / $width) * 100vw), 15px) clamp(10px, calc((20 / $width) * 100vw), 20px) ;
+border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+letter-spacing: clamp(0px, calc((3 / $width) * 100vw), 3px) !important;
+}

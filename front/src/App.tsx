@@ -1,19 +1,21 @@
 // REACT
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 // DATA
 import { Route_Client } from "#data/links";
 // PAGE
 import Error from "#page/error";
-import Home from "#page/home";
-import Confirm_email from "#page/confirm_email";
 // BUILDER
 import Modal from "#/components/build/global/modal";
 import Header from "#/components/build/header";
 import Nav from "#components/navigation/navigation_main";
 // REDUX
+import { store } from '#/reducers/store'
 import { useSelector } from "react-redux";
+//ACTION
+import { token_actif } from "#actions/token_action";
 // TYPAGE
-import { modal_reducer, modal_action } from "#types/typages";
+import { modal_reducer, modal_action} from "#types/typages";
 //
 //
 //
@@ -29,6 +31,11 @@ const table: modal_action[] = useSelector((state:  modal_reducer) => state.modal
 //
 //
 // FUNCTION
+//
+//
+useEffect(() => {
+  store.dispatch(token_actif());
+}, []);
 //
 //
 let type_modal: modal_action | null = null;
@@ -53,8 +60,7 @@ const navigationContent = (
   <BrowserRouter>
   {type_modal &&(
     <Modal active={type_modal.active} number={type_modal.number} />
-  )
-  } 
+  )} 
   <Header />
   <Nav />
   <Routes>

@@ -20,7 +20,7 @@ const { Links_Server } = require("../links")
 //
 // VERIFIE UTILISATEUR EXISTANT
 //
-  SQL.query(select, [req.body.identifiant.trim(), req.body.email.trim()], (err, data)=>{
+  SQL.query(select, [req.body[Links_Server[0].pseudo].trim(), req.body[Links_Server[0].email].trim()], (err, data)=>{
     if (err) return res.status(500).json(err);
     if (data.length) {
       if (data[0][Links_Server[0].pseudo] === req.body.identifiant.trim()) {
@@ -32,7 +32,7 @@ const { Links_Server } = require("../links")
 //
 // CRYPTAGE MDP
 //  
-  const cryptage = bcrypt.hashSync(req.body.password, 10);
+  const cryptage = bcrypt.hashSync(req.body[Links_Server[0].password].trim(), 10);
 //
 // GENERE CODE ALEATOIRE
 //
@@ -67,7 +67,7 @@ const mailOptions = {
 //
 // VALUES SAVE SERVEUR
 //    
-const values = [req.body.identifiant, req.body.email, cryptage, randomString];
+const values = [req.body[Links_Server[0].pseudo].trim(), req.body[Links_Server[0].email].trim(), cryptage, randomString];
 //
 // INSERT DATA
 //
@@ -98,7 +98,7 @@ const values = [req.body.identifiant, req.body.email, cryptage, randomString];
 //
 // VERIFIE EMAIL TOKEN
 //
-  SQL.query(select, [req.body.token], (err, data)=>{
+  SQL.query(select, [req.body[Links_Server[0].valid].trim()], (err, data)=>{
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json("L'utilisateur n'existe pas.");
     if (data[0][Links_Server[0].valid] === 1) return res.status(201).json("Email déjà validé.");
@@ -106,7 +106,7 @@ const values = [req.body.identifiant, req.body.email, cryptage, randomString];
 //
 // INSERT DATA
 //
-SQL.query(update, [data[0][Links_Server[0].email]], (err, data) =>{
+SQL.query(update, [data[0][Links_Server[0].email].trim()], (err, data) =>{
   if (err) return res.status(500).json(err);
   if (data.affectedRows > 0) return res.json("Email Validé !");
   return res.status(403).json("Une erreur sur la table");
@@ -140,7 +140,7 @@ const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].check} = ?
 //
 // REQUETTE SQL
 //  
-SQL.query(update, [randomString, req.body.email.trim()], (err, data)=>{
+SQL.query(update, [randomString, req.body[Links_Server[0].email].trim()], (err, data)=>{
   if (err) return res.status(500).json(err);
   if (data.length === 0) return res.status(404).json({error_identifiant: "L'utilisateur n'existe pas"});
 //
@@ -186,18 +186,17 @@ exports.login = (req, res, next) => {
 //
 // VERIFIE IDENTIFIANT ET PASSWORD
 // 
-  SQL.query(select, [req.body.identifiant, req.body.identifiant], (err, data)=>{
+  SQL.query(select, [req.body[Links_Server[0].pseudo].trim(), req.body[Links_Server[0].pseudo].trim()], (err, data)=>{
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json({error_identifiant: "L'utilisateur n'existe pas"});
     if(data[0].confirm_email === 0) return res.status(400).json({error_email: "Vous devez confirmer votre email", email: data[0].email});
 
-    const decryptage = bcrypt.compareSync(req.body.password, data[0].password);
+    const decryptage = bcrypt.compareSync(req.body[Links_Server[0].password].trim(), data[0][Links_Server[0].password]);
 
     if(!decryptage) return res.status(400).json({error_password:"Mauvais mot de passe"});
 
     const token = jwt.sign({ id: data[0].id }, process.env.TOKEN_SECRET, { expiresIn: '72h' });
 
-    
     return res.status(200).json(token);
  });
 };
@@ -215,7 +214,7 @@ const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].check} = ?
 //
 // VERIFIE SI IDENTIFIANT EXISTANT
 //
-SQL.query(select, [req.body.email, req.body.email], (err, data)=>{
+SQL.query(select, [req.body[Links_Server[0].email].trim(), req.body[Links_Server[0].email].trim()], (err, data)=>{
   if (err) return res.status(500).json(err);
   if (data.length === 0) return res.status(404).json({error_email: "Mauvais email ou pseudo"});
 //
@@ -288,13 +287,13 @@ SQL.query(update, [randomString, email_data], (err, data)=>{
 //
 // VERIFIE EMAIL TOKEN
 //
-  SQL.query(select, [req.body.token], (err, data)=>{
+  SQL.query(select, [req.body[Links_Server[0].check].trim()], (err, data)=>{
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json({error_token: 'Token non valide ! '});
 //
 // CRYPTAGE MDP
 //  
-  const cryptage = bcrypt.hashSync(req.body.password, 10);
+  const cryptage = bcrypt.hashSync(req.body[Links_Server[0].password].trim(), 10);
 //
 // INSERT DATA
 //

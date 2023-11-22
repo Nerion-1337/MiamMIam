@@ -104,10 +104,17 @@ export interface aproposProps{
 }
 //
 //
-export interface inputConnexion{
+export interface input extends Partial<variant & size>{
+  key?: number;
+  variable: string;
   type: string;
   icon: iconProps;
   text: string;
+  value?: string | number;
+  element?: string;
+  unitee?:string;
+  multiples?: boolean;
+  className?: string;
 }
 //
 //
@@ -119,9 +126,15 @@ export interface regex{
 //
 //
 export interface modal_links {
+  id: number;
   name: string;
   type: string;
   children: React.ReactNode;
+}
+//
+//
+export interface dropdown{
+  name: string;
 }
 //
 //
@@ -197,6 +210,7 @@ export interface img extends Partial<sizeBloc & sizeImg>{
   alt?: string,
   className?: string;
   classImg?: string;
+  radius?: string;
   classLink?: string;
   href?: string;
   active?: string;
@@ -211,16 +225,34 @@ export interface img extends Partial<sizeBloc & sizeImg>{
 }
 //
 //
-export interface input_type {
+export interface input_type extends Partial<variant & size>{
+  element?: string;
   type?: string;
   icon?: iconProps;
   text?: string;
+  value?: string | number;
+  unitee?: string;
+  variable: string;
+  multiples?: boolean;
   identifiant?: string;
 // eslint-disable-next-line @typescript-eslint/ban-types 
   fonction?: Function;
 // eslint-disable-next-line @typescript-eslint/ban-types
   search?: Function; 
   data?: string;
+}
+//
+//
+export interface dropdown_type{
+  variant?: string;
+  text?: string;
+  icon?: iconProps;
+  list?: dropdown[];
+  value?: string | number;
+  variable: string;
+  // eslint-disable-next-line @typescript-eslint/ban-types 
+  fonction?: Function;
+  show?: boolean;
 }
 //
 //
@@ -243,12 +275,7 @@ export interface error {
 // API
 //
 //
-export interface registerUser {
-  [key: string]: string;
-}
-//
-//
-export interface loginUser {
+export interface api {
   [key: string]: string;
 }
 //
@@ -278,6 +305,12 @@ export interface button_reducer{
 //
 export interface modal_reducer{
   modalReducer: modal_action[];
+}
+//
+//
+export interface token_reducer{
+  tokenReducer: token_valide;
+  
 }  
 //
 //
@@ -297,8 +330,13 @@ export interface modal_action{
     }
 //
 //
-export interface get_user{
+export interface payload_api{
   userReducer: {
     [key: string]: string | number;
   };
   }
+  //
+  //
+  export interface token_valide{
+  [key: string]: boolean;
+}  

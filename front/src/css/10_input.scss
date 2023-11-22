@@ -1,0 +1,511 @@
+//
+//
+// INPUT MODEL TEXT
+//
+//
+.type-input1{
+    position: relative;
+    @extend %center;
+    flex-direction: column;
+    gap: clamp(6px, calc((12 / $width) * 100vw), 12px);
+  }
+  
+  .type-input1 small{
+    display: none;
+    font-size:  clamp(10px, calc((20 / $width) * 100vw), 20px);
+    color: $cw;
+    flex-direction: column;
+  }
+  
+  .type-input1.error_input small{
+    @extend %center;
+  }
+  
+  .type-input1 .inputBox{
+    position: relative;
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+    display: flex;
+    align-items: center;  
+  }
+  
+  .type-input1 .inputBox .input_model{
+    padding: 
+    clamp(8px, calc((14 / $width) * 100vw), 14px)
+    clamp(5px, calc((10 / $width) * 100vw), 10px)
+    clamp(8px, calc((16 / $width) * 100vw), 16px)
+    clamp(27px, calc((54 / $width) * 100vw), 54px);
+    border: none;
+    width: 100%;
+    color: $cb;
+    background: $c2;
+    font-weight: 500;
+    border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    transition: .5s;
+    outline: none;  
+  }
+  
+  .type-input1 .inputBox span{
+    position: absolute;
+    left: 0;
+    padding-left: clamp(27px, calc((54 / $width) * 100vw), 54px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 1);
+    font-family: 'Anton', sans-serif;
+    pointer-events: none;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    transition: .5s, color 0s, background 0s;
+  }
+  
+  .type-input1 .inputBox .input_model:valid ~ span,
+  .type-input1 .inputBox .input_model:focus ~ span
+  {
+    color: $c3;
+    background: $cw;
+    transform: translateX(25px) translateY(clamp(-24px, calc((-24 / $width) * 100vw), 0px));
+    font-size: clamp(5px, calc((12 / $width) * 100vw), 12px);
+    padding: 0 clamp(4px, calc((8 / $width) * 100vw), 8px);
+    border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+    letter-spacing: 0.1em;
+    transition: .5s, color 1.5s, background 1s;
+  }
+  
+  .type-input1 .inputBox .input_model:valid,
+  .type-input1 .inputBox .input_model:focus
+  {
+    border: 0px solid $c2;
+  }
+  
+  .type-input1 .inputBox svg{
+  position: absolute;
+  left: clamp(8px, calc((12 / $width) * 100vw), 12px);
+  width: clamp(17.5px, calc((35/ $width) * 100vw), 35px);
+  height: clamp(15px, calc((30/ $width) * 100vw), 30px);
+  color: $cw;
+  border-right: 3px solid $cw;
+  padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
+  }
+  
+  .calendar{
+    position: absolute;
+    top: 110%;
+    display: none;
+    border: 2px solid $c2;
+    border-radius: 5px;
+    z-index: 100;
+  }
+  
+  .type-input1 .inputBox.active + .calendar
+  {
+    display: block;
+  }
+  
+  .renvoyer_email{
+    cursor: pointer;
+  }
+//
+//
+//
+.type-input2{
+    position: relative;
+    @extend %center;
+    flex-direction: column;
+    gap: clamp(6px, calc((12 / $width) * 100vw), 12px);
+  }
+  
+  .type-input2 small{
+    display: none;
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+    font-size:  clamp(10px, calc((20 / $width) * 100vw), 20px);
+    text-align: center;
+    color: $cb;
+    flex-direction: column;
+  }
+  
+  .type-input2.error_input small{
+    @extend %center;
+  }
+  
+  .type-input2 .inputBox{
+    position: relative;
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+    display: flex;
+    align-items: center;  
+  }
+  
+  .type-input2 .inputBox .input_model{
+    padding: 
+    clamp(8px, calc((14 / $width) * 100vw), 14px)
+    clamp(5px, calc((10 / $width) * 100vw), 10px)
+    clamp(8px, calc((16 / $width) * 100vw), 16px)
+    clamp(27px, calc((54 / $width) * 100vw), 54px);
+    border: none;
+    width: 100%;
+    color: $cb;
+    background: $cw;
+    border: 2px solid $c2;
+    font-weight: 500;
+    border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    transition: .5s;
+    outline: none;  
+  }
+  
+  .type-input2 .inputBox span{
+    position: absolute;
+    left: 0;
+    padding-left: clamp(27px, calc((54 / $width) * 100vw), 54px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 1);
+    font-family: 'Anton', sans-serif;
+    pointer-events: none;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    transition: .5s, color 0s, background 0s;
+  }
+  
+  .type-input2 .inputBox .input_model:valid ~ span,
+  .type-input2 .inputBox .input_model:focus ~ span
+  {
+    color: $c3;
+    background: $c2;
+    transform: translateX(25px) translateY(clamp(-26px, calc((-26 / $width) * 100vw), 0px));
+    font-size: clamp(5px, calc((12 / $width) * 100vw), 12px);
+    padding: 0 clamp(4px, calc((8 / $width) * 100vw), 8px);
+    border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+    letter-spacing: 0.1em;
+    transition: .5s, color 1.5s, background 1s;
+  }
+  
+  .type-input2 .inputBox .input_model:valid,
+  .type-input2 .inputBox .input_model:focus
+  {
+    border: 2px solid $c2;
+  }
+  
+  .type-input2 .inputBox svg{
+  position: absolute;
+  left: clamp(8px, calc((12 / $width) * 100vw), 12px);
+  width: clamp(17.5px, calc((35/ $width) * 100vw), 35px);
+  height: clamp(15px, calc((30/ $width) * 100vw), 30px);
+  color: $c2;
+  border-right: 3px solid $c2;
+  padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
+  }
+  
+  .calendar{
+    position: absolute;
+    top: 110%;
+    display: none;
+    border: 2px solid $c2;
+    border-radius: 5px;
+    z-index: 100;
+  }
+  
+  .type-input2 .inputBox.active + .calendar
+  {
+    display: block;
+  }
+  
+  .renvoyer_email{
+    cursor: pointer;
+  }
+//
+//
+//
+.type-input3{
+  position: relative;
+  @extend %center;
+  flex-direction: column;
+  gap: clamp(6px, calc((12 / $width) * 100vw), 12px);
+}
+
+.type-input3 small{
+  display: none;
+  width: 100%;
+  font-size:  clamp(10px, calc((20 / $width) * 100vw), 20px);
+  text-align: center;
+  color: $cb;
+  flex-direction: column;
+}
+
+.type-input3.error_input small{
+  @extend %center;
+}
+
+.type-input3 .inputBox{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.type-input3 .inputBox .input_model{
+  padding: 
+  clamp(8px, calc((14 / $width) * 100vw), 14px)
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  clamp(8px, calc((16 / $width) * 100vw), 16px)
+  clamp(27px, calc((54 / $width) * 100vw), 54px);
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: $cb;
+  background: $cw;
+  border: 2px solid $c2;
+  font-weight: 500;
+  border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  transition: .5s;
+  outline: none;  
+}
+
+.type-input3 .inputBox span{
+  position: absolute;
+  left: 0;
+  margin-top: clamp(6px, calc((12 / $width) * 100vw), 12px);
+  padding-left: clamp(27px, calc((54 / $width) * 100vw), 54px);
+  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Anton', sans-serif;
+  pointer-events: none;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 20px;
+  transition: .5s, color 0s, background 0s;
+}
+
+.type-input3 .inputBox .input_model:valid ~ span,
+.type-input3 .inputBox .input_model:focus ~ span
+{
+  color: $c3;
+  background: $c2;
+  transform: translateX(25px) translateY(clamp(-20px, calc((-20 / $width) * 100vw), 0px));
+  font-size: clamp(5px, calc((12 / $width) * 100vw), 12px);
+  padding: 0 clamp(4px, calc((8 / $width) * 100vw), 8px);
+  border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  letter-spacing: 0.1em;
+  transition: .5s, color 1.5s, background 1s;
+}
+
+.type-input3 .inputBox .input_model:valid,
+.type-input3 .inputBox .input_model:focus
+{
+  border: 2px solid $c2;
+}
+
+.type-input3 .inputBox svg{
+position: absolute;
+left: clamp(8px, calc((12 / $width) * 100vw), 12px);
+width: clamp(17.5px, calc((35/ $width) * 100vw), 35px);
+height: clamp(15px, calc((30/ $width) * 100vw), 30px);
+color: $c2;
+border-right: 3px solid $c2;
+margin-top: clamp(7px, calc((14 / $width) * 100vw), 14px);
+padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
+}
+
+.calendar{
+  position: absolute;
+  top: 110%;
+  display: none;
+  border: 2px solid $c2;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.type-input3 .inputBox.active + .calendar
+{
+  display: block;
+}
+
+.renvoyer_email{
+  cursor: pointer;
+}  
+//
+//
+// INPUT MODEL IMAGE
+//
+//  
+.type-input1_label_file{
+  position: relative;
+  background: $c2;
+  color: $cb;
+  width: clamp(90px, calc((200 / $width) * 100vw), 200px);
+  height: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  border-radius: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+  @extend %center;
+  text-transform: uppercase;
+  font-size: clamp(calc($sizeTypoMin6 * 1px), calc(($sizeTypoMax5 / $width) * 100vw), calc($sizeTypoMax5 * 1px));
+  line-height: clamp(calc($sizeTypoMin5 * 1px), calc(($sizeTypoMax5 / $width) * 100vw), calc($sizeTypoMax5 * 1px));
+  letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+  font-weight: 500;
+  font-family: 'Anton', sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  transition: .5s;
+  z-index: 1;
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cw, $cw);
+    transform: scaleX(0);
+    transition: transform 0.5s ease-in-out;
+    transform-origin: right;
+    z-index: -1;
+}
+&:hover{
+    letter-spacing: clamp(1.5px, calc((3 / $width) * 100vw), 3px);
+&::after{
+    transform: scaleX(1);
+    transform-origin: left;        
+}
+}
+}
+.type-input1_label_file + .file_global{
+  display: none;
+}
+//
+//
+//
+.type-input2_label_file{
+  position: relative;
+  background: $c2;
+  color: $cb;
+  border-radius: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+  @extend %center;
+  text-transform: uppercase;
+  font-size: clamp(calc($sizeTypoMin6 * 1px), calc(($sizeTypoMax5 / $width) * 100vw), calc($sizeTypoMax5 * 1px));
+  line-height: clamp(calc($sizeTypoMin5 * 1px), calc(($sizeTypoMax5 / $width) * 100vw), calc($sizeTypoMax5 * 1px));
+  letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
+  font-weight: 500;
+  font-family: 'Anton', sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  transition: .5s;
+  z-index: 1;
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cw, $cw);
+    transform: scaleX(0);
+    transition: transform 0.5s ease-in-out;
+    transform-origin: right;
+    z-index: -1;
+}
+&:hover{
+    letter-spacing: clamp(1.5px, calc((3 / $width) * 100vw), 3px);
+&::after{
+    transform: scaleX(1);
+    transform-origin: left;        
+}
+}
+}
+.type-input2_label_file + .file_global{
+  display: none;
+}
+//
+//
+// SIZE
+//
+//
+$size-width-input0: clamp(5px, calc((10 / $width) * 100vw), 10px);
+$size-width-input1: clamp(10px, calc((20 / $width) * 100vw), 20px);
+$size-width-input2: clamp(10px, calc((30 / $width) * 100vw), 30px);
+$size-width-input3: clamp(300px, calc((600 / $width) * 100vw), 600px);
+$size-width-input4: clamp(300px, calc((600 / $width) * 100vw), 600px);
+$size-width-input5: clamp(10px, calc((60 / $width) * 100vw), 60px);
+//
+$size-height-input0: clamp(5px, calc((10 / $width) * 100vw), 10px);
+$size-height-input1: clamp(10px, calc((20 / $width) * 100vw), 20px);
+$size-height-input2: clamp(10px, calc((30 / $width) * 100vw), 30px);
+$size-height-input3: clamp(30px, calc((60 / $width) * 100vw), 60px);
+$size-height-input4: clamp(150px, calc((300 / $width) * 100vw), 300px);
+$size-height-input5: clamp(10px, calc((60 / $width) * 100vw), 60px);
+//
+//
+.size-input0{
+    width: $size-width-input0;
+    height: $size-height-input0;
+    &::before{
+        width: $size-width-input0;
+        height: $size-height-input0;
+    }
+    &::after{
+        width: $size-width-input0;
+        height: $size-height-input0;
+    }
+}
+.size-input1{
+    width: $size-width-input1;
+    height: $size-height-input1;
+    &::before{
+        width: $size-width-input1;
+        height: $size-height-input1;
+    }
+    &::after{
+        width: $size-width-input1;
+        height: $size-height-input1;
+    }
+}
+.size-input2{
+    width: $size-width-input2;
+    height: $size-height-input2;
+    &::before{
+        width: $size-width-input2;
+        height: $size-height-input2;
+    }
+    &::after{
+        width: $size-width-input2;
+        height: $size-height-input2;
+    }
+}
+.size-input3{
+    width: $size-width-input3;
+    height: $size-height-input3;
+    &::before{
+        width: $size-width-input3;
+        height: $size-height-input3;
+    }
+    &::after{
+        width: $size-width-input3;
+        height: $size-height-input3;
+    }
+}
+.size-input4{
+    width: $size-width-input4;
+    height: $size-height-input4;
+    &::before{
+        width: $size-width-input4;
+        height: $size-height-input4;
+    }
+    &::after{
+        width: $size-width-input4;
+        height: $size-height-input4;
+    }
+}
+.size-input5{
+    width: $size-width-input5;
+    height: $size-height-input5;
+    &::before{
+        width: $size-width-input5;
+        height: $size-height-input5;
+    }
+    &::after{
+        width: $size-width-input5;
+        height: $size-height-input5;
+    }
+}

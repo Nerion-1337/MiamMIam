@@ -44,13 +44,13 @@ export function validIdentifiant(data: string) {
       setErreur(data, "Veuillez renseigner un identifiant.");
       return false;
     } else if (Regex[6].value.test(value) === false) {
-      setErreur(data, "Veuillez entrer au minimum 2 lettres.");
+      setErreur(data, "Veuillez entrer au minimum 4 lettres.");
       return false;
     } else if (Regex[0].value.test(value) === false) {
       setErreur(data, "Veuillez entrer un identifiant valide.");
       return false;
     } else if (Regex[4].value.test(value) === true) {
-      setErreur(data, "Veuillez entrer un prénom valide.");
+      setErreur(data, "Veuillez entrer un identifiant valide.");
       return false;
     } else {
       setValid(data);
@@ -125,5 +125,176 @@ export function validCGV(data: boolean) {
   }
  //
  //
+ // PROFIL
+ //
+ //
+ export function validFirstName(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim();
   
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner un nom.");
+      return false;
+    } else if (Regex[11].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer au minimum 2 lettres.");
+      return false;
+    } else if (Regex[0].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer un nom valide.");
+      return false;
+    } else if (Regex[4].value.test(value) === true) {
+      setErreur(data, "Veuillez entrer un nom valide.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+ //
+ //
+ export function validLastName(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim();
   
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner un prénom.");
+      return false;
+    } else if (Regex[11].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer au minimum 2 lettres.");
+      return false;
+    } else if (Regex[0].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer un prénom valide.");
+      return false;
+    } else if (Regex[4].value.test(value) === true) {
+      setErreur(data, "Veuillez entrer un prénom valide.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+//
+//
+export function validBirthdate(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim();
+  const years = value.slice(6, 12);
+
+  if (value === "") {
+    setErreur(data, "Veuillez saisir votre date de naissance.");
+    return false;
+  } else if (Regex[8].value.test(value) === false) {
+    setErreur(data, "Veuillez saisir un format valide jj/mm/aaaa.");
+    return false;
+  } else if (Regex[9].value.test(years) === false) {
+    setErreur(data, "Veuillez saisir une année de naissance entre 1900 et 2015.");
+    return false;
+  } else {
+    setValid(data);
+    return true;
+  }
+} 
+}
+ //
+ //
+ export function validHeight(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim().replace(/\D/g, '');
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner votre taille.");
+      return false;
+    } else if (Regex[12].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer votre taille en cm.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+ //
+ //
+ export function validWeight(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim().replace(/\D/g, '');
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner votre poids.");
+      return false;
+    } else if (Regex[12].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer votre poids en kg.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+//
+//
+ export function validFat(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim().replace(/\D/g, '');
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner votre indice de masse grasse.");
+      return false;
+    } else if (Regex[7].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer votre indice de masse grasse en pourcent.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+//
+//
+ export function validTitreSignal(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim();
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner un sujet.");
+      return false;
+    } else if (Regex[13].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer que des lettres et chiffre.");
+      return false;
+    } else if (Regex[14].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer entre 4 et 40 caractères.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+  //
+//
+ export function validContenuSignal(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("textarea");
+
+  if(Input){
+  const value = Input.value.trim();
+   
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner des informations sur votre requête.");
+      return false;
+    } else if (Regex[15].value.test(value) === false) {
+      setErreur(data, "Veuillez écrire un contenu de 20 à 1000 caractères.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }

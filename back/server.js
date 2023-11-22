@@ -16,11 +16,12 @@ require("./controllers/google")
 app.use(express.json());
 app.use(helmet({ crossOriginResourcePolicy: false }));
 
-app.use(cors({ origin: process.env.URL_CLIENT }));
+app.use(cors({ origin: "http://localhost:5173" }));
+
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 5000, // Limitez chaque adresse IP à 5000 requêtes par "fenêtre" (ici, par tranche de 15 minutes)
+	max: 5000000000, // Limitez chaque adresse IP à 5000 requêtes par "fenêtre" (ici, par tranche de 15 minutes)
 	standardHeaders: true, // Renvoyer les informations de limite de taux dans les en-têtes
 	legacyHeaders: false, // Désactiver les en-têtes `X-RateLimit-*`
 });

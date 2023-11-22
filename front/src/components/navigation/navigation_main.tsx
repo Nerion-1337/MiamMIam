@@ -5,7 +5,6 @@ import { List_icon } from "#data/links";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
-import isEmpty from "#components/build/global/isEmpty";
 // REDUX
 import { useSelector } from "react-redux";
 //COMPONENTS
@@ -13,12 +12,9 @@ import Button_active from "#components/active_redux/button_active";
 import Accueil_ins_con from "#components/navigation/connexion/accueil_ins_con";
 import Connexion from "#components/navigation/connexion/connexion";
 import Inscription from "#components/navigation/connexion/inscription";
-import Deconnexion from "#components/navigation/connexion/deconnexion";
-import Accueil from "#components/navigation/accueil";
-import Profil from "#components/navigation/profil";
-import Dashbord from "#components/navigation/dashbord";
+import Nav_user from "./nav_user";
 // TYPAGE
-import { button_reducer, object_button_reducer } from "#types/typages";
+import { button_reducer, object_button_reducer, token_reducer} from "#types/typages";
 //
 //
 //
@@ -34,7 +30,7 @@ const aside_principal = useRef<HTMLDivElement>(null);
 const table = useSelector((state:  button_reducer) => state.buttonReducer);
 const cookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith(`token_miam_miam=`))
 const token_cookie = cookie ? cookie.split('=')[1] : null;
-const token = localStorage.getItem("token_miam_miam");
+const token = useSelector((state:  token_reducer) => state.tokenReducer);
 //
 //
 // FONCTION
@@ -129,22 +125,10 @@ const asideContent =(
 )
 //
 //
-const navigationContent = (
-<section className="body_main_nav">
-  <div className="button_nav">
-  <Accueil/>
-  <Dashbord/>
-  <Profil/>
-  </div>
-<Deconnexion/>
-</section>
-)
-//
-//
 const mainContent =(
   <>
-  {  type_connexion && type_connexion.name === "navigation" || !isEmpty(token_cookie) || !isEmpty(token) ? (
-     navigationContent
+  {  type_connexion && type_connexion.name === "navigation" || token.token ? (
+     <Nav_user/>
   ):(
     connexionContent
   )}

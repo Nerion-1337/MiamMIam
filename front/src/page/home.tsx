@@ -12,7 +12,7 @@ export default function Home() {
     
 
     return (
-    <main>
+    <main className="main_home">
     <h2>text</h2>
     </main>
     );

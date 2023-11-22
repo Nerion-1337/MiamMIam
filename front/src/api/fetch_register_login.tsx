@@ -1,18 +1,18 @@
 // DATA
-import { Route_Server } from "#data/links";
+import { Route_Server, Links_Server } from "#data/links";
 // BUILDER
 import Typo from "#components/build/global/typography";
 //COMPONENTS
 import { setErreur, setValid } from "#components/valid_input";
 import { Renvoie_email_modal } from "#components/modal/modal_function";
 // TYPAGE
-import { registerUser, loginUser } from "#types/typages";
+import { api } from "#types/typages";
 //
 //
 // REGISTER
 //
 //
-export function register_user(formData: registerUser): Promise<boolean>{
+export function register_user(formData: api): Promise<boolean>{
 
    return fetch(`${Route_Server[0].url}${Route_Server[1].url}`, {
         method: "POST",
@@ -20,9 +20,9 @@ export function register_user(formData: registerUser): Promise<boolean>{
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          identifiant: formData.identifiant,
-          password: formData.mot_de_passe,
-          email: formData.email,
+          [Links_Server[0].pseudo]: formData.identifiant,
+          [Links_Server[0].password]: formData.mot_de_passe,
+          [Links_Server[0].email]: formData.email,
         }),
       })
         .then((res) => res.json())
@@ -60,7 +60,7 @@ export function confirm_email(token_Email: string): Promise<string> {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: token_Email,
+      [Links_Server[0].valid]: token_Email,
     }),
   })
     .then((res) => res.json())
@@ -89,7 +89,7 @@ export function renvoie_email(email: string): Promise<string> {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: email,
+      [Links_Server[0].email]: email,
     }),
   })
     .then((res) => res.json())
@@ -111,16 +111,15 @@ export function renvoie_email(email: string): Promise<string> {
 // LOGIN
 //
 //
-export function login_user(formData: loginUser): Promise<boolean>{
-
+export function login_user(formData: api): Promise<boolean>{
   return fetch(`${Route_Server[0].url}${Route_Server[4].url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      identifiant: formData.identifiant,
-      password: formData.mot_de_passe,
+      [Links_Server[0].pseudo]: formData[Links_Server[0].pseudo],
+      [Links_Server[0].password]: formData[Links_Server[0].password],
     }),
   })
     .then((res) => res.json())
@@ -161,7 +160,7 @@ export function login_user(formData: loginUser): Promise<boolean>{
 }
 //
 //
-// RESET PASSWORD EMAIL
+// ENVOIE EMAIL RESET PASSWORD
 //
 //
 export function reset_password_email(email: string): Promise<boolean> {
@@ -172,7 +171,7 @@ export function reset_password_email(email: string): Promise<boolean> {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: email,
+      [Links_Server[0].email]: email,
     }),
   })
     .then((res) => res.json())
@@ -195,15 +194,15 @@ export function reset_password_email(email: string): Promise<boolean> {
 // RESET PASSWORD
 //
 //
-export function reset_password(formData: loginUser, token?: string): Promise<boolean> {
+export function reset_password(formData: api, token?: string): Promise<boolean> {
   return fetch(`${Route_Server[0].url}${Route_Server[6].url}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token :  token,
-      password: formData.mot_de_passe,
+      [Links_Server[0].check] :  token,
+      [Links_Server[0].password]: formData.mot_de_passe,
     }),
   })
     .then((res) => res.json())

@@ -1,21 +1,164 @@
 //
 //
-// SIZE
+// SIZE BLOC-img
 //
 //
-$size-img0: clamp(5px, calc((20 / $width) * 100vw), 20px);
-$size-img1: clamp(10px, calc((30 / $width) * 100vw), 30px);
-$size-img2: clamp(10px, calc((40 / $width) * 100vw), 40px);
-$size-img3: clamp(10px, calc((50 / $width) * 100vw), 50px);
-$size-img4: clamp(10px, calc((60 / $width) * 100vw), 60px);
-$size-img5: clamp(10px, calc((70 / $width) * 100vw), 70px);
-$size-img6: clamp(10px, calc((80 / $width) * 100vw), 80px);
-$size-img7: clamp(10px, calc((90 / $width) * 100vw), 90px);
-$size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
+$size-bloc-img0: clamp(25px, calc((50 / $width) * 100vw), 50px);
+$size-bloc-img1: clamp(35px, calc((70 / $width) * 100vw), 70px);
+$size-bloc-img2: clamp(50px, calc((100 / $width) * 100vw), 100px);
+$size-bloc-img3: clamp(60px, calc((120 / $width) * 100vw), 120px);
+$size-bloc-img4: clamp(75px, calc((150 / $width) * 100vw), 150px);
+$size-bloc-img5: clamp(90px, calc((180 / $width) * 100vw), 180px);
+$size-bloc-img6: clamp(100px, calc((200 / $width) * 100vw), 200px);
+$size-bloc-img7: clamp(115px, calc((230 / $width) * 100vw), 230px);
+$size-bloc-img8: clamp(125px, calc((250 / $width) * 100vw), 250px);
+$size-bloc-img9: clamp(150px, calc((300 / $width) * 100vw), 300px);
+$size-bloc-img10: clamp(175px, calc((350 / $width) * 100vw), 350px);
+.size-bloc-img0{
+    width: $size-bloc-img0;
+    height: $size-bloc-img0;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img0;
+        height: $size-bloc-img0;
+    }
+    &::after{
+        width: $size-bloc-img0;
+        height: $size-bloc-img0;
+    }
+}
+.size-bloc-img1{
+    width: $size-bloc-img1;
+    height: $size-bloc-img1;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img1;
+        height: $size-bloc-img1;
+    }
+    &::after{
+        width: $size-bloc-img1;
+        height: $size-bloc-img1;
+    }
+}
+.size-bloc-img2{
+    width: $size-bloc-img2;
+    height: $size-bloc-img2;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img2;
+        height: $size-bloc-img2;
+    }
+    &::after{
+        width: $size-bloc-img2;
+        height: $size-bloc-img2;
+    }
+}
+.size-bloc-img3{
+    width: $size-bloc-img3;
+    height: $size-bloc-img3;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img3;
+        height: $size-bloc-img3;
+    }
+    &::after{
+        width: $size-bloc-img3;
+        height: $size-bloc-img3;
+    }
+}
+.size-bloc-img4{
+    width: $size-bloc-img4;
+    height: $size-bloc-img4;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img4;
+        height: $size-bloc-img4;
+    }
+    &::after{
+        width: $size-bloc-img4;
+        height: $size-bloc-img4;
+    }
+}
+.size-bloc-img5{
+    width: $size-bloc-img5;
+    height: $size-bloc-img5;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img5;
+        height: $size-bloc-img5;
+    }
+    &::after{
+        width: $size-bloc-img5;
+        height: $size-bloc-img5;
+    }
+}
+.size-bloc-img6{
+    width: $size-bloc-img6;
+    height: $size-bloc-img6;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img6;
+        height: $size-bloc-img6;
+    }
+    &::after{
+        width: $size-bloc-img6;
+        height: $size-bloc-img6;
+    }
+}
+.size-bloc-img7{
+    width: $size-bloc-img7;
+    height: $size-bloc-img7;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img7;
+        height: $size-bloc-img7;
+    }
+    &::after{
+        width: $size-bloc-img7;
+        height: $size-bloc-img7;
+    }
+}
+.size-bloc-img8{
+    width: $size-bloc-img8;
+    height: $size-bloc-img8;
+    @extend %center;
+    overflow: hidden;
+    &::before{
+        width: $size-bloc-img8;
+        height: $size-bloc-img8;
+    }
+    &::after{
+        width: $size-bloc-img8;
+        height: $size-bloc-img8;
+    }
+}
+//
+//
+// SIZE IMG
+//
+//
+$size-img0: clamp(25px, calc((50 / $width) * 100vw), 50px);
+$size-img1: clamp(35px, calc((70 / $width) * 100vw), 70px);
+$size-img2: clamp(50px, calc((100 / $width) * 100vw), 100px);
+$size-img3: clamp(60px, calc((120 / $width) * 100vw), 120px);
+$size-img4: clamp(75px, calc((150 / $width) * 100vw), 150px);
+$size-img5: clamp(90px, calc((180 / $width) * 100vw), 180px);
+$size-img6: clamp(100px, calc((200 / $width) * 100vw), 200px);
+$size-img7: clamp(115px, calc((230 / $width) * 100vw), 230px);
+$size-img8: clamp(125px, calc((250 / $width) * 100vw), 250px);
+$size-img9: clamp(150px, calc((300 / $width) * 100vw), 300px);
+$size-img10: clamp(175px, calc((350 / $width) * 100vw), 350px);
 .size-img0{
     width: $size-img0;
     height: $size-img0;
-    overflow: hidden;
     &::before{
         width: $size-img0;
         height: $size-img0;
@@ -28,7 +171,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img1{
     width: $size-img1;
     height: $size-img1;
-    overflow: hidden;
     &::before{
         width: $size-img1;
         height: $size-img1;
@@ -41,7 +183,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img2{
     width: $size-img2;
     height: $size-img2;
-    overflow: hidden;
     &::before{
         width: $size-img2;
         height: $size-img2;
@@ -54,7 +195,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img3{
     width: $size-img3;
     height: $size-img3;
-    overflow: hidden;
     &::before{
         width: $size-img3;
         height: $size-img3;
@@ -67,7 +207,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img4{
     width: $size-img4;
     height: $size-img4;
-    overflow: hidden;
     &::before{
         width: $size-img4;
         height: $size-img4;
@@ -80,7 +219,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img5{
     width: $size-img5;
     height: $size-img5;
-    overflow: hidden;
     &::before{
         width: $size-img5;
         height: $size-img5;
@@ -93,7 +231,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img6{
     width: $size-img6;
     height: $size-img6;
-    overflow: hidden;
     &::before{
         width: $size-img6;
         height: $size-img6;
@@ -106,7 +243,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img7{
     width: $size-img7;
     height: $size-img7;
-    overflow: hidden;
     &::before{
         width: $size-img7;
         height: $size-img7;
@@ -119,7 +255,6 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
 .size-img8{
     width: $size-img8;
     height: $size-img8;
-    overflow: hidden;
     &::before{
         width: $size-img8;
         height: $size-img8;
@@ -128,4 +263,27 @@ $size-img8: clamp(10px, calc((100 / $width) * 100vw), 1000px);
         width: $size-img8;
         height: $size-img8;
     }
+}
+//
+//
+// FORME
+//
+//
+.radius-img0{
+border-radius: 2% ;
+}
+.radius-img1{
+border-radius: 10% ;
+}
+.radius-img2{
+border-radius: 20% ;
+}
+.radius-img3{
+border-radius: 30% ;
+}
+.radius-img4{
+border-radius: 40% ;
+}
+.radius-img5{
+border-radius: 50% ;
 }

@@ -4,38 +4,46 @@ const authController = require("./controllers/auth");
 const userController = require("./controllers/user");
 const mediaController = require("./controllers/media");
 const likeController = require("./controllers/like");
+const reportController = require("./controllers/report");
 const jwt = require("./middleware/token");
-const joi = require("./middleware/auth");
+const joi_user = require("./middleware/auth");
+const joi_report = require("./middleware/report");
 const multer = require("./middleware/multer");
 
 //
+// TOKEN
+router.get('/token', jwt.token_valid)
+//
 // GOOGLE
-router.get('/login', passport.authenticate('google'));
+router.get('/google', passport.authenticate('google'));
 router.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/api/login', failureMessage: true }),
+  passport.authenticate('google', { failureRedirect: '/api/google', failureMessage: true }),
   function(req, res) {
     res.cookie('token_miam_miam', req.user, { httpOnly: false});
     res.redirect(process.env.URL_CLIENT);
   });
 //
 // AUTH
-router.post('/auth/register', joi.register, authController.register);
-router.post('/auth/confirm_email', joi.token, authController.confirm_email);
-router.post('/auth/renvoie_email', joi.email, authController.renvoie_email);
-router.post('/auth/login', joi.login, authController.login);
-router.post('/auth/reset_password_email', joi.email, authController.envoie_email_reset_password);
-router.put('/auth/reset_password', joi.reset_password, authController.reset_password);
+router.post('/auth/register', joi_user.register, authController.register);
+router.post('/auth/confirm_email', joi_user.token, authController.confirm_email);
+router.post('/auth/renvoie_email', joi_user.email, authController.renvoie_email);
+router.post('/auth/login', joi_user.login, authController.login);
+router.post('/auth/reset_password_email', joi_user.email, authController.envoie_email_reset_password);
+router.put('/auth/reset_password', joi_user.reset_password, authController.reset_password);
 //
 // USER
-router.get('/user/data_user', jwt, userController.data_user)
-router.put('/edit/update_avatar', jwt, multer, userController.update_avatar);
+router.get('/user/data_user', jwt.token_all, userController.data_user)
+router.put('/user/update_user', jwt.token_all, multer, joi_user.update_user_setting, userController.update_user_setting);
+//
+// SIGNALEMENT
+router.post('/signalement/sitting', jwt.token_all, multer, joi_report.reporting, reportController.report_setting);
 //
 // IMAGE
-router.post('/add_photo', jwt, multer, mediaController.add_photo);
+router.post('/add_photo', jwt.token_all, multer, mediaController.add_photo);
 router.get('/photo/:id', mediaController.photo_id)
 //
 // LIKE
-router.post('/like', jwt, likeController.like, likeController.compte_like);
+router.post('/like', jwt.token_all, likeController.like, likeController.compte_like);
 //
 //
 module.exports = router;

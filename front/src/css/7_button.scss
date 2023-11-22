@@ -114,6 +114,12 @@
     }
     }
 }
+a.active .type-btn2{
+  background: var(--cw, $cw);
+  &:hover{
+    letter-spacing: clamp(1px, calc((2 / $width) * 100vw), 2px);
+}
+}
 //
 //
 // 
@@ -246,6 +252,50 @@
 }
 //
 //
+//
+.type-btn6{
+    position: absolute;
+    bottom: clamp(-25px, calc((-25 / $width) * 100vw), 0px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: clamp(90px, calc((200 / $width) * 100vw), 200px);
+    height: clamp(25px, calc((50 / $width) * 100vw), 50px);
+    background: var(--cw, $cw);
+    @extend %center;
+    color: var(--c2, $c2);
+    border: 2px solid var(--c2, $c2);
+    border-radius: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .5s;
+    z-index: 1;
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--c2, $c2);
+        transform: scaleX(0);
+        transition: transform 0.5s ease-in-out;
+        transform-origin: right;
+        z-index: -1;
+    }
+    &:hover{
+        letter-spacing: clamp(1.5px, calc((3 / $width) * 100vw), 3px);
+        color: var(--cb, $cb);
+    &::after{
+        transform: scaleX(1);
+        transform-origin: left;        
+    }
+    }
+}
+//
+//
 // SIZE
 //
 //
@@ -332,111 +382,111 @@ $size-btn5: clamp(10px, calc((60 / $width) * 100vw), 60px);
 // FONT-SIZE
 //
 //
-$sizeMax0: 5;
-$sizeMin0: 0;
+$sizeBtnMax0: 5;
+$sizeBtnMin0: 0;
 .size-t0{
-    font-size: clamp(calc($sizeMin0 * 1px), calc(($sizeMax0 / $width) * 100vw), calc($sizeMax0 * 1px));
-    line-height: clamp(calc($sizeMin0 * 1px), calc(($sizeMax0 / $width) * 100vw), calc($sizeMax0 * 1px));
+    font-size: clamp(calc($sizeBtnMin0 * 1px), calc(($sizeBtnMax0 / $width) * 100vw), calc($sizeBtnMax0 * 1px));
+    line-height: clamp(calc($sizeBtnMin0 * 1px), calc(($sizeBtnMax0 / $width) * 100vw), calc($sizeBtnMax0 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax1: 18;
-$sizeMin1: 9;
+$sizeBtnMax1: 18;
+$sizeBtnMin1: 9;
 .size-t1{
-    font-size: clamp(calc($sizeMin1 * 1px), calc(($sizeMax1 / $width) * 100vw), calc($sizeMax1 * 1px));
-    line-height: clamp(calc($sizeMin1 * 1px), calc(($sizeMax1 / $width) * 100vw), calc($sizeMax1 * 1px));
+    font-size: clamp(calc($sizeBtnMin1 * 1px), calc(($sizeBtnMax1 / $width) * 100vw), calc($sizeBtnMax1 * 1px));
+    line-height: clamp(calc($sizeBtnMin1 * 1px), calc(($sizeBtnMax1 / $width) * 100vw), calc($sizeBtnMax1 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'anton', sans-serif;
 }
 
-$sizeMax2: 20;
-$sizeMin2: 10;
+$sizeBtnMax2: 20;
+$sizeBtnMin2: 10;
 .size-t2{
-    font-size: clamp(calc($sizeMin2 * 1px), calc(($sizeMax2 / $width) * 100vw), calc($sizeMax2 * 1px));
-    line-height: clamp(calc($sizeMin2 * 1px), calc(($sizeMax2 / $width) * 100vw), calc($sizeMax2 * 1px));
+    font-size: clamp(calc($sizeBtnMin2 * 1px), calc(($sizeBtnMax2 / $width) * 100vw), calc($sizeBtnMax2 * 1px));
+    line-height: clamp(calc($sizeBtnMin2 * 1px), calc(($sizeBtnMax2 / $width) * 100vw), calc($sizeBtnMax2 * 1px));
     letter-spacing: clamp(1px, calc((2 / $width) * 100vw), 2px) ;
     font-weight: 500;
     font-family: 'Anton', sans-serif;
 }
 
-$sizeMax3: 25;
-$sizeMin3: 17.5;
+$sizeBtnMax3: 25;
+$sizeBtnMin3: 17.5;
 .size-t3{
-    font-size: clamp(calc($sizeMin3 * 1px), calc(($sizeMax3 / $width) * 100vw), calc($sizeMax3 * 1px));
-    line-height: clamp(calc($sizeMin3 * 1px), calc(($sizeMax3 / $width) * 100vw), calc($sizeMax3 * 1px));
+    font-size: clamp(calc($sizeBtnMin3 * 1px), calc(($sizeBtnMax3 / $width) * 100vw), calc($sizeBtnMax3 * 1px));
+    line-height: clamp(calc($sizeBtnMin3 * 1px), calc(($sizeBtnMax3 / $width) * 100vw), calc($sizeBtnMax3 * 1px));
     letter-spacing: clamp(1px, calc((2 / $width) * 100vw), 2px) ;
     font-weight: 500;
     font-family: 'Anton', sans-serif;
 }
 
-$sizeMax4: 30;
-$sizeMin4: 15;
+$sizeBtnMax4: 30;
+$sizeBtnMin4: 15;
 .size-t4{
-    font-size: clamp(calc($sizeMin4 * 1px), calc(($sizeMax4 / $width) * 100vw), calc($sizeMax4 * 1px));
-    line-height: clamp(calc($sizeMin4 * 1px), calc(($sizeMax4 / $width) * 100vw), calc($sizeMax4 * 1px));
+    font-size: clamp(calc($sizeBtnMin4 * 1px), calc(($sizeBtnMax4 / $width) * 100vw), calc($sizeBtnMax4 * 1px));
+    line-height: clamp(calc($sizeBtnMin4 * 1px), calc(($sizeBtnMax4 / $width) * 100vw), calc($sizeBtnMax4 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax5: 17.5;
-$sizeMin5: 35;
+$sizeBtnMax5: 17.5;
+$sizeBtnMin5: 35;
 .size-t5{
-    font-size: clamp(calc($sizeMin5 * 1px), calc(($sizeMax5 / $width) * 100vw), calc($sizeMax5 * 1px));
-    line-height: clamp(calc($sizeMin5 * 1px), calc(($sizeMax5 / $width) * 100vw), calc($sizeMax5 * 1px));
+    font-size: clamp(calc($sizeBtnMin5 * 1px), calc(($sizeBtnMax5 / $width) * 100vw), calc($sizeBtnMax5 * 1px));
+    line-height: clamp(calc($sizeBtnMin5 * 1px), calc(($sizeBtnMax5 / $width) * 100vw), calc($sizeBtnMax5 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax6: 24;
-$sizeMin6: 12;
+$sizeBtnMax6: 24;
+$sizeBtnMin6: 12;
 .size-t6{
-    font-size: clamp(calc($sizeMin6 * 1px), calc(($sizeMax6 / $width) * 100vw), calc($sizeMax6 * 1px));
-    line-height: clamp(calc($sizeMin6 * 1px), calc(($sizeMax6 / $width) * 100vw), calc($sizeMax6 * 1px));
+    font-size: clamp(calc($sizeBtnMin6 * 1px), calc(($sizeBtnMax6 / $width) * 100vw), calc($sizeBtnMax6 * 1px));
+    line-height: clamp(calc($sizeBtnMin6 * 1px), calc(($sizeBtnMax6 / $width) * 100vw), calc($sizeBtnMax6 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax7: 30;
-$sizeMin7: 15;
+$sizeBtnMax7: 30;
+$sizeBtnMin7: 15;
 .size-t7{
-    font-size: clamp(calc($sizeMin7 * 1px), calc(($sizeMax7 / $width) * 100vw), calc($sizeMax7 * 1px));
-    line-height: clamp(calc($sizeMin7 * 1px), calc(($sizeMax7 / $width) * 100vw), calc($sizeMax7 * 1px));
+    font-size: clamp(calc($sizeBtnMin7 * 1px), calc(($sizeBtnMax7 / $width) * 100vw), calc($sizeBtnMax7 * 1px));
+    line-height: clamp(calc($sizeBtnMin7 * 1px), calc(($sizeBtnMax7 / $width) * 100vw), calc($sizeBtnMax7 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Anton', sans-serif;
 }
 
-$sizeMax8: 34;
-$sizeMin8: 17;
+$sizeBtnMax8: 34;
+$sizeBtnMin8: 17;
 .size-t8{
-    font-size: clamp(calc($sizeMin8 * 1px), calc(($sizeMax8 / $width) * 100vw), calc($sizeMax8 * 1px));
-    line-height: clamp(calc($sizeMin8 * 1px), calc(($sizeMax8 / $width) * 100vw), calc($sizeMax8 * 1px));
+    font-size: clamp(calc($sizeBtnMin8 * 1px), calc(($sizeBtnMax8 / $width) * 100vw), calc($sizeBtnMax8 * 1px));
+    line-height: clamp(calc($sizeBtnMin8 * 1px), calc(($sizeBtnMax8 / $width) * 100vw), calc($sizeBtnMax8 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax9: 38;
-$sizeMin9: 19;
+$sizeBtnMax9: 38;
+$sizeBtnMin9: 19;
 .size-t9{
-    font-size: clamp(calc($sizeMin9 * 1px), calc(($sizeMax9 / $width) * 100vw), calc($sizeMax9 * 1px));
-    line-height: clamp(calc($sizeMin9 * 1px), calc(($sizeMax9 / $width) * 100vw), calc($sizeMax9 * 1px));
+    font-size: clamp(calc($sizeBtnMin9 * 1px), calc(($sizeBtnMax9 / $width) * 100vw), calc($sizeBtnMax9 * 1px));
+    line-height: clamp(calc($sizeBtnMin9 * 1px), calc(($sizeBtnMax9 / $width) * 100vw), calc($sizeBtnMax9 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax10: 46;
-$sizeMin10: 23;
+$sizeBtnMax10: 46;
+$sizeBtnMin10: 23;
 .size-t10{
-    font-size: clamp(calc($sizeMin10 * 1px), calc(($sizeMax10 / $width) * 100vw), calc($sizeMax10 * 1px));
-    line-height: clamp(calc($sizeMin10 * 1px), calc(($sizeMax10 / $width) * 100vw), calc($sizeMax10 * 1px));
+    font-size: clamp(calc($sizeBtnMin10 * 1px), calc(($sizeBtnMax10 / $width) * 100vw), calc($sizeBtnMax10 * 1px));
+    line-height: clamp(calc($sizeBtnMin10 * 1px), calc(($sizeBtnMax10 / $width) * 100vw), calc($sizeBtnMax10 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;

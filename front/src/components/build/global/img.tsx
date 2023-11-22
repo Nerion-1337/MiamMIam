@@ -8,7 +8,8 @@ import { img } from "#types/typages";
 //
 export default function Img({
 sizeBloc,
-sizeImg,    
+sizeImg,  
+radius,  
 src,
 alt,
 className,
@@ -25,44 +26,48 @@ fonction = () => {
 },
 }: img){
  //
+ //
+ // VARIABLE
+ //
  //   
 let sizeBlocStyle = "";
-let sizeImgStyle = "";  
+let sizeImgStyle = "";
+let radiusImgStyle = "";  
 //
 // 
     switch (sizeBloc) {
         case "s0":
-          sizeBlocStyle = "size-img0";
+          sizeBlocStyle = "size-bloc-img0";
           break;
         case "s1":
-          sizeBlocStyle = "size-img1";
+          sizeBlocStyle = "size-bloc-img1";
           break;
         case "s2":
-          sizeBlocStyle = "size-img2";
+          sizeBlocStyle = "size-bloc-img2";
           break;
         case "s3":
-          sizeBlocStyle = "size-img3";
+          sizeBlocStyle = "size-bloc-img3";
           break;
         case "s4":
-          sizeBlocStyle = "size-img4";
+          sizeBlocStyle = "size-bloc-img4";
           break;
         case "s5":
-          sizeBlocStyle = "size-img5";
+          sizeBlocStyle = "size-bloc-img5";
           break;
         case "s6":
-          sizeBlocStyle = "size-img6";
+          sizeBlocStyle = "size-bloc-img6";
           break;
         case "s7":
-          sizeBlocStyle = "size-img7";
+          sizeBlocStyle = "size-bloc-img7";
           break;
         case "s8":
-          sizeBlocStyle = "size-img8";
+          sizeBlocStyle = "size-bloc-img8";
           break;
         case "s9":
-          sizeBlocStyle = "size-img9";
+          sizeBlocStyle = "size-bloc-img9";
           break;
         case "s10":
-          sizeBlocStyle = "size-img10";
+          sizeBlocStyle = "size-bloc-img10";
           break;
       }
   //
@@ -100,7 +105,43 @@ let sizeImgStyle = "";
     case "s10":
       sizeImgStyle = "size-img10";
       break;
-  }   
+  }
+    //
+    switch (radius) {
+      case "r0":
+        radiusImgStyle = "radius-img0";
+        break;
+      case "r1":
+        radiusImgStyle = "radius-img1";
+        break;
+      case "r2":
+        radiusImgStyle = "radius-img2";
+        break;
+      case "r3":
+        radiusImgStyle = "radius-img3";
+        break;
+      case "r4":
+        radiusImgStyle = "radius-img4";
+        break;
+      case "r5":
+        radiusImgStyle = "radius-img5";
+        break;
+      case "s6":
+        radiusImgStyle = "radius-img6";
+        break;
+      case "s7":
+        radiusImgStyle = "radius-img7";
+        break;
+      case "s8":
+        radiusImgStyle = "radius-img8";
+        break;
+      case "s9":
+        radiusImgStyle = "radius-img9";
+        break;
+      case "s10":
+        radiusImgStyle = "radius-img10";
+        break;
+    }     
   //
   //
   const handleClick = () => {
@@ -111,7 +152,7 @@ let sizeImgStyle = "";
   const imgContent =(
     <>
         <figure 
-        className={clsx(sizeBloc, className)}
+        className={clsx(sizeBlocStyle,radiusImgStyle, className)}
         onClick={handleClick}
         >
             <img className={clsx(classImg, sizeImgStyle)} src={src} alt={alt}/>

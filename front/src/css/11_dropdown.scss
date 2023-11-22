@@ -1,0 +1,94 @@
+.type-dropdown2{
+    position: relative;
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+    @extend %center;
+  }
+  
+  .type-dropdown2 button{
+    position: absolute;
+    height: clamp(26px, calc((52 / $width) * 100vw), 52px);
+    background: $cw;
+    padding: 
+    clamp(8px, calc((14 / $width) * 100vw), 14px)
+    clamp(5px, calc((10 / $width) * 100vw), 10px)
+    clamp(8px, calc((16 / $width) * 100vw), 16px)
+    clamp(27px, calc((54 / $width) * 100vw), 54px);
+    margin: 0;
+    display: flex;
+    width: 100%;
+    border: 2px solid $c2;
+    color: $cb;
+    font-weight: 300;
+    border-radius: clamp(2px, calc((10 / $width) * 100vw), 10px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    transition: .5s;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .type-dropdown2 span{
+    position: absolute;
+    left: 0;
+    padding-left: clamp(27px, calc((54 / $width) * 100vw), 54px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 1);
+    font-family: 'Anton', sans-serif;
+    pointer-events: none;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 20px;
+    transition: .5s, color 0s, background 0s;
+  }
+  
+  .type-dropdown2 button.active ~ span
+  {
+    color: $c3;
+    background: $c2;
+    transform: translateX(25px) translateY(clamp(-26px, calc((-26 / $width) * 100vw), 0px));
+    font-size: clamp(5px, calc((12 / $width) * 100vw), 12px);
+    padding: 0 clamp(4px, calc((8 / $width) * 100vw), 8px);
+    border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+    letter-spacing: 0.1em;
+    transition: .5s, color 1.5s, background 1s;
+  }
+  
+  .type-dropdown2 button.active
+  {
+    border: 2px solid $c2;
+  }
+  
+  .type-dropdown2 svg{
+    position: absolute;
+    left: clamp(8px, calc((12 / $width) * 100vw), 12px);
+    width: clamp(17.5px, calc((35/ $width) * 100vw), 35px);
+    height: clamp(15px, calc((30/ $width) * 100vw), 30px);
+    color: $c2;
+    border-right: 3px solid $c2;
+    padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
+  }
+  
+  .type-dropdown2 .dropdownMenu{
+    position: absolute;
+    max-height: clamp(50px, calc((200 / $width) * 100vw), 200px);
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+    top: clamp(26px, calc((52 / $width) * 100vw), 52px);
+    background: $cw;
+    padding: clamp(5px, calc((10 / $width) * 100vw), 10px) ;
+    border: 2px solid $c1;
+    border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+    overflow: scroll;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  .type-dropdown2 .dropdownMenu li{
+    width: 100%;
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    line-height: clamp(15px, calc((30 / $width) * 100vw), 30px);
+    @extend %center;
+    &:hover{
+      background: $c2;
+      color: $cb;
+    }
+  }

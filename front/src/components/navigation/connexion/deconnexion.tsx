@@ -4,7 +4,9 @@ import Button from "#components/build/global/button";
 import Button_active from "#components/active_redux/button_active";
 //REDUX
 import { store } from '#/reducers/store'
+// ACTION
 import { resetUser } from '#/actions/user_action'
+import { token_actif } from "#actions/token_action";
 //
 //
 //
@@ -17,6 +19,7 @@ export default function Deconnexion(){
 function deconnexion(data:string){
     Button_active({data: data, value: false});
     store.dispatch(resetUser()); 
+    store.dispatch(token_actif());
   }
 //
 // 

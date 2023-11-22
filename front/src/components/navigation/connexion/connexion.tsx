@@ -11,6 +11,10 @@ import Button_active from "#components/active_redux/button_active";
 import Modal_active from "#components/active_redux/modal_active";
 // REQUEST
 import { login_user } from "#/api/fetch_register_login"
+//REDUX
+import { store } from '#/reducers/store'
+// ACTION
+import { token_actif } from "#actions/token_action";
 //
 //
 //
@@ -31,8 +35,8 @@ function connexion(){
     .then((isConfirmer: boolean) => {
         if(isConfirmer === true){
             Button_active({data: "connexion", value: false});
+            store.dispatch(token_actif());
             Button_active({data:"connecté", value: true});
-            //store.dispatch(getUser()); 
         }
     })
 }
@@ -72,17 +76,23 @@ function connexion_google(){
         <section className="body_connexion">
             <div className="bloc_input_connexion">
         <Input
+        variant="t1"
         type={Input_connexion[0].type}
         icon={Input_connexion[0].icon}
         text={Input_connexion[0].text}
+        element={Input_connexion[0].element}
+        variable={Input_connexion[0].variable}
         identifiant={`connexion_${Input_connexion[0].text.replace(/\s/g, '_').toLowerCase()}`}
         fonction={handleChange}
             />
            <div className="bloc_input_mdp">
         <Input
+        variant="t1"
         type={Input_connexion[1].type}
         icon={Input_connexion[1].icon}
         text={Input_connexion[1].text}
+        variable={Input_connexion[1].variable}
+        element={Input_connexion[1].element}
         identifiant={`connexion_${Input_connexion[1].text.replace(/\s/g, '_').toLowerCase()}`}
         fonction={handleChange}
             />

@@ -1,31 +1,66 @@
 const jwt = require("jsonwebtoken");
 const joi = require("joi")
-
+// DATA
+const { Links_Server } = require("../links")
+//
+//
+// JOI
+//
+//
 const validationSchemas = {
-    // Schéma pour valider l'identifiant
-    Identifier: joi.string()
+
+  [Links_Server[0].pseudo]: joi.string()
       .min(4)
       .max(30)
       .pattern(/^(?:(?!(\w)\1{2,}).)*$/)
       .required(),
   
-    // Schéma pour valider le mot de passe
-    Password: joi.string()
+  [Links_Server[0].password]: joi.string()
       .min(10)
       .max(40)
       .pattern(/^(?=(?:\D*\d){2})(?=[^A-Z]*[A-Z])/)
       .required(),
   
-    // Schéma pour valider l'email
-    Email: joi.string()
+  [Links_Server[0].email]: joi.string()
       .email()
       .required(),
 
-   // Schéma pour valider token
-    Token: joi.string()
+  Token: joi.string()
       .pattern(/^[a-zA-Z0-9]*$/)
       .required(),  
-  };
+  
+  [Links_Server[0].first_name]: joi.string()
+    .min(3)
+    .max(30)
+    .pattern(/[a-zA-ZÀ-ÿ -]+/)
+    .required(),
+
+  [Links_Server[0].last_name]: joi.string()
+    .min(3)
+    .max(30)
+    .pattern(/[a-zA-ZÀ-ÿ -]+/)
+    .required(),
+
+  [Links_Server[0].sexe]: joi.string()
+    .valid("Homme", "Femme")
+    .required(),
+
+  [Links_Server[0].age]: joi.string()
+    .pattern(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/)
+    .required(),
+
+  [Links_Server[0].taille]: joi.string()
+    .pattern(/^[0-9]{2,3}$/)
+    .required(),
+
+  [Links_Server[0].poids]: joi.string()
+    .pattern(/^[0-9]{2,3}$/)
+    .required(),
+
+  [Links_Server[0].masse_grasse]: joi.string()
+    .pattern(/^[0-9]{1,2}$/)
+    .required(),
+  };   
 //
 //
 // REGISTER USER
@@ -35,17 +70,17 @@ const validationSchemas = {
        try {
         if(!req.body) return res.status(401).json("Aucune donnée");
 
-        const { error: identifiantError, value: identifiant } = validationSchemas.Identifier.validate(req.body.identifiant);
+        const { error: identifiantError, value: identifiant } = validationSchemas.pseudo.validate(req.body.identifiant);
         if (identifiantError) {
           return res.status(400).json({ error_identifiant: 'Identifiant non valide ! ' });
         }
     
-        const { error: passwordError, value: password } = validationSchemas.Password.validate(req.body.password);
+        const { error: passwordError, value: password } = validationSchemas.password.validate(req.body.password);
         if (passwordError) {
           return res.status(400).json({ error_password: 'Mot de passe non valide ! ' });
         }
     
-        const { error: emailError, value: email } = validationSchemas.Email.validate(req.body.email);
+        const { error: emailError, value: email } = validationSchemas.email.validate(req.body.email);
         if (emailError) {
           return res.status(400).json({ error_email: 'Email non valide ! ' });
         }
@@ -83,9 +118,9 @@ const validationSchemas = {
   try {
    if(!req.body) return res.status(401).json("Aucune donnée");
 
-   const { error: identifiantError, value: identifiant } = validationSchemas.Identifier.validate(req.body.email);
+   const { error: identifiantError, value: identifiant } = validationSchemas.pseudo.validate(req.body.email);
 
-   const { error: emailError, value: email } = validationSchemas.Email.validate(req.body.email);
+   const { error: emailError, value: email } = validationSchemas.email.validate(req.body.email);
 
    if (identifiantError && emailError) {
      return res.status(400).json({
@@ -107,17 +142,17 @@ const validationSchemas = {
   try {
    if(!req.body) return res.status(401).json("Aucune donnée");
 
-   const { error: identifiantError, value: identifiant } = validationSchemas.Identifier.validate(req.body.identifiant);
+   const { error: identifiantError, value: identifiant } = validationSchemas.pseudo.validate(req.body[Links_Server[0].pseudo]);
 
-   const { error: emailError, value: email } = validationSchemas.Email.validate(req.body.identifiant);
+   const { error: emailError, value: email } = validationSchemas.email.validate(req.body[Links_Server[0].pseudo]);
 
    if (identifiantError && emailError) {
      return res.status(400).json({
-      error_identifiant: 'Entrez votre pseudo ou email.'
+      error_identifiant: 'Entrez votre pseudo ou email lol.'
      });
    }
 
-   const { error: passwordError, value: password } = validationSchemas.Password.validate(req.body.password);
+   const { error: passwordError, value: password } = validationSchemas.password.validate(req.body[Links_Server[0].password]);
    if (passwordError) {
      return res.status(400).json({ error_password: 'Erreur dans le mot de passe'});
    }
@@ -136,7 +171,7 @@ const validationSchemas = {
   try {
    if(!req.body) return res.status(401).json("Aucune donnée");
 
-   const { error: passwordError, value: password } = validationSchemas.Password.validate(req.body.password);
+   const { error: passwordError, value: password } = validationSchemas.password.validate(req.body.password);
    if (passwordError) {
      return res.status(400).json({ error_password: 'Mot de passe non valide !' });
    }
@@ -144,6 +179,36 @@ const validationSchemas = {
    const { error: tokenError, value: token } = validationSchemas.Token.validate(req.body.token);
    if (tokenError) {
      return res.status(400).json({ error_token: 'Token non valide ! ' });
+   }
+
+   return next();
+  } catch(error) {
+      res.status(401).json({ error });
+  }
+};
+//
+//
+// UPDATE USER SETTING
+//
+//
+exports.update_user_setting = (req, res, next) => {
+  try {
+   if(!req.body && !req.files) return res.status(401).json("Aucune donnée");
+
+
+   const errors = {};
+
+   for (const [key, value] of Object.entries(req.body)) {
+     if (value !== undefined) {
+       const { error, value: validatedValue } = validationSchemas[key].validate(value);
+       if (error) {
+         errors[`${key}_error`] = `La valeur pour ${key} n'est pas valide : ${error.message}`;
+       }
+     }
+   }
+
+   if (Object.keys(errors).length !== 0) {
+     return res.status(400).json(errors);
    }
 
    return next();

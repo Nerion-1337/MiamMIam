@@ -42,20 +42,19 @@ const handleChange = (fieldName: string, newValue: string) => {
       });
   };
 //
-function valid(){
-        validIdentifiant("inscription_identifiant")
-        validPassword("inscription_mot_de_passe", "inscription_confirmer_mot_de_passe")
-        validEmail("inscription_email")
-        validCGV(isCheckboxChecked)    
-}
 //
 const handleSubmit = () =>{
-        valid();
+ //
+ const isIdentifiantValid = validIdentifiant("profil_identifiant");
+ const isPasswordValid =  validPassword("profil_mot_de_passe", "profil_confirmer_mot_de_passe");
+ const isEmailValid = validEmail("profil_email");
+ const isCVGValid = validCGV(isCheckboxChecked);
+//
         if(
-            validIdentifiant("inscription_identifiant") === true &&
-            validPassword("inscription_mot_de_passe", "inscription_confirmer_mot_de_passe") === true &&
-            validEmail("inscription_email") === true &&
-            validCGV(isCheckboxChecked) === true
+            isIdentifiantValid &&
+            isPasswordValid &&
+            isEmailValid &&
+            isCVGValid
         ){
             register_user(formData)
             .then((isConfirmer: boolean) => {
@@ -79,9 +78,12 @@ function inscription_google(){
 //  
 const contentInput =  Input_inscription.map((input, index)=> (
     <Input
+    variant="t1"
     type={input.type}
     icon={input.icon}
     text={input.text}
+    variable={input.variable}
+    element={input.element}
     identifiant={`inscription_${input.text.replace(/\s/g, '_').toLowerCase()}`}
     fonction={handleChange}
     key={index}

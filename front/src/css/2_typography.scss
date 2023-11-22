@@ -9,111 +9,111 @@ $lineH: 48;
 // SIZE
 //
 //
-$sizeMax0: 5;
-$sizeMin0: 0;
+$sizeTypoMax0: 5;
+$sizeTypoMin0: 0;
 .size-typo0{
-    font-size: clamp(calc($sizeMin0 * 1px), calc(($sizeMax0 / $width) * 100vw), calc($sizeMax0 * 1px));
-    line-height: clamp(calc($sizeMin0 * 1px), calc(($sizeMax0 / $width) * 100vw), calc($sizeMax0 * 1px));
+    font-size: clamp(calc($sizeTypoMin0 * 1px), calc(($sizeTypoMax0 / $width) * 100vw), calc($sizeTypoMax0 * 1px));
+    line-height: clamp(calc($sizeTypoMin0 * 1px), calc(($sizeTypoMax0 / $width) * 100vw), calc($sizeTypoMax0 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax1: 10;
-$sizeMin1: 5;
+$sizeTypoMax1: 10;
+$sizeTypoMin1: 5;
 .size-typo1{
-    font-size: clamp(calc($sizeMin1 * 1px), calc(($sizeMax1 / $width) * 100vw), calc($sizeMax1 * 1px));
-    line-height: clamp(calc($sizeMin1 * 1px), calc(($sizeMax1 / $width) * 100vw), calc($sizeMax1 * 1px));
+    font-size: clamp(calc($sizeTypoMin1 * 1px), calc(($sizeTypoMax1 / $width) * 100vw), calc($sizeTypoMax1 * 1px));
+    line-height: clamp(calc($sizeTypoMin1 * 1px), calc(($sizeTypoMax1 / $width) * 100vw), calc($sizeTypoMax1 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax2: 12;
-$sizeMin2: 6;
+$sizeTypoMax2: 12;
+$sizeTypoMin2: 6;
 .size-typo2{
-    font-size: clamp(calc($sizeMin2 * 1px), calc(($sizeMax2 / $width) * 100vw), calc($sizeMax2 * 1px));
-    line-height: clamp(calc($sizeMin2 * 1px), calc(($sizeMax2 / $width) * 100vw), calc($sizeMax2 * 1px));
+    font-size: clamp(calc($sizeTypoMin2 * 1px), calc(($sizeTypoMax2 / $width) * 100vw), calc($sizeTypoMax2 * 1px));
+    line-height: clamp(calc($sizeTypoMin2 * 1px), calc(($sizeTypoMax2 / $width) * 100vw), calc($sizeTypoMax2 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax3: 15;
-$sizeMin3: 7.5;
+$sizeTypoMax3: 15;
+$sizeTypoMin3: 7.5;
 .size-typo3{
-    font-size: clamp(calc($sizeMin3 * 1px), calc(($sizeMax3 / $width) * 100vw), calc($sizeMax3 * 1px));
-    line-height: clamp(calc($sizeMin3 * 1px), calc(($sizeMax3 / $width) * 100vw), calc($sizeMax3 * 1px));
+    font-size: clamp(calc($sizeTypoMin3 * 1px), calc(($sizeTypoMax3 / $width) * 100vw), calc($sizeTypoMax3 * 1px));
+    line-height: clamp(calc($sizeTypoMin3 * 1px), calc(($sizeTypoMax3 / $width) * 100vw), calc($sizeTypoMax3 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax4: 18;
-$sizeMin4: 9;
+$sizeTypoMax4: 18;
+$sizeTypoMin4: 9;
 .size-typo4{
-    font-size: clamp(calc($sizeMin4 * 1px), calc(($sizeMax4 / $width) * 100vw), calc($sizeMax4 * 1px));
-    line-height: clamp(calc($sizeMin4 * 1px), calc(($sizeMax4 / $width) * 100vw), calc($sizeMax4 * 1px));
+    font-size: clamp(calc($sizeTypoMin4 * 1px), calc(($sizeTypoMax4 / $width) * 100vw), calc($sizeTypoMax4 * 1px));
+    line-height: clamp(calc($sizeTypoMin4 * 1px), calc(($sizeTypoMax4 / $width) * 100vw), calc($sizeTypoMax4 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax5: 20;
-$sizeMin5: 10;
+$sizeTypoMax5: 20;
+$sizeTypoMin5: 10;
 .size-typo5{
-    font-size: clamp(calc($sizeMin5 * 1px), calc(($sizeMax5 / $width) * 100vw), calc($sizeMax5 * 1px));
-    line-height: clamp(calc($sizeMin5 * 1px), calc(($sizeMax5 / $width) * 100vw), calc($sizeMax5 * 1px));
+    font-size: clamp(calc($sizeTypoMin5 * 1px), calc(($sizeTypoMax5 / $width) * 100vw), calc($sizeTypoMax5 * 1px));
+    line-height: clamp(calc($sizeTypoMin5 * 1px), calc(($sizeTypoMax5 / $width) * 100vw), calc($sizeTypoMax5 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax6: 24;
-$sizeMin6: 12;
+$sizeTypoMax6: 24;
+$sizeTypoMin6: 12;
 .size-typo6{
-    font-size: clamp(calc($sizeMin6 * 1px), calc(($sizeMax6 / $width) * 100vw), calc($sizeMax6 * 1px));
-    line-height: clamp(calc($sizeMin6 * 1px), calc(($sizeMax6 / $width) * 100vw), calc($sizeMax6 * 1px));
+    font-size: clamp(calc($sizeTypoMin6 * 1px), calc(($sizeTypoMax6 / $width) * 100vw), calc($sizeTypoMax6 * 1px));
+    line-height: clamp(calc($sizeTypoMin6 * 1px), calc(($sizeTypoMax6 / $width) * 100vw), calc($sizeTypoMax6 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Anton', sans-serif;
 }
 
-$sizeMax7: 30;
-$sizeMin7: 15;
+$sizeTypoMax7: 30;
+$sizeTypoMin7: 15;
 .size-typo7{
-    font-size: clamp(calc($sizeMin7 * 1px), calc(($sizeMax7 / $width) * 100vw), calc($sizeMax7 * 1px));
-    line-height: clamp(calc($sizeMin7 * 1px), calc(($sizeMax7 / $width) * 100vw), calc($sizeMax7 * 1px));
+    font-size: clamp(calc($sizeTypoMin7 * 1px), calc(($sizeTypoMax7 / $width) * 100vw), calc($sizeTypoMax7 * 1px));
+    line-height: clamp(calc($sizeTypoMin7 * 1px), calc(($sizeTypoMax7 / $width) * 100vw), calc($sizeTypoMax7 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Anton', sans-serif;
 }
 
-$sizeMax8: 34;
-$sizeMin8: 17;
+$sizeTypoMax8: 34;
+$sizeTypoMin8: 17;
 .size-typo8{
-    font-size: clamp(calc($sizeMin8 * 1px), calc(($sizeMax8 / $width) * 100vw), calc($sizeMax8 * 1px));
-    line-height: clamp(calc($sizeMin8 * 1px), calc(($sizeMax8 / $width) * 100vw), calc($sizeMax8 * 1px));
+    font-size: clamp(calc($sizeTypoMin8 * 1px), calc(($sizeTypoMax8 / $width) * 100vw), calc($sizeTypoMax8 * 1px));
+    line-height: clamp(calc($sizeTypoMin8 * 1px), calc(($sizeTypoMax8 / $width) * 100vw), calc($sizeTypoMax8 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax9: 38;
-$sizeMin9: 19;
+$sizeTypoMax9: 38;
+$sizeTypoMin9: 19;
 .size-typo9{
-    font-size: clamp(calc($sizeMin9 * 1px), calc(($sizeMax9 / $width) * 100vw), calc($sizeMax9 * 1px));
-    line-height: clamp(calc($sizeMin9 * 1px), calc(($sizeMax9 / $width) * 100vw), calc($sizeMax9 * 1px));
+    font-size: clamp(calc($sizeTypoMin9 * 1px), calc(($sizeTypoMax9 / $width) * 100vw), calc($sizeTypoMax9 * 1px));
+    line-height: clamp(calc($sizeTypoMin9 * 1px), calc(($sizeTypoMax9 / $width) * 100vw), calc($sizeTypoMax9 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeMax10: 46;
-$sizeMin10: 23;
+$sizeTypoMax10: 46;
+$sizeTypoMin10: 23;
 .size-typo10{
-    font-size: clamp(calc($sizeMin10 * 1px), calc(($sizeMax10 / $width) * 100vw), calc($sizeMax10 * 1px));
-    line-height: clamp(calc($sizeMin10 * 1px), calc(($sizeMax10 / $width) * 100vw), calc($sizeMax10 * 1px));
+    font-size: clamp(calc($sizeTypoMin10 * 1px), calc(($sizeTypoMax10 / $width) * 100vw), calc($sizeTypoMax10 * 1px));
+    line-height: clamp(calc($sizeTypoMin10 * 1px), calc(($sizeTypoMax10 / $width) * 100vw), calc($sizeTypoMax10 * 1px));
     letter-spacing: clamp(0px, calc((1 / $width) * 100vw), 1px) ;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
