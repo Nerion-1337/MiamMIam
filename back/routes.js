@@ -5,9 +5,11 @@ const userController = require("./controllers/user");
 const mediaController = require("./controllers/media");
 const likeController = require("./controllers/like");
 const reportController = require("./controllers/report");
+const recipeController = require("./controllers/recipe");
 const jwt = require("./middleware/token");
 const joi_user = require("./middleware/auth");
 const joi_report = require("./middleware/report");
+const joi_recipe = require("./middleware/recipe");
 const multer = require("./middleware/multer");
 
 //
@@ -37,6 +39,12 @@ router.put('/user/update_user', jwt.token_all, multer, joi_user.update_user_sett
 //
 // SIGNALEMENT
 router.post('/signalement/sitting', jwt.token_all, multer, joi_report.reporting, reportController.report_setting);
+//
+// RECIPE
+router.get('/recipe/element_recipe', jwt.token_all, joi_recipe.element_recipe, recipeController.element_recipe);
+router.post('/recipe/add_ingredient', jwt.token_all, multer, joi_recipe.add_ingredient, recipeController.add_ingredient);
+router.post('/recipe/add_ustensil', jwt.token_all, multer, joi_recipe.add_ustensil, recipeController.add_ustensil);
+router.post('/recipe/add_recipe', jwt.token_all, multer, joi_recipe.add_recipe, recipeController.add_recipe);
 //
 // IMAGE
 router.post('/add_photo', jwt.token_all, multer, mediaController.add_photo);

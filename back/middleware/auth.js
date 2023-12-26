@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const joi = require("joi")
 // DATA
-const { Links_Server } = require("../links")
+const { Links_Server, Regex } = require("../links")
 //
 //
 // JOI
@@ -12,13 +12,14 @@ const validationSchemas = {
   [Links_Server[0].pseudo]: joi.string()
       .min(4)
       .max(30)
-      .pattern(/^(?:(?!(\w)\1{2,}).)*$/)
+      .pattern(Regex[4].value)
+      .pattern(Regex[10].value)
       .required(),
   
   [Links_Server[0].password]: joi.string()
       .min(10)
       .max(40)
-      .pattern(/^(?=(?:\D*\d){2})(?=[^A-Z]*[A-Z])/)
+      .pattern(Regex[5].value)
       .required(),
   
   [Links_Server[0].email]: joi.string()
@@ -26,19 +27,22 @@ const validationSchemas = {
       .required(),
 
   Token: joi.string()
-      .pattern(/^[a-zA-Z0-9]*$/)
+      .pattern(Regex[3].value)
+      .pattern(Regex[10].value)
       .required(),  
   
   [Links_Server[0].first_name]: joi.string()
     .min(3)
     .max(30)
-    .pattern(/[a-zA-ZÀ-ÿ -]+/)
+    .pattern(Regex[6].value)
+    .pattern(Regex[10].value)
     .required(),
 
   [Links_Server[0].last_name]: joi.string()
     .min(3)
     .max(30)
-    .pattern(/[a-zA-ZÀ-ÿ -]+/)
+    .pattern(Regex[6].value)
+    .pattern(Regex[10].value)
     .required(),
 
   [Links_Server[0].sexe]: joi.string()
@@ -46,19 +50,26 @@ const validationSchemas = {
     .required(),
 
   [Links_Server[0].age]: joi.string()
-    .pattern(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/)
+    .pattern(Regex[7].value)
+    .pattern(Regex[8].value)
     .required(),
 
   [Links_Server[0].taille]: joi.string()
-    .pattern(/^[0-9]{2,3}$/)
+    .pattern(Regex[9].value)
+    .min(2)
+    .max(3)
     .required(),
 
   [Links_Server[0].poids]: joi.string()
-    .pattern(/^[0-9]{2,3}$/)
+    .pattern(Regex[9].value)
+    .min(2)
+    .max(3)
     .required(),
 
   [Links_Server[0].masse_grasse]: joi.string()
-    .pattern(/^[0-9]{1,2}$/)
+    .pattern(Regex[9].value)
+    .min(1)
+    .max(2)
     .required(),
   };   
 //
@@ -148,7 +159,7 @@ const validationSchemas = {
 
    if (identifiantError && emailError) {
      return res.status(400).json({
-      error_identifiant: 'Entrez votre pseudo ou email lol.'
+      error_identifiant: 'Entrez votre pseudo ou email.'
      });
    }
 

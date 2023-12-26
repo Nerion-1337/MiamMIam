@@ -59,7 +59,7 @@ const routeContent = Route_Client.map((item, index) =>(
 const navigationContent = (
   <BrowserRouter>
   {type_modal &&(
-    <Modal active={type_modal.active} number={type_modal.number} />
+    <Modal active={type_modal.active} number={type_modal.number} text={type_modal.text}/>
   )} 
   <Header />
   <Nav />

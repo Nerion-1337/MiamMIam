@@ -91,6 +91,15 @@ let sizeStyles = "";
     case "s5":
       sizeStyles = "size-input5";
       break;
+    case "s6":
+      sizeStyles = "size-input6";
+      break;
+    case "s7":
+      sizeStyles = "size-input7";
+      break;   
+    case "s8":
+      sizeStyles = "size-input8";
+      break;    
   }
 //
 // FONCTION FOCUS INPUT
@@ -107,7 +116,8 @@ const handleonChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
   setSelectedDate(e.target.value)
   if (fonction && text) {
     if(unitee){
-      const numbersOnly = e.target.value.replace(/\D/g, '');
+      const numbersOnly = e.target.value.replace(/[^\d.,]/g, '').replace(/,/g, ".");
+
       fonction(variable, numbersOnly);
     } else if (type === "file") {
       if(multiples){

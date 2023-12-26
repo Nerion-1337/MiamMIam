@@ -1,19 +1,23 @@
 // TYPAGE
-import { linksType, route, List_Icon, input, regex, modal_links, dropdown, api } from "#types/typages";
+import { linksType, route, List_Icon, input, regex, modal_links, dropdown_data, api, dropdown_type, } from "#types/typages";
 // ICONS
 import { MdEmail, MdAlternateEmail, MdFamilyRestroom, MdOutlineTitle  } from "react-icons/md";
 import { HiMiniUser } from "react-icons/hi2";
+import { IoMdAddCircle } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { GrClose } from "react-icons/gr";
 import { BiSolidUser, BiSolidLock, BiSolidLockOpen, BiLogoGoogle } from "react-icons/bi";
 import { GiDualityMask, GiBodyHeight, GiSausage, GiWeight } from "react-icons/gi";
-import { FaBirthdayCake } from "react-icons/fa";
+import { FaBirthdayCake, FaApple, FaFireAlt  } from "react-icons/fa";
 import { PiGenderIntersex } from "react-icons/pi";
 import { CiTextAlignCenter } from "react-icons/ci";
+import { FaAngleUp } from "react-icons/fa6";
+import { GiSteak } from "react-icons/gi";
+import { LuWheat } from "react-icons/lu";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
-import Input from "#components/build/input";
+import Input from "#components/build/global/input";
 //import Img from "#components/build/global/img";
 //COMPONENTS
 import { Close_modal, Reset_password_email_modal } from "#components/modal/modal_function";
@@ -25,6 +29,7 @@ import Reset_password from "#page/reset_password";
 import Setting from "#page/setting";
 import Dashbord from "#page/dashbord";
 import Profil from "#page/profil";
+import Add_recipe from "#page/add_recipe";
 //
 //
 //
@@ -68,24 +73,31 @@ export const Route_Client: route[] = [
   },
   {
     index: 4,
-    label: "user",
+    label: "paramètre",
     url: "/setting",
     type: "intern",
     page: <Setting/>,
   },
   {
     index: 5,
-    label: "user",
+    label: "tableau de bord",
     url: "/dashbord",
     type: "intern",
     page: <Dashbord/>,
   },
   {
     index: 6,
-    label: "user",
+    label: "profile",
     url: "/profil",
     type: "intern",
     page: <Profil/>,
+  },
+  {
+    index: 7,
+    label: "ajouter une recette",
+    url: "/add_recipe",
+    type: "intern",
+    page: <Add_recipe/>,
   },
 ];
 //
@@ -162,6 +174,30 @@ export const Route_Server: route[] = [
     url: "/token",
     type: "intern",
   },
+  {
+    index: 12,
+    label: "repas/ingredient/ustensil/macro_micro/type",
+    url: "/recipe/element_recipe",
+    type: "intern",
+  },
+  {
+    index: 13,
+    label: "add ingredient",
+    url: "/recipe/add_ingredient",
+    type: "intern",
+  },
+  {
+    index: 14,
+    label: "add ustensil",
+    url: "/recipe/add_ustensil",
+    type: "intern",
+  },
+  {
+    index: 15,
+    label: "add recette",
+    url: "/recipe/add_recipe",
+    type: "intern",
+  },
 ];
 //
 export const Route_Assets: route[] = [
@@ -221,231 +257,263 @@ export const Route_Assets: route[] = [
 //
 export const Links_Server: api[] = [
   {
-      table: "01_utilisateur",
-      id: "id",
-      pseudo: "pseudo",
-      email: "email",
-      valid: "confirm_email",
-      password: "password",
-      check: "code_check",
-      first_name: "first_name",
-      last_name: "last_name",
-      photo_profil: "photo_profil",
-      sexe: "sexe",
-      age: "age",
-      taille: "taille",
-      poids: "poids",
-      masse_grasse: "masse_grasse",
-      titre: "titre",
-      objectif: "objectif",
-      follower_total: "follower_total",
-      note_modo: "note_modo",
-      date_ajout: "date_ajout",
-      date_maj: "date_maj",
-  },
-  {
-      table: "02_adresse_ip",
-      id: "id",
-      user_id: "user_id",
-      adresse_ip: "adresse_ip",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "03_user_lock",
-      id: "id",
-      user_id: "user_id",
-      user_id_lock: "user_id_lock",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "04_media",
-      id: "id",
-      adress: "adress",
-      element_id_table: "user_recette_commentaire_alimentation_message_signalement_id",
-      element_type_table: "type_user_recette_commentaire_alimentation_message_signalement",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "05_signalement",
-      id: "id",
-      user_id: "user_id",
-      sujet: "sujet",
-      contenu: "contenu",
-      element_id_table: "user_recette_commentaire_alimentation_message_signalement_id",
-      note_modo: "note_modo",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-      date_resolution: "date_resolution",
-  },
-  {
-      table: "06_follow",
-      id: "id",
-      user_id: "user_id",
-      element_id_table: "recette_user_id",
-      element_type_table: "type_recette_user",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "07_likes",
-      id: "id",
-      user_id: "user_id",
-      element_id_table: "recette_commentaire_id",
-      element_type_table: "type_recette_commentaire",
-      user_id_post: "user_id_post",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "08_conversation",
-      id: "id",
-      user_id: "user_id",
-      conversation_id: "conversation_id",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "09_classification_conversation",
-      id: "id",
-      user_id: "user_id",
-      conversation_id: "conversation_id",
-      type: "type",
-  },
-  {
-      table: "10_messages",
-      id: "id",
-      user_id: "user_id",
-      conversation_id: "conversation_id",
-      contenu: "contenu",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "11_commentaire",
-      id: "id",
-      user_id: "user_id",
-      contenu: "contenu",
-      like_total: "like_total",
-      recette_id: "recette_id",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-      date_maj: "date_maj",
-  },
-  {
-      table: "12_commentaire_edit",
-      id: "id",
-      commentaire_id: "commentaire_id",
-      contenu: "contenu",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "13_recettes",
-      id: "id",
-      user_id: "user_id",
-      name: "name",
-      description: "description",
-      etape_preparation: "etape_preparation",
-      nutri_score: "nutri_score",
-      calorie: "calorie",
-      duree_recette: "duree_recette",
-      like_total: "like_total",
-      follower_total: "follower_total",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-      date_maj: "date_maj",
-  },
-  {
-      table: "14_recettes_edit",
-      id: "id",
-      name: "name",
-      description: "description",
-      etape_preparation: "etape_preparation",
-      nutri_score: "nutri_score",
-      calorie: "calorie",
-      duree_recette: "duree_recette",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "15_contenu_recette",
-      id: "id",
-      recette_id: "recette_id",
-      type: "type_recette_edit_delet",
-      element_id_table: "ingredient_ustensil_id",
-      element_type_table: "type_ingredient_ustensil",
-      quantite: "quantite",
-      type_all: "type_all",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "16_consommation",
-      id: "id",
-      user_id: "user_id",
-      recette_id: "recette_id",
-      pourcentage: "pourcentage",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "17_macro_micro",
-      id: "id",
-      nom: "nom",
-      description: "description",
-      abreviation: "abreviation",
-      icon: "icon",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "18_ustensil",
-      id: "id",
-      nom: "nom",
-      description: "description",
-      abreviation: "abreviation",
-      lien_affiliation: "lien_affiliation",
-      marque: "marque",
-      icon: "icon",
-      date_ajout: "date_ajout",
-      date_maj: "date_maj",
-  },
-  {
-      table: "19_ingredient",
-      id: "id",
-      nom: "nom",
-      description: "description",
-      abreviation: "abreviation",
-      calorie: "calorie",
-      lien_affiliation: "lien_affiliation",
-      marque: "marque",
-      icon: "icon",
-      date_ajout: "date_ajout",
-      date_maj: "date_maj",
-  },
-  {
-      table: "20_contenu_ingredient",
-      id: "id",
-      macro_micro_id: "macro_micro_id",
-      ingredient_id: "ingredient_id",
-      quantite: "quantite",
-      date_ajout: "date_ajout",
-  },
-  {
-      table: "21_recettes_deletes",
-      id: "id",
-      recette_id: "recette_id",
-      user_id: "user_id",
-      name: "name",
-      description: "description",
-      etape_preparation: "etape_preparation",
-      nutri_score: "nutri_score",
-      calorie: "calorie",
-      duree_recette: "duree_recette",
-      like_total: "like_total",
-      follower_total: "follower_total",
-      etat_validation: "etat_validation",
-      date_ajout: "date_ajout",
-      date_maj: "date_maj",
-  },
+    table: "01_utilisateur",
+    id: "id",
+    pseudo: "pseudo",
+    email: "email",
+    valid: "confirm_email",
+    password: "password",
+    check: "code_check",
+    first_name: "first_name",
+    last_name: "last_name",
+    photo_profil: "photo_profil",
+    sexe: "sexe",
+    age: "age",
+    taille: "taille",
+    poids: "poids",
+    masse_grasse: "masse_grasse",
+    titre: "titre",
+    objectif: "objectif",
+    follower_total: "follower_total",
+    note_modo: "note_modo",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "02_adresse_ip",
+    id: "id",
+    user_id: "user_id",
+    adresse_ip: "adresse_ip",
+    date_ajout: "date_ajout",
+},
+{
+    table: "03_user_lock",
+    id: "id",
+    user_id: "user_id",
+    user_id_lock: "user_id_lock",
+    date_ajout: "date_ajout",
+},
+{
+    table: "04_media",
+    id: "id",
+    adress: "adress",
+    element_id_table: "user_recette_commentaire_alimentation_message_signalement_id",
+    element_type_table: "type_user_recette_commentaire_alimentation_message_signalement",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "05_signalement",
+    id: "id",
+    user_id: "user_id",
+    sujet: "sujet",
+    contenu: "contenu",
+    element_id_table: "user_recette_commentaire_alimentation_message_signalement_id",
+    note_modo: "note_modo",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+    date_resolution: "date_resolution",
+},
+{
+    table: "06_follow",
+    id: "id",
+    user_id: "user_id",
+    element_id_table: "recette_user_id",
+    element_type_table: "type_recette_user",
+    date_ajout: "date_ajout",
+},
+{
+    table: "07_likes",
+    id: "id",
+    user_id: "user_id",
+    element_id_table: "recette_commentaire_id",
+    element_type_table: "type_recette_commentaire",
+    user_id_post: "user_id_post",
+    date_ajout: "date_ajout",
+},
+{
+    table: "08_conversation",
+    id: "id",
+    user_id: "user_id",
+    conversation_id: "conversation_id",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "09_classification_conversation",
+    id: "id",
+    user_id: "user_id",
+    conversation_id: "conversation_id",
+    type: "type",
+},
+{
+    table: "10_messages",
+    id: "id",
+    user_id: "user_id",
+    conversation_id: "conversation_id",
+    contenu: "contenu",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "11_commentaire",
+    id: "id",
+    user_id: "user_id",
+    contenu: "contenu",
+    like_total: "like_total",
+    recette_id: "recette_id",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "12_commentaire_edit",
+    id: "id",
+    commentaire_id: "commentaire_id",
+    contenu: "contenu",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "13_recettes",
+    id: "id",
+    user_id: "user_id",
+    name: "name",
+    description: "description",
+    etape_preparation: "etape_preparation",
+    nutri_score: "nutri_score",
+    calorie: "calorie",
+    duree_recette: "duree_recette",
+    like_total: "like_total",
+    follower_total: "follower_total",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "14_recettes_edit",
+    id: "id",
+    name: "name",
+    description: "description",
+    etape_preparation: "etape_preparation",
+    nutri_score: "nutri_score",
+    calorie: "calorie",
+    duree_recette: "duree_recette",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "15_contenu_recette",
+    id: "id",
+    recette_id: "recette_id",
+    type: "type_recette_edit_delet",
+    element_id_table: "ingredient_ustensil_id",
+    element_type_table: "type_ingredient_ustensil_repas",
+    quantite: "quantite",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "16_etape_preparation",
+    id: "id",
+    recette_id: "recette_id",
+    type: "type_recette_edit_delet",
+    contenu: "contenu",
+    num_etape: "num_etape",
+    date_ajout: "date_ajout",
+},
+{
+    table: "17_consommation",
+    id: "id",
+    user_id: "user_id",
+    recette_id: "recette_id",
+    pourcentage: "pourcentage",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+},
+{
+    table: "18_macro_micro",
+    id: "id",
+    name: "name",
+    description: "description",
+    abreviation: "abreviation",
+    type: "type",
+    icon: "icon",
+    date_ajout: "date_ajout",
+},
+{
+    table: "19_ingredient",
+    id: "id",
+    user_id: "user_id",
+    name: "name",
+    description: "description",
+    abreviation: "abreviation",
+    calorie: "calorie",
+    lien_affiliation: "lien_affiliation",
+    marque: "marque",
+    icon: "icon",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "20_contenu_ingredient",
+    id: "id",
+    other_table_id: "macro_micro_type_id",
+    type: "type_marco_micro_type",
+    ingredient_id: "ingredient_id",
+    quantite: "quantite",
+    date_ajout: "date_ajout",
+},
+{
+    table: "21_ustensil",
+    id: "id",
+    user_id: "user_id",
+    name: "name",
+    description: "description",
+    abreviation: "abreviation",
+    lien_affiliation: "lien_affiliation",
+    marque: "marque",
+    icon: "icon",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "22_repas",
+    id: "id",
+    name: "name",
+    description: "description",
+    abreviation: "abreviation",
+    icon: "icon",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "23_type_produit",
+    id: "id",
+    name: "name",
+    description: "description",
+    abreviation: "abreviation",
+    icon: "icon",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
+{
+    table: "24_recettes_deletes",
+    id: "id",
+    recette_id: "recette_id",
+    user_id: "user_id",
+    name: "name",
+    description: "description",
+    etape_preparation: "etape_preparation",
+    nutri_score: "nutri_score",
+    calorie: "calorie",
+    duree_recette: "duree_recette",
+    like_total: "like_total",
+    follower_total: "follower_total",
+    etat_validation: "etat_validation",
+    date_ajout: "date_ajout",
+    date_maj: "date_maj",
+},
 ]
 //
 //
@@ -520,18 +588,33 @@ export const Regex: regex[] = [
    },
    {
     id: 13,
-    type: "chiffre et lettre", 
+    type: "chiffre et lettre et espace", 
     value: /^[a-zA-Z0-9 ]*$/,
    },
    {
     id: 14,
     type: "chiffre et lettre", 
-    value: /^.{4,40}$/,
+    value: /^.{3,40}$/,
    },
    {
     id: 15,
     type: "chiffre et lettre", 
-    value: /^.{20,1000}$/,
+    value: /^[\s\S]{20,2000}$/,
+   },
+   {
+    id: 16,
+    type: "remplace espace et autre par undescore", 
+    value: /[\s']/g,
+   },
+   {
+    id: 17,
+    type: "chiffre et lettre", 
+    value: /^.{20,5000}$/,
+   },
+   {
+    id: 18,
+    type: "chiffre et lettre", 
+    value: /^.{20,255}$/,
    },
 ]
 //
@@ -542,26 +625,36 @@ export const Regex: regex[] = [
 export const List_icon: List_Icon = {
   all: [
     {
+      key: 0,
       type: "user",
       icon: { icon: HiMiniUser },
     },
     {
+      key: 1,
       type: "email",
       icon: { icon: MdEmail },
     },
     {
+      key: 2,
       type: "croix",
       icon: { icon: IoCloseSharp },
     },
     {
+      key: 3,
       type: "logo google",
       icon: { icon: BiLogoGoogle },
     },
     {
+      key: 4,
       type: "croix",
       icon: { icon: GrClose },
     },
-  ],
+    {
+      key: 5,
+      type: "add",
+      icon: {icon: IoMdAddCircle},
+    }
+  ],  
 }
 //
 //
@@ -809,16 +902,395 @@ export const Input_setting_signalement: input[] = [
   },
 ]
 //
+export const Input_add_recipe: input[] = [
+  {
+    key: 0,
+    variant: "t3",
+    size: "s5",
+    variable: Links_Server[12].name,
+    type: "text",
+    icon: {icon: MdOutlineTitle },
+    text: "Nom de la Recette",
+    value: "",
+    element: "text",
+    unitee: "",
+  },
+  {
+    key: 1,
+    variant: "t3",
+    size: "s6",
+    variable: Links_Server[12].description,
+    type: "textarea",
+    icon: {icon: CiTextAlignCenter},
+    text: "Description",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+  {
+    key: 2,
+    variant: "t3",
+    size: "s6",
+    variable: Links_Server[12].etape_preparation,
+    type: "textarea",
+    icon: {icon: CiTextAlignCenter},
+    text: "Etape",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+  {
+    key: 3,
+    variant: "t1",
+    size: "s2",
+    variable: "recette_presentation",
+    type: "file",
+    icon: {icon: GiSausage},
+    text: "image de presentation",
+    value: "",
+    element: "img",
+    unitee: "",
+    multiples: false,
+  },
+  {
+    key: 4,
+    variant: "t2",
+    size: "s2",
+    variable: "recette_media",
+    type: "file",
+    icon: {icon: GiSausage},
+    text: "image & video de recette",
+    value: "",
+    element: "img",
+    unitee: "",
+    multiples: true,
+  },
+]
+//
+export const Input_add_ingredient: input[] = [
+  {
+    key: 0,
+    variant: "t3",
+    size: "s2",
+    variable: Links_Server[18].name,
+    type: "text",
+    icon: {icon: MdOutlineTitle },
+    text: "Nom de l'ingredient",
+    value: "",
+    element: "text",
+    unitee: "",
+  },
+  {
+    key: 1,
+    variant: "t3",
+    size: "s2",
+    variable: Links_Server[18].marque,
+    type: "text",
+    icon: {icon: FaApple},
+    text: "Marque",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+  {
+    key: 2,
+    variant: "t3",
+    size: "s7",
+    variable: Links_Server[18].description,
+    type: "textarea",
+    icon: {icon: CiTextAlignCenter},
+    text: "Description",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+  {
+    key: 3,
+    variant: "t3",
+    size: "s1",
+    variable:  Links_Server[18].calorie,
+    type: "text",
+    icon: {icon: FaFireAlt},
+    text: "Calorie",
+    value: "",
+    element: "number",
+    unitee: "g",
+    multiples: false,
+  },
+  {
+    key: 4,
+    variant: "t3",
+    size: "s1",
+    variable: "proteine",
+    type: "text",
+    icon: {icon: GiSteak},
+    text: "Proteine",
+    value: "",
+    element: "number",
+    unitee: "g",
+    multiples: true,
+  },
+  {
+    key: 5,
+    variant: "t3",
+    size: "s1",
+    variable: "glucide",
+    type: "text",
+    icon: {icon: LuWheat},
+    text: "Glucide",
+    value: "",
+    element: "number",
+    unitee: "g",
+    multiples: true,
+  },
+  {
+    key: 6,
+    variant: "t3",
+    size: "s1",
+    variable: "lipide",
+    type: "text",
+    icon: {icon: GiSausage},
+    text: "Lipide",
+    value: "",
+    element: "number",
+    unitee: "g",
+    multiples: true,
+  },
+  {
+    key: 7,
+    variant: "t1",
+    size: "s2",
+    variable: "ingredient_presentation",
+    type: "file",
+    icon: {icon: GiSausage},
+    text: "image de presentation",
+    value: "",
+    element: "img",
+    unitee: "",
+    multiples: false,
+  },
+]
+//
+export const Input_add_ustensil: input[] = [
+  {
+    key: 0,
+    variant: "t3",
+    size: "s2",
+    variable: Links_Server[20].name,
+    type: "text",
+    icon: {icon: MdOutlineTitle },
+    text: "Nom de l'ustensil",
+    value: "",
+    element: "text",
+    unitee: "",
+  },
+  {
+    key: 1,
+    variant: "t3",
+    size: "s2",
+    variable: Links_Server[20].marque,
+    type: "text",
+    icon: {icon: FaApple},
+    text: "Marque",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+  {
+    key: 2,
+    variant: "t3",
+    size: "s7",
+    variable: Links_Server[20].description,
+    type: "textarea",
+    icon: {icon: CiTextAlignCenter},
+    text: "Description",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+  {
+    key: 3,
+    variant: "t1",
+    size: "s2",
+    variable: "ustensil_presentation",
+    type: "file",
+    icon: {icon: GiSausage},
+    text: "image de presentation",
+    value: "",
+    element: "img",
+    unitee: "",
+    multiples: false,
+  },
+]
+//
 //
 // DROPDOWN
 //
 //
-export const Dropdown_sexe : dropdown[] = [
+export const Dropdown_sexe : dropdown_data[] = [
   {
     name: "Homme",
   },
   {
     name: "Femme",
+  },
+]
+//
+export const Dropdown_time: dropdown_data[] = [
+  { name: "1min" },
+  { name: "2min" },
+  { name: "3min" },
+  { name: "4min" },
+  { name: "5min" },
+  { name: "6min" },
+  { name: "7min" },
+  { name: "8min" },
+  { name: "9min" },
+  { name: "10min" },
+  { name: "15min" },
+  { name: "20min" },
+  { name: "25min" },
+  { name: "30min" },
+  { name: "35min" },
+  { name: "40min" },
+  { name: "45min" },
+  { name: "50min" },
+  { name: "55min" },
+  { name: "60min" },
+  { name: "70min" },
+  { name: "80min" },
+  { name: "90min" },
+  { name: "100min" },
+  { name: "110min" },
+  { name: "120min" },
+  { name: "130min" },
+  { name: "140min" },
+  { name: "150min" },
+  { name: "160min" },
+  { name: "170min" },
+  { name: "180min" },
+  { name: "190min" },
+  { name: "200min" },
+  { name: "210min" },
+  { name: "220min" },
+  { name: "230min" },
+  { name: "240min" },
+  { name: "250min" },
+  { name: "260min" },
+  { name: "270min" },
+  { name: "280min" },
+  { name: "290min" },
+  { name: "300min" },
+  { name: "310min" },
+  { name: "320min" },
+  { name: "330min" },
+  { name: "340min" },
+  { name: "350min" },
+  { name: "360min" },
+  { name: "370min" },
+  { name: "380min" },
+  { name: "390min" },
+  { name: "400min" },
+  { name: "410min" },
+  { name: "420min" },
+  { name: "430min" },
+  { name: "440min" },
+  { name: "450min" },
+  { name: "460min" },
+  { name: "470min" },
+  { name: "480min" },
+  { name: "490min" },
+  { name: "500min" },
+  { name: "510min" },
+  { name: "520min" },
+  { name: "530min" },
+  { name: "540min" },
+  { name: "550min" },
+  { name: "560min" },
+  { name: "570min" },
+  { name: "580min" },
+  { name: "590min" },
+  { name: "600min" },
+];
+//
+export const Dropdown_add_recipe : dropdown_type[] = [
+  {
+    key: 0,
+    variant: "t3",
+    variable: Links_Server[12].duree_recette,
+    value: "Temps de Préparation",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    search: false,
+  },
+  {
+    key: 1,
+    variant: "t1",
+    variable: "ingredient",
+    text: "Ingredients",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+  {
+    key: 2,
+    variant: "t1",
+    variable: "repas",
+    text: "Repas",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    value: "Rechercher",
+    search: true,
+    number: false,
+  },
+  {
+    key: 3,
+    variant: "t1",
+    variable: "ustensil",
+    text: "Ustensils",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    value: "Rechercher ustensil",
+    search: true,
+    number: true,
+  },
+]
+//
+export const Dropdown_add_ingredient : dropdown_type[] = [
+  {
+    key: 0,
+    variant: "t1",
+    variable: "type",
+    text: "Type",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    value: "Rechercher",
+    search: true,
+    number: false,
+  },
+  {
+    key: 1,
+    variant: "t1",
+    variable: "vitamine_mineraux",
+    text: "Vitamine & Mineraux",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+  {
+    key: 2,
+    variant: "t1",
+    variable: "micronutriment",
+    text: "Micronutirment",
+    icon: {icon: FaAngleUp},
+    list: Dropdown_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
   },
 ]
 //
@@ -1023,24 +1495,17 @@ export const Modals: modal_links[] = [
             </>)
   },
   {
-    id: 6,
+    id: 7,
     name: "signalement",
     type: "t0",
     children:(<>
- <Typo
+        <Typo
         balise="span"
         size="s6"
         color="cw"
         transform="maj"
-        children="Vous avez déjà soumis trop de signalement non traité."
-        />  
-         <Typo
-        balise="span"
-        size="s6"
-        color="c2"
-        transform="maj"
-        children="Il vous faudra attendre que certain soient cloturés avant de pouvoir en postuler de nouveau."
-        />           
+        children="L'ingredient a bien était ajouté."
+        />            
         <Button 
         variant="t1"
         size="s5"
@@ -1048,6 +1513,28 @@ export const Modals: modal_links[] = [
         children="ok"
         fonction={Close_modal}
         data_function={7}
+             />       
+            </>)
+  },
+  {
+    id: 8,
+    name: "add_ingredient",
+    type: "t0",
+    children:(<>
+ <Typo
+        balise="span"
+        size="s6"
+        color="cw"
+        transform="maj"
+        children="L'ingredient a bien était ajouté."
+        />           
+        <Button 
+        variant="t1"
+        size="s5"
+        fontSize="s4"
+        children="ok"
+        fonction={Close_modal}
+        data_function={8}
              />       
             </>)
   },

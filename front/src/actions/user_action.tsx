@@ -27,7 +27,6 @@ export const getUser = () => {
             method: 'GET',
             headers: {
               Authorization: `${localStorage.getItem("token_miam_miam")}`,
-              'Content-Type': 'application/json',
             },
           })
             .then((res) => res.json())
@@ -43,7 +42,7 @@ export const getUser = () => {
 //
 //
 export const PUT_USER = "PUT_USER";
-
+//
 export const putUser = (formData: api) => {  
 //
 // VARIABLE

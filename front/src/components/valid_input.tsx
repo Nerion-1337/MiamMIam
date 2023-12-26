@@ -278,19 +278,18 @@ export function validBirthdate(data: string) {
     }
   }
   }
-  //
+//
 //
  export function validContenuSignal(data: string) {
   const Input = document.querySelector(`.${data}`)?.querySelector("textarea");
-
   if(Input){
   const value = Input.value.trim();
    
     if (value === "") {
       setErreur(data, "Veuillez renseigner des informations sur votre requête.");
       return false;
-    } else if (Regex[15].value.test(value) === false) {
-      setErreur(data, "Veuillez écrire un contenu de 20 à 1000 caractères.");
+    } else if (Regex[17].value.test(value) === false) {
+      setErreur(data, "Veuillez écrire un contenu de 20 à 5000 caractères.");
       return false;
     } else {
       setValid(data);
@@ -298,3 +297,80 @@ export function validBirthdate(data: string) {
     }
   }
   }
+//
+//
+export function validTitreAdd(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim();
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner un sujet.");
+      return false;
+    } else if (Regex[0].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer que des lettres.");
+      return false;
+    } else if (Regex[14].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer entre 4 et 40 caractères.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+//
+//
+export function validDescriptionAdd(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("textarea");
+  if(Input){
+  const value = Input.value.trim();
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner du contenu.");
+      return false;
+    } else if (Regex[18].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer entre 20 et 255 caractères.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+//
+//
+export function validContenuAdd(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("textarea");
+  if(Input){
+  const value = Input.value.trim();
+  
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner du contenu.");
+      return false;
+    } else if (Regex[15].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer entre 20 et 2000 caractères.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }
+//
+//
+export function validInputAdd(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("input");
+  if(Input){
+  const value = Input.value.trim();
+
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner une valeur.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }    

@@ -18,12 +18,11 @@ exports.report_setting = async (req, res, next) => {
 
       const insert_img = `INSERT INTO ${Links_Server[3].table} (${Links_Server[3].adress}, ${Links_Server[3].element_id_table}, ${Links_Server[3].element_type_table}) VALUE (?)`;
 //
-// VERIFIE COMBIEN DE SIGNALEMENT PAS USER
+// VERIFIE COMBIEN DE SIGNALEMENT REALISE PAR USER
 //
       SQL.query(select, [req.auth.userId], (err, data)=>{
         if (err) return res.status(500).json(err);
         if (data.length > 9) return res.status(409).json({ error_report_length: "Vous avez déjà soumis trop de signalement"});
-
 //
 // INSERT DATA REPORT
 //

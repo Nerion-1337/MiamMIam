@@ -11,6 +11,7 @@ import { postModal, updateModalValue } from '#/actions/modal_action'
 export default function Modal_active({
     number,
     active,
+    text,
 }: modal){
 //
 //
@@ -38,8 +39,8 @@ const resultat = table_modal.filter((object) => {
 //
 //
 if(resultat.length === 0){
-    store.dispatch(postModal({name: Modals[number].name, active: true, number: number}))
+    store.dispatch(postModal({name: Modals[number].name, active: true, number: number, text: text}))
 } else {
-    store.dispatch(updateModalValue({name: Modals[number].name, active: active, number: number}))
+    store.dispatch(updateModalValue({name: Modals[number].name, active: active, number: number, text: text}))
 }
 }

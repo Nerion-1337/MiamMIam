@@ -17,7 +17,7 @@
     position: fixed;
     top: clamp(10px, calc((50 / $width) * 100vw), 50px);
     left: clamp(10px, calc((50 / $width) * 100vw), 50px);
-    font-size: clamp(25px, calc((80 / $width) * 100vw), 80px);
+    font-size: clamp(40px, calc((80 / $width) * 100vw), 80px);
     cursor: pointer;
     color: rgb(255, 255, 255);
     @extend %center;

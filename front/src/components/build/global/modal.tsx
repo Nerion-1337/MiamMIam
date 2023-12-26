@@ -4,6 +4,9 @@ import { modal } from "#types/typages";
 import { List_icon, Modals } from "#data/links";
 // COMPENENT
 import { Close_modal } from "#components/modal/modal_function";
+// BUILDER
+import Typo from "./typography";
+import Button from "./button";
 //
 //
 //
@@ -11,7 +14,8 @@ import { Close_modal } from "#components/modal/modal_function";
 //
 export default function Modal({
 number,
-active,  
+active,
+text,  
 }: modal){
 //
 //
@@ -44,10 +48,44 @@ switch (Modals[number].type) {
   }
 //
 //
+// BUILDER
 //
 //
+const Modal_simple = (
+  <>
+   <Typo
+        balise="span"
+        size="s6"
+        color="cw"
+        transform="maj"
+        children={text}
+        />         
+        <Button 
+        variant="t1"
+        size="s5"
+        fontSize="s4"
+        children="ok"
+        fonction={Close_modal}
+        data_function={number}
+             /> 
+  </>
+)
 //
-
+const Modal_specifique = (
+  <>
+  {Modals[number].children}
+  </>
+)
+//
+const content_Modal = (
+  <>
+  {text ? (
+    Modal_simple
+  ) : (
+    Modal_specifique
+  )}
+  </>
+)
 //
 //
 // RETURN
@@ -57,7 +95,7 @@ switch (Modals[number].type) {
         <section className={`modal ${variantStyles} ${active ? "active" : ""}`}>
           <div className="close" onClick={() => Close_modal(number)}><icon.icon /></div>
             <article>
-              {Modals[number].children}
+              {content_Modal}
             </article>
         </section>
     )

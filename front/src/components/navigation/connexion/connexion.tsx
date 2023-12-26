@@ -5,7 +5,7 @@ import { List_icon, Input_connexion, Route_Server } from "#data/links";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
-import Input from "#components/build/input";
+import Input from "#components/build/global/input";
 //COMPONENTS
 import Button_active from "#components/active_redux/button_active";
 import Modal_active from "#components/active_redux/modal_active";

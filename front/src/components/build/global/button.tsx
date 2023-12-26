@@ -47,9 +47,6 @@ export default function Button({
   //
   //
   switch (variant) {
-    case "t0":
-      variantStyles = "type-btn0";
-      break;
     case "t1":
       variantStyles = "type-btn1";
       break;

@@ -85,6 +85,7 @@ export interface route {
 //
 export interface List_Icon{
   all: {
+    key?: number;
     type: string,
     icon: iconProps,
   }[];
@@ -133,8 +134,8 @@ export interface modal_links {
 }
 //
 //
-export interface dropdown{
-  name: string;
+export interface dropdown_data{
+   [key: string]: string;
 }
 //
 //
@@ -244,21 +245,36 @@ export interface input_type extends Partial<variant & size>{
 //
 //
 export interface dropdown_type{
+  key?: number;
   variant?: string;
   text?: string;
   icon?: iconProps;
-  list?: dropdown[];
+  list?: dropdown_data[];
   value?: string | number;
-  variable: string;
+  variable?: string;
   // eslint-disable-next-line @typescript-eslint/ban-types 
   fonction?: Function;
   show?: boolean;
+  search?: boolean;
+  number?:boolean;
 }
 //
 //
 export interface modal {
   active: boolean;
   number: number;
+  text?:string;
+}
+//
+//
+export interface tag{
+  value?: string;
+  type?: string;
+  number?: boolean;
+  // eslint-disable-next-line @typescript-eslint/ban-types 
+  fonction?: Function;
+  // eslint-disable-next-line @typescript-eslint/ban-types 
+  close?: Function;
 }
 //
 //
@@ -277,6 +293,11 @@ export interface error {
 //
 export interface api {
   [key: string]: string;
+}
+//
+//
+export interface api_element_recipe{
+  [key: string]: api[];
 }
 //
 //
@@ -310,8 +331,11 @@ export interface modal_reducer{
 //
 export interface token_reducer{
   tokenReducer: token_valide;
-  
-}  
+}
+//
+export interface element_recipe_reducer{
+  elementRecipeReducer: api_element_recipe;
+}
 //
 //
 // ACTION
@@ -327,6 +351,7 @@ export interface modal_action{
     name?: string,
     active: boolean;
     number: number;
+    text?: string;
     }
 //
 //

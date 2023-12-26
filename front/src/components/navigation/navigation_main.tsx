@@ -31,11 +31,14 @@ const table = useSelector((state:  button_reducer) => state.buttonReducer);
 const cookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith(`token_miam_miam=`))
 const token_cookie = cookie ? cookie.split('=')[1] : null;
 const token = useSelector((state:  token_reducer) => state.tokenReducer);
+let type_aside: object_button_reducer | null = null;
+let type_connexion: object_button_reducer | null = null;
 //
 //
 // FONCTION
 //
 //
+// REPOSITIONNE LA BARRE DE NAVIGATION SI L'ECRAN EXCEDE 1600PX
 useEffect(() => {
   const aside = aside_principal.current;
 //
@@ -64,9 +67,6 @@ useEffect(() => {
 if(token_cookie) localStorage.setItem("token_miam_miam", token_cookie)
 //
 //
-let type_aside: object_button_reducer | null = null;
-let type_connexion: object_button_reducer | null = null;
-
 for (const item of table) {
     if (item.name === 'navigation_open' || item.name === 'tchat_open') {
         if (item.value === true) {
@@ -99,7 +99,6 @@ const connexionContent = (
   </>
 );
 //
-//
 const asideContent =(
   <>
       <section className="header_aside">
@@ -124,7 +123,6 @@ const asideContent =(
   </>
 )
 //
-//
 const mainContent =(
   <>
   {  type_connexion && type_connexion.name === "navigation" || token.token ? (
@@ -135,6 +133,8 @@ const mainContent =(
   </>
 )
 //
+//
+// RETURN
 //
 //    
     return(

@@ -1,10 +1,141 @@
+.type-dropdown1{
+  position: relative;
+}
+
+.type-dropdown1 .boxGlobal{
+  position: relative;
+}
+
+.type-dropdown1 .boxGlobal .mirror_dropdown{
+  position: relative;
+  height: clamp(29px, calc((58 / $width) * 100vw), 58px);
+  padding: 
+  0
+  clamp(22px, calc((44 / $width) * 100vw), 44px)
+  0
+  clamp(13px, calc((26 / $width) * 100vw), 26px);
+  border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+  color: $cb;
+  font-weight: 500;
+  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  opacity: 0;
+}
+
+.type-dropdown1 .dropdownBox{
+  position: absolute;
+  top: 0;
+  height: clamp(29px, calc((58 / $width) * 100vw), 58px);
+  padding: 
+  0
+  clamp(8px, calc((15 / $width) * 100vw), 15px)
+  0
+  clamp(8px, calc((15 / $width) * 100vw), 15px);
+  background: $c2;
+  border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+  transition: .5s, border 0s;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.type-dropdown1 .dropdownBox.active{
+  height: clamp(130px, calc((260 / $width) * 100vw), 260px);
+  padding-bottom: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  border: 2px solid $cb;
+  z-index: 20;
+}
+
+.type-dropdown1 .dropdownBox .inputBox{
+  position: relative;
+  padding: 
+  clamp(8px, calc((16 / $width) * 100vw), 16px)
+  0
+  clamp(8px, calc((16 / $width) * 100vw), 16px)
+  0;
+  display: flex;
+  align-items: center;
+}
+
+.type-dropdown1 .dropdownBox .inputBox .input_model{
+  padding-right: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  border: none;
+  color: $cb;
+  background: transparent;
+  font-weight: 500;
+  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  outline: none;
+  display: flex;
+  cursor: pointer;
+}
+
+.type-dropdown1 .dropdownBox.active .inputBox .input_model{
+  width: clamp(100px, calc((200 / $width) * 100vw), 200px);
+}
+
+.type-dropdown1 .dropdownBox .inputBox svg{
+  width: clamp(12.5px, calc((25/ $width) * 100vw), 25px);
+  height: clamp(12.5px, calc((25/ $width) * 100vw), 25px);
+  transform: rotate(180deg);
+  color: $cb;
+  transition: .5s;
+}
+
+.type-dropdown1 .dropdownBox.active .inputBox svg{
+  transform: rotate(360deg);
+}
+
+.type-dropdown1 .dropdownBox .dropdownMenu{
+  max-height: 165px;
+  margin-top: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  color: $cw;
+  display: none;
+  flex-direction: column;
+  gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  overflow: auto;
+  overflow-y: auto;
+  -ms-overflow-style: scrollbar; 
+}
+
+.type-dropdown1 .dropdownBox.active .dropdownMenu{
+  display: flex;
+}
+
+
+.type-dropdown1 .dropdownBox .dropdownMenu::-webkit-scrollbar{
+  display: block;
+  background-color: $cb;
+  border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  width: clamp(2.5px, calc((5 / $width) * 100vw), 5px);
+}
+
+.type-dropdown1 .dropdownBox .dropdownMenu::-webkit-scrollbar-thumb{
+  background-color: $cw;
+  border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+}
+
+.type-dropdown1 .dropdownBox .dropdownMenu li{
+  cursor: pointer;
+  &:hover{
+    background: $cw;
+    color: $cb;
+  }
+}
+//
+//
+//
 .type-dropdown2{
     position: relative;
     width: clamp(150px, calc((325 / $width) * 100vw), 325px);
     @extend %center;
   }
+
+  .type-dropdown2 .dropdownBox{
+    position: relative;
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+    @extend %center;
+  }
   
-  .type-dropdown2 button{
+  .type-dropdown2 .dropdownBox button{
     position: absolute;
     height: clamp(26px, calc((52 / $width) * 100vw), 52px);
     background: $cw;
@@ -26,7 +157,7 @@
     cursor: pointer;
   }
   
-  .type-dropdown2 span{
+  .type-dropdown2 .dropdownBox span{
     position: absolute;
     left: 0;
     padding-left: clamp(27px, calc((54 / $width) * 100vw), 54px);
@@ -41,7 +172,7 @@
     transition: .5s, color 0s, background 0s;
   }
   
-  .type-dropdown2 button.active ~ span
+  .type-dropdown2 .dropdownBox button.active ~ span
   {
     color: $c3;
     background: $c2;
@@ -53,12 +184,12 @@
     transition: .5s, color 1.5s, background 1s;
   }
   
-  .type-dropdown2 button.active
+  .type-dropdown2 .dropdownBox button.active
   {
     border: 2px solid $c2;
   }
   
-  .type-dropdown2 svg{
+  .type-dropdown2 .dropdownBox svg{
     position: absolute;
     left: clamp(8px, calc((12 / $width) * 100vw), 12px);
     width: clamp(17.5px, calc((35/ $width) * 100vw), 35px);
@@ -68,11 +199,11 @@
     padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
   }
   
-  .type-dropdown2 .dropdownMenu{
+  .type-dropdown2 .dropdownBox .dropdownMenu{
     position: absolute;
     max-height: clamp(50px, calc((200 / $width) * 100vw), 200px);
     width: clamp(150px, calc((325 / $width) * 100vw), 325px);
-    top: clamp(26px, calc((52 / $width) * 100vw), 52px);
+    top: clamp(13px, calc((26 / $width) * 100vw), 26px);
     background: $cw;
     padding: clamp(5px, calc((10 / $width) * 100vw), 10px) ;
     border: 2px solid $c1;
@@ -89,6 +220,109 @@
     @extend %center;
     &:hover{
       background: $c2;
+      color: $cb;
+    }
+  }
+  //
+  //
+  //
+  .type-dropdown3{
+    position: relative;
+    height: clamp(30px, calc((60 / $width) * 100vw), 60px);
+    width: clamp(150px, calc((325 / $width) * 100vw), 325px);
+  }
+  
+  .type-dropdown3 .dropdownBox{
+    position: absolute;
+    width: clamp(150px, calc((300 / $width) * 100vw), 300px);
+    height: clamp(29px, calc((58 / $width) * 100vw), 58px);
+    padding: 
+    0
+    clamp(8px, calc((15 / $width) * 100vw), 15px)
+    0
+    0;
+    background: $c2;
+    border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+    transition: .5s;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .type-dropdown3 .dropdownBox.active{
+    height: clamp(130px, calc((260 / $width) * 100vw), 260px);
+    padding-bottom: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  }
+  
+  .type-dropdown3 .dropdownBox .inputBox{
+    position: relative;
+    height: clamp(29px, calc((58 / $width) * 100vw), 58px);
+    width: clamp(150px, calc((300 / $width) * 100vw), 300px);
+    padding: 
+    clamp(5px, calc((16 / $width) * 100vw), 10px)
+    0
+    clamp(5px, calc((16 / $width) * 100vw), 10px)
+    clamp(8px, calc((15 / $width) * 100vw), 15px);
+    border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+    background: transparent;
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+    
+  .type-dropdown3 .dropdownBox svg{
+    position: absolute;
+    top: clamp(8px, calc((16/ $width) * 100vw), 16px);
+    right: 5%;
+    width: clamp(12.5px, calc((25/ $width) * 100vw), 25px);
+    height: clamp(12.5px, calc((25/ $width) * 100vw), 25px);
+    transform: rotate(180deg);
+    color: $cb;
+    transition: .5s;
+    z-index: 100;
+  }
+  
+  .type-dropdown3 .dropdownBox.active svg{
+    transform: rotate(360deg);
+  }
+  
+  .type-dropdown3 .dropdownBox .dropdownMenu{
+    max-height: 165px;
+    margin-top: clamp(5px, calc((10 / $width) * 100vw), 10px);
+    font-size: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    padding: 
+    0
+    clamp(8px, calc((15 / $width) * 100vw), 15px)
+    0
+    clamp(8px, calc((15 / $width) * 100vw), 15px);
+    color: $cw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    overflow-y: auto;
+    -ms-overflow-style: scrollbar; 
+  }
+  
+  .type-dropdown3 .dropdownBox .dropdownMenu::-webkit-scrollbar{
+    display: block;
+    background-color: $cb;
+    border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    width: clamp(2.5px, calc((5 / $width) * 100vw), 5px);
+  }
+  
+  .type-dropdown3 .dropdownBox .dropdownMenu::-webkit-scrollbar-thumb{
+    background-color: $cw;
+    border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  }
+  
+  .type-dropdown3 .dropdownBox .dropdownMenu li{
+    cursor: pointer;
+    &:hover{
+      background: $cw;
       color: $cb;
     }
   }

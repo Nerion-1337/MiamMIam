@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const joi = require("joi")
 // DATA
-const { Links_Server } = require("../links")
+const { Links_Server, Regex } = require("../links")
 //
 //
 // JOI
@@ -12,12 +12,14 @@ const validationSchemas = {
   [Links_Server[4].sujet]: joi.string()
       .min(4)
       .max(40)
-      .pattern( /^[a-zA-Z0-9 ]*$/)
+      .pattern(Regex[1].value)
+      .pattern(Regex[10].value)
       .required(),
   
   [Links_Server[4].contenu]: joi.string()
       .min(20)
-      .max(1000)
+      .max(5000)
+      .pattern(Regex[10].value)
       .required(),
   
   };   
@@ -35,9 +37,9 @@ const validationSchemas = {
      return res.status(400).json({ error_sujet: 'Sujet non valide !' });
    }
 
-   const { error: contenuError, value: contenu } = validationSchemas[Links_Server[4].contenu].validate(req.body[Links_Server[4].contenu]);
+   const { error: contenuError, value: contenu } = validationSchemas[Links_Server[4].contenu].validate(req.body[Links_Server[4].contenu].replace(/[\r\n]+/g, ""));
    if (contenuError) {
-     return res.status(400).json({ error_contenu: 'Sujet non valide !' });
+     return res.status(400).json({ error_contenu: 'Contenu non valide !' });
    }
 
    return next();

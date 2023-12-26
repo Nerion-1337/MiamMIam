@@ -313,7 +313,7 @@ color: $cb;
 }
 //
 //
-// Home
+// HOME
 //
 //
 .main_home{
@@ -325,7 +325,7 @@ color: $cb;
 }
 //
 //
-// PROFILE
+// SETTING
 //
 //
 .main_setting{
@@ -411,4 +411,186 @@ padding:
 clamp(7.5px, calc((15 / $width) * 100vw), 15px) clamp(10px, calc((20 / $width) * 100vw), 20px) ;
 border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
 letter-spacing: clamp(0px, calc((3 / $width) * 100vw), 3px) !important;
+}
+//
+//
+// ADD RECIPE
+//
+//
+.main_add_recipe{
+  position: relative;
+  width: 100%;
+  height: auto;
+  @extend %center;
+  flex-direction: column;
+  padding: clamp(25px, calc((50 / $width) * 100vw), 50px) 0;
+  gap: clamp(50px, calc((100 / $width) * 100vw), 100px) ;
+}
+
+.main_add_recipe section{
+  position: relative;
+  width: 90%;
+  height: auto;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(50px, calc((100 / $width) * 100vw), 100px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px);
+  border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  box-shadow: -5px -5px 15px rgba(0, 0, 0, 0.2),
+  5px 5px 15px rgba(0,0,0,0.2);
+  @extend %center;
+  flex-direction: column;
+  gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+
+}
+
+.main_add_recipe section .dropdown_recette{
+  position: relative;
+  width: 100%;
+  @extend %center;
+  gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  z-index: 2;
+}
+
+.main_add_recipe section .list_tags{
+  position: relative;
+  width: 100%;
+  margin-top: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  padding: 
+  clamp(20px, calc((40 / $width) * 100vw), 40px)
+  0
+  clamp(20px, calc((40 / $width) * 100vw), 40px)
+  0;
+  @extend %center;
+  flex-wrap: wrap;
+  gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  &::before{
+    content: " ";
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    border-top: 2px solid $c2;
+    border-bottom: 2px solid $c2;
+  }
+}
+
+.main_add_recipe section .add_img{
+  position: relative;
+  width: 100%;
+  @extend %center;
+  margin-top: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
+}
+//
+//
+// ADD INGREDIENT
+//
+//
+.add_ingredient{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  z-index: 100;
+}
+
+.add_ingredient .modal_add_ingredient{
+  position: relative;
+  background: $cw;
+  height: auto;
+  width: clamp(12.5px, calc((1200 / $width) * 100vw), 1200px);
+  border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  border: 3px solid $c2;
+  padding: 
+  clamp(10px, calc((20 / $width) * 100vw), 20px)
+  clamp(20px, calc((40 / $width) * 100vw), 40px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(20px, calc((40 / $width) * 100vw), 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.add_ingredient .modal_add_ingredient .close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: clamp(30px, calc((60 / $width) * 100vw), 60px);
+  cursor: pointer;  
+  @extend %center;
+  transition: .5s;
+  &:hover{
+      scale: 1.2;
+  }
+}
+
+.add_ingredient .modal_add_ingredient .bloc_input_first{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add_ingredient .modal_add_ingredient .bloc_ul_first{
+  position: relative;
+  width: 100%;
+  @extend %center;
+  flex-direction: column;
+  color: $c3;
+  font-size: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+}
+
+.add_ingredient .modal_add_ingredient .bloc_ul_first li{
+  list-style-type: disc;
+}
+
+.add_ingredient .modal_add_ingredient .bloc_ul_first li span{
+  color: $cb;
+  font-weight: 700;
+}
+
+.add_ingredient .modal_add_ingredient .bloc_input_second{
+  width: 100%;
+  @extend %center;
+  gap: clamp(10px, calc((20 / $width) * 100vw), 20px);
+}
+
+.add_ingredient .modal_add_ingredient .bloc_dropdown_first{
+  @extend %center;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.add_ingredient .modal_add_ingredient .list_tags{
+  position: relative;
+  width: 100%;
+  margin-top: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  padding: 
+  clamp(20px, calc((40 / $width) * 100vw), 40px)
+  0
+  clamp(20px, calc((40 / $width) * 100vw), 40px)
+  0;
+  @extend %center;
+  flex-wrap: wrap;
+  gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  &::before{
+    content: " ";
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    border-top: 2px solid $c2;
+    border-bottom: 2px solid $c2;
+  }
 }

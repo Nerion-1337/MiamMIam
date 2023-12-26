@@ -8,6 +8,7 @@ import { GET_USER, PUT_USER, RESET_USER } from "#/actions/user_action";
 const initialState: api = {};
 //
 //
+//
 export default function userReducer(state = initialState, action: {type: string; payload: api}){
     switch (action.type) {
         case GET_USER:

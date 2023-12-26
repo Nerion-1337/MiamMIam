@@ -8,7 +8,7 @@ import { reset_password } from "#/api/fetch_register_login"
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
-import Input from "#components/build/input";
+import Input from "#components/build/global/input";
 //COMPONENTS
 import Modal_active from "#components/active_redux/modal_active";
 import { validPassword } from "#components/valid_input";

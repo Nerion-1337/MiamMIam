@@ -4,8 +4,8 @@ import { Input_setting, Dropdown_sexe, Input_setting_signalement } from "#data/l
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
-import Input from "#components/build/input";
-import Dropdown from "#components/build/dropdown";
+import Input from "#components/build/global/input";
+import Dropdown from "#components/build/global/dropdown";
 import Img from "#components/build/global/img";
 import Auth from "#components/build/auth";
 // REACT
@@ -51,12 +51,14 @@ useEffect(() => {
 // FUNCTION
 //
 //
+// SAUVEGARDE DATA USER
 const handleChange = (fieldName: string, newValue: string) => {
     setFormData((prevState) => {
         return { ...prevState, [fieldName]: newValue };
       });
   };
 //
+// VALIDE ET ENVOIE AU BACK DATA USER
 const handleSubmit = () =>{
   //
      const isIdentifiantValid = validIdentifiant("setting_identifiant");
@@ -96,13 +98,14 @@ store.dispatch(putUser(formData))
      } 
  }    
 //
-//
+// SAUVEGARDE DATA SIGNALEMENT
 const handleChangeSignal = (fieldName: string, newValue: string) => {
   setSignalData((prevState) => {
       return { ...prevState, [fieldName]: newValue };
     });
 };
 //
+// VALIDE ET ENVOIE AU BACK SIGNALEMENT
 const handleSubmitSelect = () =>{
  //
     const isTitreSignalValid = validTitreSignal("setting_signal_sujet");
