@@ -296,34 +296,6 @@ const contentModal = (
   )}
   </>
 )
-
-
-function test(data: string){
-  // console.log(formData)
-  // console.log(formDataArray)  
-
-  // for (const key in formData) {
-  //   if (Object.prototype.hasOwnProperty.call(formData, key) && key.startsWith('etape_preparation')) {
-  //     const value = formData[key];
-  
-  //     console.log(key)
-      
-  //   }
-  // }
-
-  const isvalidContenuAdd = [];
-  for (const key in formData) {
-    if (Object.prototype.hasOwnProperty.call(formData, key) && key.startsWith('etape_preparation')) {
-      isvalidContenuAdd.push({[key]: validContenuAdd(`add_recipe_${key}`)});
-    }
-  }
-  const hasInvalidContenu = isvalidContenuAdd.some(item => Object.values(item)[0] === false);
-
-   console.log(isvalidContenuAdd)
-   console.log(hasInvalidContenu)
-}
-
-
 //
 // 
 // RETURN
