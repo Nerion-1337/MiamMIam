@@ -3,12 +3,13 @@
 // HEADER
 //
 //
-header{
+.header{
   position: sticky;
   top: 0;
   max-width: calc($width * 1px);
   width: 100vw;
   height: clamp(35px, calc((80 / $width) * 100vw), 80px);
+  background: $c1;
   margin-bottom: clamp(15px, calc((30 / $width) * 100vw), 30px);
   z-index: 90;
   &:before{
@@ -21,7 +22,7 @@ header{
   }
 }
 
-header .button_header{
+.header .button_header{
   position: absolute;
   top:clamp(5px, calc((10 / $width) * 100vw), 10px);
   right: clamp(15px, calc((30 / $width) * 100vw), 30px);
@@ -29,11 +30,49 @@ header .button_header{
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-header .logo{
+.header .logo{
   position: absolute;
   top: clamp(10px, calc((20 / $width) * 100vw), 20px);
   left: clamp(15px, calc((30 / $width) * 100vw), 30px);
-  color: $c2;
+}
+//
+//
+.header_home{
+  position: fixed;
+  top: 0;
+  max-width: calc($width * 1px);
+  width: 100vw;
+  height: clamp(35px, calc((80 / $width) * 100vw), 80px);
+  z-index:10;
+}
+
+.header_home .button_header{
+  position: absolute;
+  top:clamp(5px, calc((10 / $width) * 100vw), 10px);
+  right: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  display: flex;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.header_home .logo{
+  position: absolute;
+  top: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  left: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.baniere_header{
+  position: fixed;
+  top: 0;
+  height: clamp(100px, calc((190 / $width) * 100vw), 190px);
+  max-width: calc($width * 1px);
+  width: 100vw;
+  background-image:url(../assets/banniere.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 
+  clamp(800px, calc((1600 / $width) * 100vw), 1600px)
+  clamp(375px, calc((750 / $width) * 100vw), 750px);
+  z-index: 3;
 }
 //
 //
@@ -318,11 +357,89 @@ color: $cb;
 //
 .main_home{
   position: relative;
-  top: 70px;
   height: 250vh;
-  width: 80%;
+  width: 100%;
   //background-color: blue;
 }
+
+.main_home .baniere_home{
+  position: absolute;
+  top: 0;
+  max-width: calc($width * 1px);
+  width: 100vw;
+  height: clamp(375px, calc((750 / $width) * 100vw), 750px); 
+  background-image:url(../assets/banniere.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 
+  clamp(800px, calc((1600 / $width) * 100vw), 1600px)
+  clamp(375px, calc((750 / $width) * 100vw), 750px);
+  z-index: 3;
+}
+
+.main_home .title{
+  position: relative;
+  top: clamp(100px, calc((200 / $width) * 100vw), 200px);
+  width: 100%;
+  @extend %center;
+  flex-direction: column;
+  gap: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  margin-bottom: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  z-index: 10;
+}
+
+.main_home .search{
+  position: sticky;
+  width: 50%;
+  top: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: clamp(110px, calc((220 / $width) * 100vw), 220px);
+  @extend %center;
+  z-index: 10;
+}
+
+.main_home .list_filter_home{
+  position: sticky;
+  top: clamp(50px, calc((100 / $width) * 100vw), 100px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(135px, calc((270 / $width) * 100vw), 270px);
+  padding: 
+  0
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  0
+  clamp(15px, calc((30 / $width) * 100vw), 30px);
+  margin-bottom: clamp(20px, calc((40 / $width) * 100vw), 40px);
+  z-index: 11;
+  }
+
+.main_home .list_filter_home .filter{
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  z-index: 10;
+}
+
+.main_home .tag_home{
+  position: sticky;
+  top: clamp(95px, calc((190 / $width) * 100vw), 190px);
+  height: auto;
+  background: $c1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  padding:
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  0
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  0;
+  margin-bottom: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  z-index: 1;
+}  
 //
 //
 // SETTING

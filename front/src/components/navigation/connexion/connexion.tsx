@@ -98,10 +98,12 @@ function connexion_google(){
             />
          <Typo
     balise="span"
-    size="s2"
+    size="s3"
     color="cw"
     transform="maj"
     className="mdp_oublie"
+    weight="w5"
+    familly="f1"
     children="mot de passe oublié ?"
     fonction={reset_password}
         />
@@ -125,6 +127,7 @@ function connexion_google(){
     size="s7"
     color="cw"
     transform="maj"
+    familly="f2"
     children="ou"
         />
 

@@ -26,7 +26,7 @@ export interface size {
 }
 //
 export interface balise {
-  balise?: "h1" | "h2" | "h3" | "h4" | "h5" | "div" | "p" | "li" | "span" | "label";
+  balise?: "h1" | "h2" | "h3" | "h4" | "h5" | "div" | "p" | "li" | "span" | "label" | "figcaption";
 }
 //
 export interface color {
@@ -51,6 +51,14 @@ export interface sizeBloc {
 //
 export interface sizeImg {
   sizeImg?: "s0" | "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7" | "s8" | "s9" | "s10";
+}
+//
+export interface sizeWeight {
+  weight?: "w1" | "w2" | "w3" | "w4" | "w5" | "w6" | "w7" | "w8" | "w9";
+}
+//
+export interface typeFamilly {
+  familly?: "f1" | "f2" | "f3" | "f4" | "f5" | "f6" | "f7" | "f8" | "f9";
 }
 //
 //
@@ -116,6 +124,8 @@ export interface input extends Partial<variant & size>{
   unitee?:string;
   multiples?: boolean;
   className?: string;
+  special?: string;
+
 }
 //
 //
@@ -164,7 +174,7 @@ export interface button extends Partial<size & fontSize & variant>{
 }
 //
 //
-export interface typo extends Partial<size & balise & color & transform >{
+export interface typo extends Partial<size & balise & color & transform & sizeWeight & typeFamilly>{
 className?: string;
 children?: React.ReactNode;
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -180,6 +190,7 @@ copy?: string;
 useRef?: React.Ref<any>;
 datatext?: string;
 icon?: iconProps;
+LR?: string;
 item_i?: boolean;
 loading?: boolean;
 }
@@ -241,6 +252,7 @@ export interface input_type extends Partial<variant & size>{
 // eslint-disable-next-line @typescript-eslint/ban-types
   search?: Function; 
   data?: string;
+  special?: string;
 }
 //
 //
@@ -257,6 +269,7 @@ export interface dropdown_type{
   show?: boolean;
   search?: boolean;
   number?:boolean;
+  filter?:boolean;
 }
 //
 //
@@ -273,8 +286,14 @@ export interface tag{
   number?: boolean;
   // eslint-disable-next-line @typescript-eslint/ban-types 
   fonction?: Function;
-  // eslint-disable-next-line @typescript-eslint/ban-types 
   close?: Function;
+  formData?: Function;
+  tagComponent?: Function;
+}
+//
+//
+export interface recipeBox{
+  recipe: api_all_recipe;
 }
 //
 //
@@ -298,6 +317,11 @@ export interface api {
 //
 export interface api_element_recipe{
   [key: string]: api[];
+}
+//
+//
+export interface api_all_recipe{
+  [key: string]: api[] | string | number | api_element_recipe[];
 }
 //
 //

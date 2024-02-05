@@ -1,23 +1,23 @@
-import React from "react";
-// DATA
-import { Input_add_ingredient, List_icon, Dropdown_add_ingredient, Regex } from "#data/links";
+// ACTION
+import { get_element, post_ingredient } from "#actions/element_recipe_action";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
 import Input from "#components/build/global/input";
 import Dropdown from "#components/build/global/dropdown";
-import Tag from "#components/build/global/tag";
-// REACT
-import { useState, useEffect } from "react";
 //COMPONENTS
 import { validTitreAdd, validContenuAdd, validInputAdd } from "#components/valid_input";
 import Modal_active from "#components/active_redux/modal_active";
 import Button_active from "#components/active_redux/button_active";
+import { handleChange, handleChangeArray} from "#components/formData"
+// DATA
+import { Input_add_ingredient, List_icon, Dropdown_add_ingredient, Regex } from "#data/links";
+// REACT
+import React from "react";
+import { useState, useEffect } from "react";
 //REDUX
 import { store } from '#/reducers/store'
 import { useSelector } from "react-redux";
-// ACTION
-import { get_element, post_ingredient } from "#actions/element_recipe_action";
 // TYPAGE
 import { api, element_recipe_reducer, api_element_recipe } from "#types/typages";
 //
@@ -64,109 +64,17 @@ useEffect(() => {
     }
 }, [element_Recipe]);
 //
-// STOCK DONNEES INPUT
-const handleChange = (fieldName: string, newValue: string) => {
-    setFormData((prevState) => {
-        return { ...prevState, [fieldName]: newValue };
-      });
-  };
+// AJOUTER DATA SIMPLE
+const addDataSimply = (fieldName: string, newValue: string) => {
+  handleChange(fieldName, newValue, setFormData)
+}
 //
-// AJOUTE ELEMENT CONTENU DANS formDataArray
-  const handleChangeArray = (fieldName: string, newValue: string, number: boolean) => {
-    setFormDataArray((prevState) => {
-      const keyExists = Object.keys(prevState).includes(fieldName);
-  
-      if (keyExists) {
-        const isValuePresent = prevState[fieldName].some((item) => item.name === newValue);
-  
-        if (!isValuePresent) {
-          const newItem: api = { name: newValue };
-          const updatedField = {
-            ...prevState,
-            [fieldName]: [...prevState[fieldName], newItem],
-          };
-          addTagComponent(newValue, fieldName, number);
-          return updatedField;
-        }
-      } else {
-        addTagComponent(newValue, fieldName, number);
-        return {
-          ...prevState,
-          [fieldName]: [{ name: newValue }],
-        };
-      }
-      return prevState;
-    });
-  };
-  //
-  // SUPPRIME ELEMENT CONTENU DANS formDataArray
-  const removeFromFormDataArray = (fieldName: string, elementToRemove: string) => {
-    setFormDataArray((prevState) => {
-      const fieldData = prevState[fieldName];
-      if (fieldData) { 
-        const updatedField = {
-          ...prevState,
-          [fieldName]: fieldData.filter((element) => element.name !== elementToRemove),
-        };
-        removeTagComponent(elementToRemove, fieldName)
-        return updatedField;
-      }
-      return prevState;
-    });
-  };
-  //
-  // SUPPRIME TAG
-  const removeTagComponent = (valueToRemove: string, typeToRemove: string) => {
-    setTagsComponents((prevTags) => {
-      const updatedTags = prevTags.filter((tagComponent: any) => {
-        const tagValue = tagComponent.props?.value;
-        const tagType = tagComponent.props?.type;
-        return tagValue !== valueToRemove || tagType !== typeToRemove;
-      });
-      return updatedTags;
-    });
-  };
-  //
-  // AJOUTE LA VALEUR QUANTITE
-  const addQuantityToElement = (fieldName: string, elementName: string, quantity: string) => {
-    setFormDataArray((prevState) => {
-      const fieldData = prevState[fieldName];
-      if (fieldData) {
-        const updatedField = fieldData.map((element) => {
-          if (element.name === elementName) {
-            return {
-              ...element,
-              quantite: quantity,
-            };
-          }
-          return element;
-        });
-  
-        return {
-          ...prevState,
-          [fieldName]: updatedField,
-        };
-      }
-      return prevState; // Renvoyer l'état actuel si le champ n'est pas trouvé
-    });
-  };
-  //
-  // LIST DE TAGS
-  const addTagComponent = (value: string, type: string, number: boolean) => {
-    const newTagComponent = (
-      <Tag
-        value={value}
-        type={type}
-        number={number}
-        fonction={addQuantityToElement}
-        close={removeFromFormDataArray}
-        key={tagsComponents.length}
-      />
-    );
-    setTagsComponents([...tagsComponents, newTagComponent]);
-  }
-  //
-  // VALIDATION ET ENVOIE DATA AU BACK
+// AJOUTER DATA AVEC QUANTITE
+const addDataMultiple = (fieldName: string, newValue: string, number: boolean) => {
+  handleChangeArray(fieldName, newValue, number, setFormDataArray, setTagsComponents, tagsComponents)
+}
+//
+// VALIDATION ET ENVOIE DATA AU BACK
 const handleSubmit = () =>{
 
     const isvalidTitreAdd = validTitreAdd("add_ingredient_nom_de_l_ingredient")
@@ -208,7 +116,7 @@ const contentInput = Input_add_ingredient.slice(0, 10).map((input, index) =>(
     unitee={input.unitee}
     variable={input.variable}
     identifiant={`add_ingredient_${input.text.replace(Regex[16].value, '_').toLowerCase()}`}
-    fonction={handleChange}
+    fonction={addDataSimply}
     key={index}
         />  
   ))
@@ -223,7 +131,7 @@ const contentDropdown = Dropdown_add_ingredient.slice(0, 6).map((item, index) =>
       text={item.text}
       variable={item.variable}
       list={type}
-      fonction={handleChangeArray}
+      fonction={addDataMultiple}
       search={item.search}
       number={item.number}
       key={index}
@@ -239,7 +147,7 @@ const contentDropdown = Dropdown_add_ingredient.slice(0, 6).map((item, index) =>
         text={item.text}
         variable={item.variable}
         list={macro_micro}
-        fonction={handleChangeArray}
+        fonction={addDataMultiple}
         search={item.search}
         number={item.number}
         key={index}
@@ -253,7 +161,7 @@ const contentDropdown = Dropdown_add_ingredient.slice(0, 6).map((item, index) =>
         text={item.text}
         variable={item.variable}
         list={micro}
-        fonction={handleChangeArray}
+        fonction={addDataMultiple}
         search={item.search}
         number={item.number}
         key={index}

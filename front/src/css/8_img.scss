@@ -4,7 +4,7 @@
 //
 //
 $size-bloc-img0: clamp(25px, calc((50 / $width) * 100vw), 50px);
-$size-bloc-img1: clamp(35px, calc((70 / $width) * 100vw), 70px);
+$size-bloc-img1: clamp(20px, calc((40 / $width) * 100vw), 40px);
 $size-bloc-img2: clamp(50px, calc((100 / $width) * 100vw), 100px);
 $size-bloc-img3: clamp(60px, calc((120 / $width) * 100vw), 120px);
 $size-bloc-img4: clamp(75px, calc((150 / $width) * 100vw), 150px);
@@ -146,7 +146,7 @@ $size-bloc-img10: clamp(175px, calc((350 / $width) * 100vw), 350px);
 //
 //
 $size-img0: clamp(25px, calc((50 / $width) * 100vw), 50px);
-$size-img1: clamp(35px, calc((70 / $width) * 100vw), 70px);
+$size-img1: clamp(40px, calc((40 / $width) * 100vw), 40px);
 $size-img2: clamp(50px, calc((100 / $width) * 100vw), 100px);
 $size-img3: clamp(60px, calc((120 / $width) * 100vw), 120px);
 $size-img4: clamp(75px, calc((150 / $width) * 100vw), 150px);

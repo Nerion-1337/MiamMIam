@@ -1,22 +1,20 @@
-import React from "react";
-// DATA
-import { Input_add_ustensil, List_icon, Regex } from "#data/links";
+// ACTION
+import { post_ustensil } from "#actions/element_recipe_action";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
 import Input from "#components/build/global/input";
-import Dropdown from "#components/build/global/dropdown";
-import Tag from "#components/build/global/tag";
-// REACT
-import { useState } from "react";
 //COMPONENTS
 import { validTitreAdd, validContenuAdd } from "#components/valid_input";
 import Modal_active from "#components/active_redux/modal_active";
 import Button_active from "#components/active_redux/button_active";
+import { handleChange } from "#components/formData";
+// DATA
+import { Input_add_ustensil, List_icon, Regex } from "#data/links";
+// REACT
+import { useState } from "react";
 //REDUX
 import { store } from '#/reducers/store'
-// ACTION
-import { post_ustensil } from "#actions/element_recipe_action";
 // TYPAGE
 import { api } from "#types/typages";
 //
@@ -37,14 +35,12 @@ const icon = List_icon.all[2].icon;
 // FUNCTION
 //
 //
-// STOCK DONNEES INPUT
-const handleChange = (fieldName: string, newValue: string) => {
-    setFormData((prevState) => {
-        return { ...prevState, [fieldName]: newValue };
-      });
-  };
-  //
-  // VALIDATION ET ENVOIE DATA AU BACK
+// AJOUTER DATA SIMPLE
+const addDataSimply = (fieldName: string, newValue: string) => {
+    handleChange(fieldName, newValue, setFormData)
+  }
+//
+// VALIDATION ET ENVOIE DATA AU BACK
 const handleSubmit = () =>{
 
     const isvalidTitreAdd = validTitreAdd("add_ustensil_nom_de_l_ustensil")
@@ -79,7 +75,7 @@ const contentInput = Input_add_ustensil.slice(0, 10).map((input, index) =>(
     unitee={input.unitee}
     variable={input.variable}
     identifiant={`add_ustensil_${input.text.replace(Regex[16].value, '_').toLowerCase()}`}
-    fonction={handleChange}
+    fonction={addDataSimply}
     key={index}
         />  
   )) 

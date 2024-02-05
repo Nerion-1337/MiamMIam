@@ -64,6 +64,7 @@ module.exports.Links_Server = [
         user_id: "user_id",
         element_id_table: "recette_user_id",
         element_type_table: "type_recette_user",
+
         date_ajout: "date_ajout",
     },
     {
@@ -72,7 +73,6 @@ module.exports.Links_Server = [
         user_id: "user_id",
         element_id_table: "recette_commentaire_id",
         element_type_table: "type_recette_commentaire",
-        user_id_post: "user_id_post",
         date_ajout: "date_ajout",
     },
     {
@@ -307,7 +307,7 @@ module.exports.Regex =[
     {
         id: 9,
         type: "chiffre", 
-        value: /^[0-9]$/,
+        value: /^[0-9]+$/,
     },
     {
         id: 10,
@@ -320,8 +320,8 @@ module.exports.Regex =[
         value: /^[a-zA-Z0-9 ]*$/,
    },
    {
-    id: 12,
-    type: "pas de donnée entre <> et {}", 
-    value: /^(?!.*?<.*?>)(?!.*?\{.*?\}).*$/,
+        id: 12,
+        type: "pas de donnée entre <> et {}", 
+        value: /^(?!.*?<.*?>)(?!.*?\{.*?\}).*$/,
 },    
 ]

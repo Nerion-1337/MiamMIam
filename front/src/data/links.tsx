@@ -4,14 +4,14 @@ import { linksType, route, List_Icon, input, regex, modal_links, dropdown_data, 
 import { MdEmail, MdAlternateEmail, MdFamilyRestroom, MdOutlineTitle  } from "react-icons/md";
 import { HiMiniUser } from "react-icons/hi2";
 import { IoMdAddCircle } from "react-icons/io";
-import { IoCloseSharp } from "react-icons/io5";
+import { IoCloseSharp, IoStarSharp, IoSearchOutline } from "react-icons/io5";
 import { GrClose } from "react-icons/gr";
 import { BiSolidUser, BiSolidLock, BiSolidLockOpen, BiLogoGoogle } from "react-icons/bi";
 import { GiDualityMask, GiBodyHeight, GiSausage, GiWeight } from "react-icons/gi";
-import { FaBirthdayCake, FaApple, FaFireAlt  } from "react-icons/fa";
+import { FaBirthdayCake, FaApple, FaFireAlt, FaHeart, FaEllipsisH} from "react-icons/fa";
 import { PiGenderIntersex } from "react-icons/pi";
 import { CiTextAlignCenter } from "react-icons/ci";
-import { FaAngleUp } from "react-icons/fa6";
+import { FaAngleUp, FaPlus } from "react-icons/fa6";
 import { GiSteak } from "react-icons/gi";
 import { LuWheat } from "react-icons/lu";
 // BUILDER
@@ -30,6 +30,7 @@ import Setting from "#page/setting";
 import Dashbord from "#page/dashbord";
 import Profil from "#page/profil";
 import Add_recipe from "#page/add_recipe";
+import Recipe from "#page/recipe";
 //
 //
 //
@@ -98,6 +99,20 @@ export const Route_Client: route[] = [
     url: "/add_recipe",
     type: "intern",
     page: <Add_recipe/>,
+  },
+  {
+    index: 8,
+    label: "recette",
+    url: "/recipe/:id",
+    type: "intern",
+    page: <Recipe/>,
+  },
+  {
+    index: 9,
+    label: "proflie user",
+    url: "/profile/:id",
+    type: "intern",
+    page: <Recipe/>,
   },
 ];
 //
@@ -196,6 +211,18 @@ export const Route_Server: route[] = [
     index: 15,
     label: "add recette",
     url: "/recipe/add_recipe",
+    type: "intern",
+  },
+  {
+    index: 16,
+    label: "get_recette",
+    url: "/recipe/all_recipe",
+    type: "intern",
+  },
+  {
+    index: 17,
+    label: "like & follow recipe",
+    url: "/recipe/like_follow",
     type: "intern",
   },
 ];
@@ -653,7 +680,27 @@ export const List_icon: List_Icon = {
       key: 5,
       type: "add",
       icon: {icon: IoMdAddCircle},
-    }
+    },
+    {
+      key: 6,
+      type: "trois petit point",
+      icon: {icon: FaEllipsisH },
+    },
+    {
+      key: 7,
+      type: "signe +",
+      icon: {icon: FaPlus},
+    },
+    {
+      key: 8,
+      type: "étoile",
+      icon: {icon: IoStarSharp},
+    },
+    {
+      key: 9,
+      type: "coeur",
+      icon: {icon: FaHeart},
+    },
   ],  
 }
 //
@@ -1123,11 +1170,39 @@ export const Input_add_ustensil: input[] = [
   },
 ]
 //
+export const Input_Research : input[] = [
+  {
+    key: 0,
+    variant: "t1",
+    size: "s2",
+    variable: "research",
+    type: "text",
+    icon: {icon: IoSearchOutline  },
+    text: "Rechercher une recette, ingredient...",
+    value: "",
+    element: "",
+    unitee: "",
+    special: "global",
+  },
+  {
+    key: 1,
+    variant: "t3",
+    size: "s2",
+    variable: Links_Server[20].marque,
+    type: "text",
+    icon: {icon: FaApple},
+    text: "Marque",
+    value: "",
+    element: "textarea",
+    unitee: "",
+  },
+]
 //
-// DROPDOWN
+//
+// LIST
 //
 //
-export const Dropdown_sexe : dropdown_data[] = [
+export const List_sexe : dropdown_data[] = [
   {
     name: "Homme",
   },
@@ -1136,82 +1211,54 @@ export const Dropdown_sexe : dropdown_data[] = [
   },
 ]
 //
-export const Dropdown_time: dropdown_data[] = [
-  { name: "1min" },
-  { name: "2min" },
-  { name: "3min" },
-  { name: "4min" },
-  { name: "5min" },
-  { name: "6min" },
-  { name: "7min" },
-  { name: "8min" },
-  { name: "9min" },
-  { name: "10min" },
-  { name: "15min" },
-  { name: "20min" },
-  { name: "25min" },
-  { name: "30min" },
-  { name: "35min" },
-  { name: "40min" },
-  { name: "45min" },
-  { name: "50min" },
-  { name: "55min" },
-  { name: "60min" },
-  { name: "70min" },
-  { name: "80min" },
-  { name: "90min" },
-  { name: "100min" },
-  { name: "110min" },
-  { name: "120min" },
-  { name: "130min" },
-  { name: "140min" },
-  { name: "150min" },
-  { name: "160min" },
-  { name: "170min" },
-  { name: "180min" },
-  { name: "190min" },
-  { name: "200min" },
-  { name: "210min" },
-  { name: "220min" },
-  { name: "230min" },
-  { name: "240min" },
-  { name: "250min" },
-  { name: "260min" },
-  { name: "270min" },
-  { name: "280min" },
-  { name: "290min" },
-  { name: "300min" },
-  { name: "310min" },
-  { name: "320min" },
-  { name: "330min" },
-  { name: "340min" },
-  { name: "350min" },
-  { name: "360min" },
-  { name: "370min" },
-  { name: "380min" },
-  { name: "390min" },
-  { name: "400min" },
-  { name: "410min" },
-  { name: "420min" },
-  { name: "430min" },
-  { name: "440min" },
-  { name: "450min" },
-  { name: "460min" },
-  { name: "470min" },
-  { name: "480min" },
-  { name: "490min" },
-  { name: "500min" },
-  { name: "510min" },
-  { name: "520min" },
-  { name: "530min" },
-  { name: "540min" },
-  { name: "550min" },
-  { name: "560min" },
-  { name: "570min" },
-  { name: "580min" },
-  { name: "590min" },
-  { name: "600min" },
-];
+export const List_time: dropdown_data[] = [];
+for (let i = 0; i <= 600; i += (i <= 9 ? 1 : i <= 55 ? 5 : 10)) {
+  List_time.push({ name: `${i}min` });
+}
+//
+export const List_calorie: dropdown_data[] = [];
+for (let i = 0; i <= 19000; i += (i <= 900 ? 100 : i <= 9500 ? 500 : 1000)) {
+  List_calorie.push({ name: `${i}-${i + (i <= 900 ? 100 : i <= 9500 ? 500 : 1000)} cal` });
+}
+//
+export const List_nutriScore: dropdown_data[] = []
+const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+letters.forEach((letter) => {
+        List_nutriScore.push({ name: `${letter}+` });
+        List_nutriScore.push({ name: letter });
+        List_nutriScore.push({ name: `${letter}-` });
+});
+//
+export const List_trier: dropdown_data[] = [
+  {
+    name: "Nom",
+    back: `${Links_Server[12].name}`
+  },
+  {
+    name: "Like",
+    back: `${Links_Server[12].like_total}`
+  },  
+  {
+    name: "Date",
+    back: `${Links_Server[12].date_ajout}`
+  },
+  {
+    name: "Nutri Score",
+    back: `${Links_Server[12].nutri_score}`
+  },
+  {
+    name: "Durée",
+    back: `${Links_Server[12].duree_recette}`
+  },
+  {
+    name: "Calorie",
+    back: `${Links_Server[12].calorie}`
+  },
+]
+//
+//
+// DROPDOWN
+//
 //
 export const Dropdown_add_recipe : dropdown_type[] = [
   {
@@ -1220,7 +1267,7 @@ export const Dropdown_add_recipe : dropdown_type[] = [
     variable: Links_Server[12].duree_recette,
     value: "Temps de Préparation",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
     search: false,
   },
   {
@@ -1229,7 +1276,7 @@ export const Dropdown_add_recipe : dropdown_type[] = [
     variable: "ingredient",
     text: "Ingredients",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
     value: "Rechercher",
     search: true,
     number: true,
@@ -1240,7 +1287,7 @@ export const Dropdown_add_recipe : dropdown_type[] = [
     variable: "repas",
     text: "Repas",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
     value: "Rechercher",
     search: true,
     number: false,
@@ -1251,7 +1298,7 @@ export const Dropdown_add_recipe : dropdown_type[] = [
     variable: "ustensil",
     text: "Ustensils",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
     value: "Rechercher ustensil",
     search: true,
     number: true,
@@ -1265,7 +1312,7 @@ export const Dropdown_add_ingredient : dropdown_type[] = [
     variable: "type",
     text: "Type",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
     value: "Rechercher",
     search: true,
     number: false,
@@ -1276,7 +1323,7 @@ export const Dropdown_add_ingredient : dropdown_type[] = [
     variable: "vitamine_mineraux",
     text: "Vitamine & Mineraux",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
     value: "Rechercher",
     search: true,
     number: true,
@@ -1287,7 +1334,76 @@ export const Dropdown_add_ingredient : dropdown_type[] = [
     variable: "micronutriment",
     text: "Micronutirment",
     icon: {icon: FaAngleUp},
-    list: Dropdown_time,
+    list: List_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+]
+//
+export const Dropdown_research : dropdown_type[] = [
+  {
+    key: 0,
+    variant: "t5",
+    variable: "trier",
+    text: "Trier",
+    icon: {icon: FaAngleUp},
+    list: List_time,
+    value: "Trier",
+    search: false,
+    number: false,
+  },
+  {
+    key: 1,
+    variant: "t4",
+    variable: "nutri_score",
+    text: "Nutri-Score",
+    icon: {icon: FaAngleUp},
+    list: List_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+  {
+    key: 2,
+    variant: "t4",
+    variable: "duree_recette",
+    text: "Durée",
+    icon: {icon: FaAngleUp},
+    list: List_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+  {
+    key: 3,
+    variant: "t4",
+    variable: "calorie",
+    text: "Calorie",
+    icon: {icon: FaAngleUp},
+    list: List_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+  {
+    key: 4,
+    variant: "t4",
+    variable: "repas",
+    text: "Repas",
+    icon: {icon: FaAngleUp},
+    list: List_time,
+    value: "Rechercher",
+    search: true,
+    number: true,
+  },
+  {
+    key: 5,
+    variant: "t4",
+    variable: "chef",
+    text: "Chef",
+    icon: {icon: FaAngleUp},
+    list: List_time,
     value: "Rechercher",
     search: true,
     number: true,
@@ -1379,11 +1495,12 @@ export const Modals: modal_links[] = [
         children="Un email sera envoyé pour changer votre mot de passe."
         /> 
         <Input
-        element={Input_inscription[3].element}
-        type={Input_inscription[3].type}
-        icon={Input_inscription[3].icon}
-        text={Input_inscription[3].text}
-        variable={Input_inscription[3].variable}
+        variant={Input_inscription[0].variant}
+        element={Input_inscription[0].element}
+        type={Input_inscription[0].type}
+        icon={Input_inscription[0].icon}
+        text={Input_inscription[0].text}
+        variable={Input_inscription[0].variable}
         identifiant={`reset_password_email_${Input_inscription[3].text.replace(/\s/g, '_').toLowerCase()}`}
             />    
         <Button 

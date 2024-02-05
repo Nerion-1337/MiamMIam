@@ -41,7 +41,9 @@ router.put('/user/update_user', jwt.token_all, multer, joi_user.update_user_sett
 router.post('/signalement/sitting', jwt.token_all, multer, joi_report.reporting, reportController.report_setting);
 //
 // RECIPE
-router.get('/recipe/element_recipe', jwt.token_all, joi_recipe.element_recipe, recipeController.element_recipe);
+router.post('/recipe/all_recipe', joi_recipe.get_recipe, recipeController.all_recipe); 
+router.post('/recipe/like_follow', jwt.token_all, recipeController.like_follow_recipe)
+router.get('/recipe/element_recipe', joi_recipe.element_recipe, recipeController.element_recipe);
 router.post('/recipe/add_ingredient', jwt.token_all, multer, joi_recipe.add_ingredient, recipeController.add_ingredient);
 router.post('/recipe/add_ustensil', jwt.token_all, multer, joi_recipe.add_ustensil, recipeController.add_ustensil);
 router.post('/recipe/add_recipe', jwt.token_all, multer, joi_recipe.add_recipe, recipeController.add_recipe);

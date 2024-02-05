@@ -32,12 +32,14 @@ balise="span"
 size="s7" 
 color="c2"
 transform="maj"
+weight="w1"
 children="Veuillez vous connecter"
 />
 <Typo
 balise="span"
 size="s5"
-color="cb"  
+color="cb" 
+weight="w5" 
 children="Si vous êties déjà connecté, votre session expire après 72h"
 />
 <Button

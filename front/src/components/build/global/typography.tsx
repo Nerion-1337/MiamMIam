@@ -16,6 +16,8 @@ export default function Typo({
   size,
   balise: Balise = "div",
   color,
+  weight,
+  familly,
   transform,
   className,
   children,
@@ -31,6 +33,7 @@ export default function Typo({
   useRef,
   datatext,
   icon,
+  LR,
   item_i,
   loading,
 }: typo) {
@@ -42,6 +45,8 @@ export default function Typo({
   let sizeStyles = "";
   let colorStyles = "";
   let transformStyles = "";
+  let weightStyles = "";
+  let famillyStyles = "";
   //
   //
   // SWITCH
@@ -134,6 +139,68 @@ export default function Typo({
   }
   //
   //
+  switch (weight) {
+    case "w1":
+      weightStyles = "weight-typo1";
+      break;
+    case "w2":
+      weightStyles = "weight-typo2";
+      break;
+    case "w3":
+      weightStyles = "weight-typo3";
+      break;
+    case "w4":
+      weightStyles = "weight-typo4";
+      break;
+    case "w5":
+      weightStyles = "weight-typo5";
+      break;
+    case "w6":
+      weightStyles = "weight-typo6";
+      break;
+    case "w7":
+      weightStyles = "weight-typo7";
+      break;
+    case "w8":
+      weightStyles = "weight-typo8";
+      break;
+    case "w9":
+      weightStyles = "weight-typo9";
+      break;
+  }
+  //
+  //
+  switch (familly) {
+    case "f1":
+      famillyStyles = "familly-typo1";
+      break;
+    case "f2":
+      famillyStyles = "familly-typo2";
+      break;
+    case "f3":
+      famillyStyles = "familly-typo3";
+      break;
+    case "f4":
+      famillyStyles = "familly-typo4";
+      break;
+    case "f5":
+      famillyStyles = "familly-typo5";
+      break;
+    case "f6":
+      famillyStyles = "familly-typo6";
+      break;
+    case "f7":
+      famillyStyles = "familly-typo7";
+      break;
+    case "f8":
+      famillyStyles = "familly-typo8";
+      break;
+    case "f9":
+      famillyStyles = "familly-typo9";
+      break;
+  }  
+  //
+  //
   // FUNCTION
   //
   //
@@ -157,13 +224,29 @@ export default function Typo({
             <>
               {icon && children ? (
                 <>
-                  <icon.icon /> {children}
+                {LR === "left" ? (
+                  <> 
+                  <icon.icon className="icon_left"/>{children}
+                  </>
+                ):(
+                  <>
+                  {children}<icon.icon className="icon_right"/>
+                  </>
+                )}
                 </>
               ) : (
                 <>
                   {item_i && children ? (
                     <>
-                      <i /> <span>{children}</span>
+                    {LR === "left" ? (
+                      <>
+                      <i className="i_left"/><span>{children}</span>
+                      </>
+                    ):(
+                      <>
+                      <span>{children}</span><i className="i_right"/>
+                      </>
+                    )}
                     </>
                   ) : (
                     <>{children}</>
@@ -179,7 +262,7 @@ export default function Typo({
   //
   const typoElement = (
     <Balise
-      className={clsx(sizeStyles, colorStyles, transformStyles, className)}
+      className={clsx(sizeStyles, colorStyles, transformStyles, weightStyles, famillyStyles, className)}
       onClick={handleClick}
       ref={useRef}
       data-text={datatext}
@@ -196,7 +279,7 @@ export default function Typo({
       type={type} 
       active={active} 
       special={special} 
-      className={clsx(sizeStyles, colorStyles, transformStyles, className)}
+      className={clsx(sizeStyles, colorStyles, transformStyles, weightStyles, famillyStyles, className)}
       useRef={useRef}
       data-text={datatext}
       fonction={fonction}

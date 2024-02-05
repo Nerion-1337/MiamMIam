@@ -5,6 +5,8 @@ import { dropdown_type, dropdown_data } from "#types/typages";
 //
 //
 //
+//
+//
 export default function Dropdown({
     variant,
     text,
@@ -16,6 +18,7 @@ export default function Dropdown({
     show,
     search,
     number,
+    filter,
 }: dropdown_type) {
 //
 //
@@ -26,7 +29,8 @@ const [isOpen, setIsOpen] = useState(false);
 const [selectedOption, setSelectedOption] = useState("");
 const [inputType, setInputType] = useState('button');
 const [inputValue, setInputValue] = useState(text);
-const [isList, setIsList] = useState(list); 
+const [isList, setIsList] = useState(list);
+const [isAscending, setIsAscending] = useState(true); 
 const dropdownRef = useRef<HTMLDivElement>(null);
 let variantStyles = ""; 
 //
@@ -68,7 +72,6 @@ let variantStyles = "";
 // FUNCTION
 //
 //
-
 //
 // FERME/OUVRE MODAL
 const toggleDropdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -82,13 +85,15 @@ const handleBlur = () => {
   };
 //
 // SELECTION OPTION
-const handleOptionSelect = (option: string) => {
-  setSelectedOption(option);
+const handleOptionSelect = (option: {[key: string]: string}) => {
+  setSelectedOption(option.name);
+  setIsAscending(!isAscending)
   if(!fonction) return
   if(show == true){
-    fonction(option) 
+    fonction(option.back ? option.back : option.name) 
   } else{
-    fonction(variable, option) 
+    fonction(variable, option.back ? option.back : option.name)
+    fonction("ordre", `${isAscending}`) 
   }
   setIsOpen(false);
 };
@@ -150,15 +155,15 @@ const dorpdown = (
       onClick={toggleDropdown}
       className={`inputBox ${isOpen || selectedOption || value ? "active" : ""}`}
       onBlur={handleBlur}
-      children={selectedOption ? selectedOption : value}
+      children={selectedOption ? `${selectedOption}${filter ? (isAscending ? " ↓" : " ↑") : ""}` : value}
       value={selectedOption}
       />
       {isOpen && (
         <ul className="dropdownMenu">
               {
                list.map((option: dropdown_data, index) => (
-  <li key={index} onClick={() => handleOptionSelect(option.name)}>
-  {option.name} {option.abreviation ? `(${option.abreviation})` : ""} {option.marque ? `(${option.marque})` : ""}
+  <li key={index} onClick={() => handleOptionSelect(option)}>
+  {option.name} {option.abreviation ? `(${option.abreviation})` : ""} {option.marque ? `(${option.marque})` : ""} {filter ? (isAscending ? " ↓" : " ↑") : ""}
   </li>         
              ))}
         </ul>

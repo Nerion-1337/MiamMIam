@@ -1,6 +1,6 @@
 import React from "react";
 // DATA
-import { Input_setting, Dropdown_sexe, Input_setting_signalement } from "#data/links";
+import { Input_setting, List_sexe, Input_setting_signalement } from "#data/links";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
@@ -155,7 +155,7 @@ const contentInput2 = Input_setting.slice(6, 11).map((input, index) => (
           icon={input.icon}
           text={input.text}
           variable={input.variable}
-          list={Dropdown_sexe}
+          list={List_sexe}
           fonction={handleChange}
           key={index}
         />

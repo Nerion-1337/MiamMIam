@@ -26,6 +26,7 @@ export default function Input({
     fonction,
     search,
     data,
+    special,
 }: input_type ) {
 //
 // VARIABLE
@@ -164,7 +165,11 @@ useEffect(() => {
 const handleonSearch = (e: React.ChangeEvent<HTMLInputElement>) =>{
   const value = e.target.value;
   if(search){
-   search(data, value) 
+    if(data){
+      search(data, value)
+    } else{
+      search(variable, value)
+    } 
   }
 }
 //
@@ -273,7 +278,24 @@ const inputImg =(
 const inputSearch=(
   <>
   {icon && (
-   <div className={clsx(identifiant, variantStyles)}>
+    <> {special === "global" ? (
+      <div className={clsx(identifiant, "type-input-search")}>
+      <small></small>     
+      <div className="inputBox">
+        <input
+         className="input_model" 
+          type={type}
+          onChange={handleonSearch} 
+          required={true}
+          placeholder={text}
+        />
+        <div className="loupe">
+        <icon.icon />
+        </div>
+      </div>  
+    </div> 
+    ):(
+         <div className={clsx(identifiant, variantStyles)}>
    <small></small>     
    <div className="inputBox">
      <input
@@ -285,7 +307,11 @@ const inputSearch=(
      <icon.icon />
      <span>{text}</span>
    </div>  
- </div>  
+ </div> 
+    )}
+
+ 
+ </> 
 )}
   </>
 )

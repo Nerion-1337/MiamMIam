@@ -1,5 +1,5 @@
 // DATA
-import { Route_Server, Input_add_ingredient, Input_add_ustensil, Input_add_recipe } from "#data/links";
+import { Route_Server, Input_add_ingredient, Input_add_ustensil } from "#data/links";
 // TYPAGE
 import { api, api_element_recipe } from "#types/typages";
 // COMPONENT

@@ -113,6 +113,8 @@ const contentInput =  Input_inscription.map((input, index)=> (
     balise="label"
     size="s2"
     color="cw"
+    weight="w5"
+    familly="f1"
     className="condition_utilisation"
     children={(<>J'accepte les <span>conditions d'utilisation</span></>)}
         />
@@ -139,6 +141,7 @@ const contentInput =  Input_inscription.map((input, index)=> (
     size="s7"
     color="cw"
     transform="maj"
+    familly="f2"
     children="ou"
         />
 

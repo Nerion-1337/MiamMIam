@@ -116,6 +116,8 @@ const asideContent =(
     size="s7"
     color="cw"
     transform="maj"
+    weight="w1"
+    familly="f2"
     className="logo"
     children={type_connexion ? type_connexion.name : "navigation"}
     />

@@ -419,6 +419,41 @@ padding-right: clamp(4px, calc((8 / $width) * 100vw), 8px);
 }
 //
 //
+// INPUT MODEL SEARCH
+//
+//  
+.type-input-search .inputBox{
+height: clamp(30px, calc((60 / $width) * 100vw), 60px);
+width: clamp(450px, calc((900 / $width) * 100vw), 900px);
+border-radius: clamp(4px, calc((8 / $width) * 100vw), 8px);
+background-color: $cw;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding:
+clamp(0px, calc((8 / $width) * 100vw), 0px)
+clamp(5px, calc((10 / $width) * 100vw), 10px)
+clamp(0px, calc((8 / $width) * 100vw), 0px)
+clamp(17.5px, calc((35 / $width) * 100vw), 35px);
+}
+
+.type-input-search .inputBox .input_model{
+   height: 100%;
+   width: 90%;
+   border: none;
+  }
+
+.type-input-search .inputBox .loupe{
+  height: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  width: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  border-radius: clamp(4px, calc((8 / $width) * 100vw), 8px);
+  @extend %center;
+  font-size: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  background: $cb;
+
+  }
+//
+//
 // SIZE
 //
 //
