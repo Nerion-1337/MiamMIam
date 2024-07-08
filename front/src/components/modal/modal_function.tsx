@@ -7,7 +7,7 @@
 //COMPONENTS
 import Modal_active from "#components/active_redux/modal_active";
 // REQUEST
-import { renvoie_email, reset_password_email } from "#/api/fetch_register_login"
+import { renvoie_email, reset_password_email } from "#6_api/fetch_register_login"
 //
 //
 // VARIABLE

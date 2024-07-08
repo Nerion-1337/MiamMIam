@@ -1,0 +1,264 @@
+.conversation{
+    position: relative;
+    width: clamp(375px, calc((750 / $width) * 100vw), 750px);
+    height: auto;
+    background: transparent;
+    border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    padding: 
+    clamp(5px, calc((15 / $width) * 100vw), 15px)
+    clamp(5px, calc((15 / $width) * 100vw), 15px)
+    clamp(5px, calc((15 / $width) * 100vw), 15px)
+    clamp(10px, calc((20 / $width) * 100vw), 20px);
+    display: grid;
+    grid-template-columns: clamp(50px, calc((100 / $width) * 100vw), 100px) 1fr;
+    grid-template-rows: 
+    clamp(17.5px, calc((35 / $width) * 100vw), 35px) 1fr;
+    grid-column-gap: clamp(12.5px, calc((15 / $width) * 100vw), 15px);
+    grid-row-gap: clamp(12.5px, calc((15 / $width) * 100vw), 15px);
+    &:after{
+        content: "";
+        position: absolute;
+        left: 15%;
+        bottom: -10%;
+        width: 70%;
+        height: clamp(1.5px, calc((3 / $width) * 100vw), 3px);
+        background: $c2;
+    }
+}
+
+.conversation .profil_img_conversation{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.conversation .profil_img_conversation figure{
+    border: 2px solid $c2;
+}
+
+.conversation .profil_img_conversation .new_message{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: clamp(15px, calc((30 / $width) * 100vw), 30px);
+    width: clamp(15px, calc((30 / $width) * 100vw), 30px);
+    background: $cw;
+    @extend %center;
+    border-radius: 50%;
+    border: 2px solid $c2;
+}
+
+.conversation .header_conversation{
+    width: clamp(300px, calc((600 / $width) * 100vw), 600px);
+    height: clamp(20px, calc((40 / $width) * 100vw), 40px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: 1 / 2 / 2 / 3;
+    padding-left: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+}
+
+
+.conversation .header_conversation .name_creator_conversation{
+    background-color: $c2;
+    border-radius: clamp(5px, calc((14 / $width) * 100vw), 14px);
+    padding: 
+    clamp(2.5px, calc((5 / $width) * 100vw), 5px)
+    clamp(5px, calc((15 / $width) * 100vw), 15px)
+    clamp(2.5px, calc((5 / $width) * 100vw), 5px)
+    clamp(5px, calc((15 / $width) * 100vw), 15px);    
+}
+
+.conversation .header_conversation .type-dropdown8{
+    position: absolute;
+    top: 7%;
+    right: 5%;
+    transform: translateY(-50%);
+}
+
+.conversation .header_conversation .type-dropdown8 .dropdownBox .buttonBox{
+    background: transparent;
+}
+
+.conversation .header_conversation .type-dropdown8 .dropdownBox .buttonBox svg{
+    font-size: clamp(25px, calc((50 / $width) * 100vw), 50px);
+    &:hover{
+        color: $cw;
+    }
+}
+
+.conversation .header_conversation .type-dropdown8 .dropdownBox .dropdownBoxMenu {
+    bottom: -50%;
+    right: clamp(25px, calc((50 / $width) * 100vw), 50px);
+}
+
+.conversation .body_conversation{
+    width: clamp(300px, calc((600 / $width) * 100vw), 600px);
+    max-height: clamp(15px, calc((170 / $width) * 100vw), 170px);
+    grid-area: 2 / 2 / 3 / 3;
+    cursor: pointer;
+    overflow: auto; 
+}
+
+.conversation .body_conversation p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.conversation .back_conversation{
+    position: relative;
+    width: 100%;
+    grid-area: 3 / 1 / 4 / 3;
+}
+//
+//
+// ADD CONVERSATION
+//
+//
+.add_conversation{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: clamp(55px, calc((110 / $width) * 100vw), 110px);
+  }
+  
+  .add_conversation .type-btn5{
+    position: fixed;
+    top: clamp(55px, calc((110 / $width) * 100vw), 110px);
+    width: clamp(190px, calc((380 / $width) * 100vw), 380px);
+    opacity: 0.3;
+    pointer-events:none;
+  }
+  
+  .add_conversation .type-btn5.active{
+    opacity: 1;
+    pointer-events: painted;
+  }
+  
+  .add_conversation .choose_user{
+    width: 100%;
+    @extend %center;
+  }
+  
+  .add_conversation .choose_user .type-input1-search{
+    width: 80%;
+    @extend %center;
+  }
+  
+  .add_conversation .list_tags{
+    position: relative;
+    width: 90%;
+    min-height: 60px;
+    margin-top: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+    margin-bottom: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  }
+  
+  .add_conversation .list_user{
+    width: 85%;
+    height: clamp(220px, calc((540 / $width) * 100vw), 540px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+    padding: 
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(12.5px, calc((25 / $width) * 100vw), 25px)
+    clamp(0px, calc((10 / $width) * 100vw), 0px)
+    clamp(5px, calc((10 / $width) * 100vw), 10px);
+    overflow: auto;
+    overflow-y: auto;
+    scrollbar-width: auto;
+    -ms-overflow-style: scrollbar; 
+  }
+  
+  .add_conversation .list_user::-webkit-scrollbar{
+    display: block;
+    background-color: $cw;
+    border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+    width: clamp(2.5px, calc((5 / $width) * 100vw), 5px);
+  }
+  
+  .add_conversation .list_user::-webkit-scrollbar-thumb{
+    background-color: $c2;
+    border-radius: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  }
+  
+  .add_conversation .list_user li{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .add_conversation .list_user li .user{
+    @extend %center;
+    gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  }
+  
+  .add_conversation .list_user li .user span{
+    font-size: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+    cursor: pointer;
+  }
+  
+  .add_conversation .list_user li .checkbox{
+    @extend %center;
+  }
+  
+  .add_conversation .list_user li .checkbox .label_cgv{
+    height: clamp(14px, calc((28 / $width) * 100vw), 28px);
+    width: clamp(14px, calc((28 / $width) * 100vw), 28px);
+    border: 2px solid $c2;
+    border-radius:50%;
+    @extend %center;
+    cursor: pointer;
+    &>div{
+      height: clamp(7px, calc((14 / $width) * 100vw), 14px);
+      width: clamp(7px, calc((14 / $width) * 100vw), 14px);
+      background: transparent;
+      border-radius:50%;
+      transition: .5s;
+    }
+  }
+  
+  .add_conversation .list_user li .checkbox .input_checkbox{
+    display: none;
+    &:checked+.label_cgv>div{
+    background: $c2; 
+  }
+  }
+  //
+  //
+  // CONVERSATION
+  //
+  //
+  .conversation_user{
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .conversation_user form{
+    min-height: 10%;
+    width: 100%;
+    @extend %center;
+    gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  }
+  
+  .conversation_user .contenu{
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(25px, calc((50 / $width) * 100vw), 50px);
+    padding: 
+    clamp(7.5px, calc((15 / $width) * 100vw), 15px)
+    clamp(7.5px, calc((15 / $width) * 100vw), 15px)
+    clamp(7.5px, calc((15 / $width) * 100vw), 15px)
+    clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+    overflow: scroll;
+  }

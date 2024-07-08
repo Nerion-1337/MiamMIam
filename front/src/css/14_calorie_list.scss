@@ -1,0 +1,15 @@
+.bloc_calorie_list{
+    display: flex;
+    flex-direction: column;
+    gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+}
+
+.bloc_calorie_list .bloc_macro {
+    height: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+    display: grid;
+    grid-template-columns: 
+    clamp(12.5px, calc((25 / $width) * 100vw), 25px) 
+    1fr 
+    1fr;
+    gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+}

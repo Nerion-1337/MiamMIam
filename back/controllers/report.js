@@ -12,10 +12,21 @@ exports.report_setting = async (req, res, next) => {
 // VARIABLE
 //  
       const select = `SELECT * FROM ${Links_Server[4].table} WHERE ${Links_Server[4].user_id} = ?`;
-      const insert_report =  `INSERT INTO ${Links_Server[4].table} (${Links_Server[4].user_id}, ${Links_Server[4].sujet}, ${Links_Server[4].contenu}) VALUE (?)`;
-
-      const values_report = [req.auth.userId, req.body[Links_Server[4].sujet], req.body[Links_Server[4].contenu]];
-
+//      
+      const insert_report =  `INSERT INTO ${Links_Server[4].table} 
+     (${Links_Server[4].user_id}, 
+      ${Links_Server[4].sujet}, 
+      ${Links_Server[4].contenu},
+      ${Links_Server[4].element_id_table},
+      ${Links_Server[4].contenu}) 
+      VALUE (?)`;
+//
+      const values_report = [req.auth.userId, 
+                             req.body[Links_Server[4].sujet], 
+                             req.body[Links_Server[4].contenu],
+                             req.body.type_id,
+                             req.body[Links_Server[4].type]];
+//
       const insert_img = `INSERT INTO ${Links_Server[3].table} (${Links_Server[3].adress}, ${Links_Server[3].element_id_table}, ${Links_Server[3].element_type_table}) VALUE (?)`;
 //
 // VERIFIE COMBIEN DE SIGNALEMENT REALISE PAR USER

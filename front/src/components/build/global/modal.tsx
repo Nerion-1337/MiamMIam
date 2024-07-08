@@ -1,12 +1,12 @@
-// TYPAGE
-import { modal } from "#types/typages";
-// DATA
-import { List_icon, Modals } from "#data/links";
-// COMPENENT
-import { Close_modal } from "#components/modal/modal_function";
 // BUILDER
 import Typo from "./typography";
 import Button from "./button";
+// COMPENENT
+import { Close_modal } from "#components/modal/modal_function";
+// DATA
+import { List_icon, Modals } from "#1_data/links";
+// TYPAGE
+import { modal } from "#0_types/typages";
 //
 //
 //
@@ -77,13 +77,21 @@ const Modal_specifique = (
   </>
 )
 //
-const content_Modal = (
+const type_Modal = (
   <>
-  {text ? (
-    Modal_simple
-  ) : (
-    Modal_specifique
-  )}
+  {text && Modal_simple}
+  {!text && Modal_specifique}
+  </>
+)
+//
+const content_modal = (
+  <>
+          <section className={`modal ${variantStyles} ${active ? "active" : ""}`}>
+          <div className="close" onClick={() => Close_modal(number)}><icon.icon /></div>
+            <article>
+              {type_Modal}
+            </article>
+        </section>
   </>
 )
 //
@@ -91,12 +99,5 @@ const content_Modal = (
 // RETURN
 //
 //  
-    return(
-        <section className={`modal ${variantStyles} ${active ? "active" : ""}`}>
-          <div className="close" onClick={() => Close_modal(number)}><icon.icon /></div>
-            <article>
-              {content_Modal}
-            </article>
-        </section>
-    )
+    return content_modal;
 }

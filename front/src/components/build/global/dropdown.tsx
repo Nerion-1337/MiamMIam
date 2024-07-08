@@ -1,7 +1,11 @@
+// KEY
+import { v4 as uuidv4 } from "uuid";
 // REACT
 import { useState, useEffect, useRef } from 'react';
 // TYPAGE
-import { dropdown_type, dropdown_data } from "#types/typages";
+import { dropdown_type, dropdown_data } from "#0_types/typages";
+//
+//
 //
 //
 //
@@ -16,6 +20,9 @@ export default function Dropdown({
     show,
     search,
     number,
+    filter,
+    modale,
+    placeholder,
 }: dropdown_type) {
 //
 //
@@ -25,50 +32,15 @@ export default function Dropdown({
 const [isOpen, setIsOpen] = useState(false); 
 const [selectedOption, setSelectedOption] = useState("");
 const [inputType, setInputType] = useState('button');
-const [inputValue, setInputValue] = useState(text);
-const [isList, setIsList] = useState(list); 
+const [isList, setIsList] = useState(list);
+const [isAscending, setIsAscending] = useState(true); 
 const dropdownRef = useRef<HTMLDivElement>(null);
-let variantStyles = ""; 
-//
-//
-// SWITCH
-//
-//
-  switch (variant) {
-    case "t0":
-      variantStyles = "type-dropdown0";
-      break;
-    case "t1":
-      variantStyles = "type-dropdown1";
-      break;
-    case "t2":
-      variantStyles = "type-dropdown2";
-      break;
-    case "t3":
-      variantStyles = "type-dropdown3";
-      break;
-    case "t4":
-      variantStyles = "type-dropdown4";
-      break;
-    case "t5":
-      variantStyles = "type-dropdown5";
-      break;
-    case "t6":
-      variantStyles = "type-dropdown6";
-      break;
-    case "t7":
-      variantStyles = "type-dropdown7";
-      break;
-    case "t8":
-      variantStyles = "type-dropdown8";
-      break;
-  }
+const variantStyles = `type-dropdown${variant && variant.split("t")[1]}`; 
 //
 //
 // FUNCTION
 //
 //
-
 //
 // FERME/OUVRE MODAL
 const toggleDropdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -82,13 +54,17 @@ const handleBlur = () => {
   };
 //
 // SELECTION OPTION
-const handleOptionSelect = (option: string) => {
-  setSelectedOption(option);
+const handleOptionSelect = (option: {[key: string]: string}) => {
+  setSelectedOption(option.name);
+  setIsAscending(!isAscending)
   if(!fonction) return
-  if(show == true){
-    fonction(option) 
+  if(show === true){
+    fonction(option.back ? option.back : option.name) 
+  } else if(filter){
+    fonction(variable, option.back)
+    fonction("ordre", `${isAscending}`) 
   } else{
-    fonction(variable, option) 
+    fonction(variable, option.back ? option.back : option.name)
   }
   setIsOpen(false);
 };
@@ -97,7 +73,6 @@ const handleOptionSelect = (option: string) => {
 const toggleDropdownInput = () => {
   setIsOpen(true);
   setInputType('text');
-  setInputValue("");
 };
 //
 // FERMETURE DROPDOWN INPUT
@@ -106,7 +81,6 @@ useEffect(() => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
       setIsOpen(false);
       setInputType('button');
-      setInputValue(text);
       setIsList(list)
     }
   };
@@ -133,7 +107,12 @@ const searche = (e: React.ChangeEvent<HTMLInputElement>) => {
 //
 // ENVVOIE OPTION
 const sendOption = (option: string) =>{
-  if(fonction) fonction(variable, option, number)
+  if(!fonction) return
+  if(show === true){
+    fonction(option)
+  } else{
+    fonction(variable, option, number)
+  }
 }
 //
 //
@@ -150,21 +129,26 @@ const dorpdown = (
       onClick={toggleDropdown}
       className={`inputBox ${isOpen || selectedOption || value ? "active" : ""}`}
       onBlur={handleBlur}
-      children={selectedOption ? selectedOption : value}
       value={selectedOption}
-      />
+      >
+    {selectedOption ? `${selectedOption}${filter ? (isAscending ? " ↓" : " ↑") : ""}` : value}
+    <icon.icon className="icon_button"/>
+      </button>
       {isOpen && (
         <ul className="dropdownMenu">
               {
                list.map((option: dropdown_data, index) => (
-  <li key={index} onClick={() => handleOptionSelect(option.name)}>
-  {option.name} {option.abreviation ? `(${option.abreviation})` : ""} {option.marque ? `(${option.marque})` : ""}
+  <li key={uuidv4()} onClick={() => handleOptionSelect(option)}>
+  {option.name} 
+  {option.abreviation ? `(${option.abreviation})` : ""} 
+  {option.marque ? `(${option.marque})` : ""} 
+  {filter ? (isAscending ? " ↓" : " ↑") : ""}
   </li>         
              ))}
         </ul>
       )}
           <span>{text}</span>
-          <icon.icon />
+          <icon.icon className="icon_mobile"/>
           </div>
     </div>
     
@@ -188,8 +172,8 @@ const dorpdownSearch = (
         className="input_model" 
         type={inputType}
         onChange={searche} 
-       placeholder={value ? String(value) || "" : ""}
-        defaultValue={inputValue}
+        placeholder={placeholder ? placeholder : ""}
+        defaultValue={value ? (isOpen ? "" : value ): (isOpen ? "" : text )}
         required={true}
       />
       <icon.icon />
@@ -209,21 +193,46 @@ const dorpdownSearch = (
     </>
 )
 //
+const dropdownModals = (
+  <>
+  {icon && list && (  
+    <div className={variantStyles} >
+      <small></small>
+      <div className={`dropdownBox ${isOpen ? "active" : ""}`}>
+      <button 
+      onClick={toggleDropdown}
+      onBlur={handleBlur}
+      className={`buttonBox ${isOpen ? "active" : ""}`}
+      >
+      <icon.icon className="icon_left"/> {text} <icon.icon className="icon_right"/>
+      </button>
+      <div className={`dropdownBoxMenu ${isOpen ? "active" : ""}`}>
+      <ul className="dropdownMenu">
+              {
+               list.map((option: dropdown_data, index) => (
+  <li key={index} onClick={() => handleOptionSelect(option)}>
+  {option.name}
+  </li>         
+             ))}
+        </ul>
+      </div>
+          </div>
+    </div> 
+    )}
+    </>
+)
+//
 const contentDorpdown = (
   <>
-  {search ? (
-    dorpdownSearch
-  ) : (
-    dorpdown
-  )}
+  {search && dorpdownSearch}
+  {modale && dropdownModals}
+  {!modale && !search && dorpdown}
   </>
 )
 //
 //
+// RETURN
 //
 //
-//
-return (
-  contentDorpdown
-);
-}
+return contentDorpdown;
+}  

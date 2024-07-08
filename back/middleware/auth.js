@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken");
 const joi = require("joi")
 // DATA
 const { Links_Server, Regex } = require("../links")
@@ -71,6 +70,10 @@ const validationSchemas = {
     .min(1)
     .max(2)
     .required(),
+
+  [Links_Server[0].objectif]: joi.string()
+  .valid("PRISE", "MAINTIENT", "PERTE")
+  .required(), 
   };   
 //
 //
@@ -205,7 +208,6 @@ const validationSchemas = {
 exports.update_user_setting = (req, res, next) => {
   try {
    if(!req.body && !req.files) return res.status(401).json("Aucune donnée");
-
 
    const errors = {};
 

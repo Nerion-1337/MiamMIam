@@ -4,12 +4,12 @@
 //
 //
 $size-bloc-img0: clamp(25px, calc((50 / $width) * 100vw), 50px);
-$size-bloc-img1: clamp(35px, calc((70 / $width) * 100vw), 70px);
-$size-bloc-img2: clamp(50px, calc((100 / $width) * 100vw), 100px);
-$size-bloc-img3: clamp(60px, calc((120 / $width) * 100vw), 120px);
-$size-bloc-img4: clamp(75px, calc((150 / $width) * 100vw), 150px);
-$size-bloc-img5: clamp(90px, calc((180 / $width) * 100vw), 180px);
-$size-bloc-img6: clamp(100px, calc((200 / $width) * 100vw), 200px);
+$size-bloc-img1: clamp(20px, calc((40 / $width) * 100vw), 40px);
+$size-bloc-img2: clamp(25px, calc((50 / $width) * 100vw), 50px);
+$size-bloc-img3: clamp(30px, calc((60 / $width) * 100vw), 60px);
+$size-bloc-img4: clamp(35px, calc((70 / $width) * 100vw), 70px);
+$size-bloc-img5: clamp(40px, calc((80 / $width) * 100vw), 80px);
+$size-bloc-img6: clamp(50px, calc((100 / $width) * 100vw), 100px);
 $size-bloc-img7: clamp(115px, calc((230 / $width) * 100vw), 230px);
 $size-bloc-img8: clamp(125px, calc((250 / $width) * 100vw), 250px);
 $size-bloc-img9: clamp(150px, calc((300 / $width) * 100vw), 300px);
@@ -146,12 +146,12 @@ $size-bloc-img10: clamp(175px, calc((350 / $width) * 100vw), 350px);
 //
 //
 $size-img0: clamp(25px, calc((50 / $width) * 100vw), 50px);
-$size-img1: clamp(35px, calc((70 / $width) * 100vw), 70px);
-$size-img2: clamp(50px, calc((100 / $width) * 100vw), 100px);
-$size-img3: clamp(60px, calc((120 / $width) * 100vw), 120px);
-$size-img4: clamp(75px, calc((150 / $width) * 100vw), 150px);
-$size-img5: clamp(90px, calc((180 / $width) * 100vw), 180px);
-$size-img6: clamp(100px, calc((200 / $width) * 100vw), 200px);
+$size-img1: clamp(20px, calc((40 / $width) * 100vw), 40px);
+$size-img2: clamp(25px, calc((50 / $width) * 100vw), 50px);
+$size-img3: clamp(30px, calc((60 / $width) * 100vw), 60px);
+$size-img4: clamp(35px, calc((70 / $width) * 100vw), 70px);
+$size-img5: clamp(40px, calc((80 / $width) * 100vw), 80px);
+$size-img6: clamp(50px, calc((100 / $width) * 100vw), 100px);
 $size-img7: clamp(115px, calc((230 / $width) * 100vw), 230px);
 $size-img8: clamp(125px, calc((250 / $width) * 100vw), 250px);
 $size-img9: clamp(150px, calc((300 / $width) * 100vw), 300px);

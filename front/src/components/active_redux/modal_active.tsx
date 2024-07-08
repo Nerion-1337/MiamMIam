@@ -1,10 +1,10 @@
 // DATA
-import { Modals } from "#data/links";
+import { Modals } from "#1_data/links";
 // TYPAGE
-import { modal } from "#types/typages";
+import { modal } from "#0_types/typages";
 // REDUX
-import { store } from "#/reducers/store";
-import { postModal, updateModalValue } from '#/actions/modal_action'
+import { store } from "#4_reducers/0_store";
+import { postModal, updateModalValue } from '#5_actions/4_modal_action'
 //
 //
 //

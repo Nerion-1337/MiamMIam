@@ -11,10 +11,11 @@ const { Links_Server } = require("../links")
 // REGISTER
 //
 //
+//
  exports.register = async (req, res, next) => {
 //
 // VARIABLE
-//  
+//
   const select = `SELECT * FROM ${Links_Server[0].table} WHERE ${Links_Server[0].pseudo} = ? OR ${Links_Server[0].email} = ?`;
   const insert =  `INSERT INTO ${Links_Server[0].table} (${Links_Server[0].pseudo}, ${Links_Server[0].email}, ${Links_Server[0].password}, ${Links_Server[0].check}) VALUE (?)`;
 //
@@ -94,15 +95,14 @@ const values = [req.body[Links_Server[0].pseudo].trim(), req.body[Links_Server[0
 // VARIABLE
 //  
   const select = `SELECT * FROM ${Links_Server[0].table} WHERE ${Links_Server[0].check} = ?`;
-  const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].valid} = 1 WHERE ${Links_Server[0].email} = ?`;
+  const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].valid} = 1, ${Links_Server[0].check} = "" WHERE ${Links_Server[0].email} = ?`;
 //
 // VERIFIE EMAIL TOKEN
 //
   SQL.query(select, [req.body[Links_Server[0].valid].trim()], (err, data)=>{
     if (err) return res.status(500).json(err);
-    if (data.length === 0) return res.status(404).json("L'utilisateur n'existe pas.");
+    if (data.length === 0) return res.status(404).json("Le code n'est pas ou plus valide.");
     if (data[0][Links_Server[0].valid] === 1) return res.status(201).json("Email déjà validé.");
-    console.log(data[0][Links_Server[0].email])
 //
 // INSERT DATA
 //
@@ -116,7 +116,7 @@ SQL.query(update, [data[0][Links_Server[0].email].trim()], (err, data) =>{
 };
 //
 //
-// RENVOIE EMAIL
+// RETURN EMAIL
 //
 //
  exports.renvoie_email = async (req, res, next) => {
@@ -178,11 +178,24 @@ SQL.query(update, [randomString, req.body[Links_Server[0].email].trim()], (err, 
 // LOGIN
 //
 //
+const loginAttemptsCache = {}; // Utilisez un cache pour stocker les tentatives de connexion par adresse IP
+const maxAttemptsPerIP = 5; // Nombre maximal de tentatives autorisées par adresse IP
+const blockDuration = 1 * 60 * 60 * 1000; // Durée de blocage en millisecondes (1 heures)
+//
 exports.login = (req, res, next) => {
 //
 // VARIABLE
-//  
+//
+  const ip = req.ip;
+  const loginAttempts = loginAttemptsCache[ip] || { count: 0, lastAttempt: null };
+  const blockTimeout = loginAttempts.lastAttempt ? new Date() - loginAttempts.lastAttempt < blockDuration : false;  
   const select = `SELECT * FROM ${Links_Server[0].table} WHERE ${Links_Server[0].email} = ? OR ${Links_Server[0].pseudo} = ?`;
+//
+// Vérifiez si l'adresse IP a dépassé le nombre maximal de tentatives
+//  
+if (loginAttempts.count >= maxAttemptsPerIP && blockTimeout) {
+  return res.status(429).json({ error: 'Trop de tentatives de connexion. Veuillez réessayer plus tard.' });
+}  
 //
 // VERIFIE IDENTIFIANT ET PASSWORD
 // 
@@ -193,7 +206,17 @@ exports.login = (req, res, next) => {
 
     const decryptage = bcrypt.compareSync(req.body[Links_Server[0].password].trim(), data[0][Links_Server[0].password]);
 
-    if(!decryptage) return res.status(400).json({error_password:"Mauvais mot de passe"});
+    if(!decryptage){
+      // Incrémenter le compteur de tentatives de connexion infructueuses pour cette adresse IP
+      loginAttempts.count++;
+      loginAttempts.lastAttempt = new Date();
+      loginAttemptsCache[ip] = loginAttempts;
+
+      return res.status(400).json({error_password:"Mauvais mot de passe"});
+    } 
+
+    // Réinitialiser le compteur de tentatives de connexion infructueuses après une connexion réussie
+    loginAttemptsCache[ip] = { count: 0, lastAttempt: null };
 
     const token = jwt.sign({ id: data[0].id }, process.env.TOKEN_SECRET, { expiresIn: '72h' });
 
@@ -214,7 +237,7 @@ const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].check} = ?
 //
 // VERIFIE SI IDENTIFIANT EXISTANT
 //
-SQL.query(select, [req.body[Links_Server[0].email].trim(), req.body[Links_Server[0].email].trim()], (err, data)=>{
+SQL.query(select, [req.body[Links_Server[0].pseudo].trim(), req.body[Links_Server[0].pseudo].trim()], (err, data)=>{
   if (err) return res.status(500).json(err);
   if (data.length === 0) return res.status(404).json({error_email: "Mauvais email ou pseudo"});
 //
@@ -283,7 +306,7 @@ SQL.query(update, [randomString, email_data], (err, data)=>{
 // VARIABLE
 //  
   const select = `SELECT * FROM ${Links_Server[0].table} WHERE ${Links_Server[0].check} = ?`;
-  const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].password} = ? WHERE ${Links_Server[0].id} = ?`;
+  const update = `UPDATE ${Links_Server[0].table} SET ${Links_Server[0].password} = ?, ${Links_Server[0].check} = "" WHERE ${Links_Server[0].id} = ?`;
 //
 // VERIFIE EMAIL TOKEN
 //

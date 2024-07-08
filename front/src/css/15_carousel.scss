@@ -1,0 +1,68 @@
+.carousel{
+  position: relative;
+  width: clamp(380px, calc((760 / $width) * 100vw), 760px);
+  height: clamp(200px, calc((400 / $width) * 100vw), 400px);
+  border-radius: clamp(1px, calc((25 / 1240) * 100vw), 25px);
+  border: 3px $c2 solid;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  &:hover .allBanner::after{
+    background-color: rgba(0, 0, 0, 0); 
+   } 
+}
+
+.carousel .allBanner{
+    display: flex;
+    align-items: center;
+    transition: 1s;
+    overflow: hidden;
+}
+
+.carousel .allBanner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    z-index: 1;
+    transition: .5s;
+  }
+
+.carousel .allBanner .bloc_img img{
+    width: clamp(380px, calc((760 / $width) * 100vw), 760px);
+    height: clamp(200px, calc((400 / $width) * 100vw), 400px);
+}
+
+.carousel .btn{
+    position: absolute;
+    @extend %center;
+    background: transparent;
+    color: $c2;
+    font-size: clamp(25px, calc((50 / $width) * 100vw), 50px);
+    z-index: 2;  
+    cursor: pointer;
+    transition: .5s;
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
+
+  .carousel .btn_Right{
+    right: clamp(7.5px, calc((15 / 1240) * 100vw), 15px);
+  }
+
+  .carousel .btn_Left{
+    left: clamp(7.5px, calc((15 / 1240) * 100vw), 15px);
+  }
+  
+  .carousel .slideShow{
+    position: absolute;
+    left: 50%;
+    bottom: clamp(12.5px, calc((25 / 1240) * 100vw), 25px);
+    font-size: clamp(15px, calc((30 / $width) * 100vw), 30px);
+    color: $c2;
+    z-index: 2;
+  }

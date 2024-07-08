@@ -3,12 +3,14 @@
 // HEADER
 //
 //
-header{
+.header{
   position: sticky;
   top: 0;
   max-width: calc($width * 1px);
   width: 100vw;
   height: clamp(35px, calc((80 / $width) * 100vw), 80px);
+  background: $c1;
+  background: $c1;
   margin-bottom: clamp(15px, calc((30 / $width) * 100vw), 30px);
   z-index: 90;
   &:before{
@@ -21,7 +23,7 @@ header{
   }
 }
 
-header .button_header{
+.header .button_header{
   position: absolute;
   top:clamp(5px, calc((10 / $width) * 100vw), 10px);
   right: clamp(15px, calc((30 / $width) * 100vw), 30px);
@@ -29,11 +31,106 @@ header .button_header{
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-header .logo{
+.header .logo{
   position: absolute;
   top: clamp(10px, calc((20 / $width) * 100vw), 20px);
   left: clamp(15px, calc((30 / $width) * 100vw), 30px);
-  color: $c2;
+}
+
+.title_page{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: clamp(35px, calc((80 / $width) * 100vw), 80px);
+  @extend %center;
+  z-index: 91;
+}
+//
+//
+.header_home{
+  position: fixed;
+  top: 0;
+  max-width: calc($width * 1px);
+  width: 100vw;
+  height: clamp(35px, calc((80 / $width) * 100vw), 80px);
+  z-index:10;
+}
+
+.header_home .button_header{
+  position: absolute;
+  top:clamp(5px, calc((10 / $width) * 100vw), 10px);
+  right: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  display: flex;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.header_home .logo{
+  position: absolute;
+  top: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  left: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.baniere_header{
+  position: fixed;
+  top: 0;
+  height: clamp(100px, calc((190 / $width) * 100vw), 190px);
+  max-width: calc($width * 1px);
+  width: 100vw;
+  background-image:url(../assets/banniere.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 
+  clamp(800px, calc((1600 / $width) * 100vw), 1600px)
+  clamp(375px, calc((750 / $width) * 100vw), 750px);
+  z-index: 3;
+}
+//
+//
+.header_recipe{
+  position: fixed;
+  top: 0;
+  max-width: calc($width * 1px);
+  width: 100vw;
+  height: clamp(35px, calc((80 / $width) * 100vw), 80px);
+  backdrop-filter: blur(5px);
+  z-index:10;
+
+  &:before{
+    content: "";
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 100%;
+    border-bottom: 2px solid $c2;
+  }
+}
+
+.header_recipe .button_header{
+  position: absolute;
+  top:clamp(5px, calc((10 / $width) * 100vw), 10px);
+  right: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  display: flex;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.header_recipe .logo{
+  position: absolute;
+  top: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  left: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.baniere_recipe{
+  position: fixed;
+  top: 0;
+  height: clamp(40px, calc((80 / $width) * 100vw), 80px);
+  max-width: calc($width * 1px);
+  width: 100vw;
+  background:$c1;
+  background-size: 
+  clamp(800px, calc((1600 / $width) * 100vw), 1600px)
+  clamp(375px, calc((750 / $width) * 100vw), 750px);
+  z-index: 4;
 }
 //
 //
@@ -46,18 +143,24 @@ header .logo{
   right: 0;
   height: 100vh;
   width: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   overflow: hidden;
   transition: 0.5s;
   z-index: 100;
 }
 
-.aside_principal .content_aside .header_aside{
+.aside_principal .content_aside{
   position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.aside_principal .content_aside .header_aside{
   height: clamp(40px, calc((80 / $width) * 100vw), 80px);
   width: 100%;
   @extend %center;
-  margin-bottom: clamp(50px, calc((80 / $width) * 100vw), 80px);
 }
 
 .aside_principal .content_aside .header_aside .close_aside{
@@ -65,37 +168,51 @@ header .logo{
   left: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
   }
 
+.aside_principal .content_aside .header_aside .back_tchat{
+  position: absolute;
+  left: clamp(40px, calc((80 / $width) * 100vw), 80px);
+  }  
+
+.aside_principal .content_aside .header_aside .btn_new_tchat{
+  position: absolute;
+  right: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+  }
+
 .aside_principal.navigation_open{
   width: clamp(180px, calc((360 / $width) * 100vw), 360px);
 }
 
+.aside_principal.navigation_open .content_aside{
+  width: clamp(180px, calc((360 / $width) * 100vw), 360px);
+}
+
 .aside_principal.tchat_open{
-  width: clamp(350px, calc((700 / $width) * 100vw), 700px);
+  width: clamp(400px, calc((800 / $width) * 100vw), 800px);
+}
+
+.aside_principal.tchat_open .content_aside{
+  width: clamp(400px, calc((800 / $width) * 100vw), 800px);
 }
 //
 //
 // NAVIGATION CONNEXION
 //
 //
-.aside_principal .content_aside{
-  position: relative;
-  height: 100vh;
-  width: clamp(180px, calc((360 / $width) * 100vw), 360px);
-  overflow: hidden;
+.aside_principal.navigation_open .content_aside .body_aside{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.aside_principal .content_aside .body_aside{
-width: 100%;
-height: 82vh;
-padding: clamp(10px, calc((20 / $width) * 100vw), 20px) 0;
-overflow: scroll;
-}
-.aside_principal .content_aside .body_aside .body_nav{
+.aside_principal.navigation_open .content_aside .body_aside .body_nav{
   position: relative;
   width: 100%;
   height: auto;
   @extend %center;
   flex-direction: column;
+  padding-top: clamp(60px, calc((120 / $width) * 100vw), 120px);
   gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
 }
 //
@@ -103,28 +220,29 @@ overflow: scroll;
 // CONNEXION
 //
 //
-.aside_principal .content_aside .body_aside .body_connexion{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion{
   position: relative;
   width: 100%;
   height: auto;
   @extend %center;
   flex-direction: column;
+  padding-top: clamp(60px, calc((120 / $width) * 100vw), 120px);
   gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
 }
 
-.aside_principal .content_aside .body_aside .body_connexion .bloc_input_connexion{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion .bloc_input_connexion{
   @extend %center;
   flex-direction: column;
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-.aside_principal .content_aside .body_aside .body_connexion .bloc_input_connexion .bloc_input_mdp{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion .bloc_input_connexion .bloc_input_mdp{
   @extend %center;
   flex-direction: column;
   gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
 }
 
-.aside_principal .content_aside .body_aside .body_connexion .bloc_input_connexion .bloc_input_mdp .mdp_oublie{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion .bloc_input_connexion .bloc_input_mdp .mdp_oublie{
   transition: .5s;
   cursor: pointer;
   &:hover{
@@ -132,17 +250,17 @@ overflow: scroll;
 }
 }
 
-.aside_principal .content_aside .body_aside .body_connexion .button_validation{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion .button_validation{
   @extend %center;
   flex-direction: column;
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-.aside_principal .content_aside .body_aside .body_connexion .button_validation .button_google .icon_left{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion .button_validation .button_google .icon_left{
 display: none;
 }
 
-.aside_principal .content_aside .body_aside .body_connexion .button_validation .button_google .icon_right{
+.aside_principal.navigation_open .content_aside .body_aside .body_connexion .button_validation .button_google .icon_right{
   font-size: clamp(13px, calc((26 / $width) * 100vw), 26px);
   margin-left: clamp(1px, calc((3 / $width) * 100vw), 3px);
   padding-bottom: 1px;
@@ -152,36 +270,37 @@ display: none;
 // INSCRIPTION
 //
 //
-.aside_principal .content_aside .body_aside .body_inscription{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription{
   position: relative;
   width: 100%;
   height: auto;
   @extend %center;
   flex-direction: column;
+  padding-top: clamp(60px, calc((120 / $width) * 100vw), 120px);
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription{
   @extend %center;
   flex-direction: column;
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription{
   @extend %center;
   flex-direction: column;
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription .input_valid{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription .input_valid{
   margin-top: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox{
   @extend %center;
   gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
   }
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox .label_cgv{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox .label_cgv{
     height: clamp(12px, calc((24 / $width) * 100vw), 24px);
     width: clamp(12px, calc((24 / $width) * 100vw), 24px);
     border: 2px solid $c2;
@@ -196,29 +315,29 @@ display: none;
     }
     }
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox #cgv{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox #cgv{
         display: none;
         &:checked+.label_cgv>div{
         background: $c2; 
     }
 }    
 
-.aside_principal .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox .condition_utilisation span{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .bloc_input_inscription .input_checkbox .condition_utilisation span{
 color: $c2;
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .button_validation{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .button_validation{
   @extend %center;
   flex-direction: column;
   gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
   margin-top: clamp(15px, calc((30 / $width) * 100vw), 30px);
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .button_validation .button_google .icon_left{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .button_validation .button_google .icon_left{
 display: none;
 }
 
-.aside_principal .content_aside .body_aside .body_inscription .button_validation .button_google .icon_right{
+.aside_principal.navigation_open .content_aside .body_aside .body_inscription .button_validation .button_google .icon_right{
   font-size: clamp(13px, calc((26 / $width) * 100vw), 26px);
   margin-left: clamp(1px, calc((3 / $width) * 100vw), 3px);
   padding-bottom: clamp(1px, calc((2 / $width) * 100vw), 2px);
@@ -228,19 +347,51 @@ display: none;
 // NAVIGATION CONNECTÉ
 //
 //
-.aside_principal .content_aside .body_aside .body_main_nav{
+.aside_principal.navigation_open .content_aside .body_aside .body_main_nav{
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  padding-top: clamp(50px, calc((100 / $width) * 100vw), 100px);
 }
-.aside_principal .content_aside .body_aside .body_main_nav .button_nav{
+
+.aside_principal.navigation_open .content_aside .body_aside .body_main_nav .button_nav{
   @extend %center;
   flex-direction: column;
   gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
 }
+
+.aside_principal.navigation_open .content_aside .body_aside .body_main_nav .type-btn5{
+  position: absolute;
+  bottom: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+//
+//
+// TCHAT
+//
+//
+.aside_principal.tchat_open .content_aside .body_aside{
+  width: 100%;
+  height: 100%;
+  padding: clamp(10px, calc((20 / $width) * 100vw), 20px) 0;
+  overflow: scroll;
+  }
+
+.aside_principal.tchat_open .content_aside .body_aside .option_tchat{
+  width: 100%;
+  @extend %center;
+  margin-top: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  }  
+
+.aside_principal.tchat_open .content_aside .body_aside .body_conversation{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+  }  
 //
 //
 // TOKEN INVALID
@@ -318,10 +469,153 @@ color: $cb;
 //
 .main_home{
   position: relative;
-  top: 70px;
-  height: 250vh;
-  width: 80%;
-  //background-color: blue;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main_home .baniere_home{
+  position: absolute;
+  top: 0;
+  max-width: calc($width * 1px);
+  width: 100vw;
+  height: clamp(375px, calc((750 / $width) * 100vw), 750px); 
+  background-image:url(../assets/banniere.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 
+  clamp(800px, calc((1600 / $width) * 100vw), 1600px)
+  clamp(375px, calc((750 / $width) * 100vw), 750px);
+  z-index: 3;
+}
+
+.main_home .title{
+  position: relative;
+  top: clamp(100px, calc((200 / $width) * 100vw), 200px);
+  width: 100%;
+  @extend %center;
+  flex-direction: column;
+  gap: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  margin-bottom: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  z-index: 10;
+}
+
+.main_home .search{
+  position: sticky;
+  width: 50%;
+  top: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: clamp(100px, calc((200 / $width) * 100vw), 200px);
+  @extend %center;
+  z-index: 10;
+}
+
+.main_home .list_filter_home{
+  position: sticky;
+  top: clamp(50px, calc((100 / $width) * 100vw), 100px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(135px, calc((270 / $width) * 100vw), 270px);
+  padding: 
+  0
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  0
+  clamp(15px, calc((30 / $width) * 100vw), 30px);
+  margin-bottom: clamp(20px, calc((40 / $width) * 100vw), 40px);
+  z-index: 11;
+  }
+
+.main_home .list_filter_home .filter{
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  z-index: 10;
+}
+
+.main_home .tag_home{
+  position: sticky;
+  top: clamp(95px, calc((190 / $width) * 100vw), 190px);
+  height: auto;
+  width: 100%;
+  background: $c1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  padding:
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  clamp(5px, calc((10 / $width) * 100vw), 10px);
+  margin-bottom: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  z-index: 1;
+}
+
+.main_home .navigation_pagination{
+  padding:
+  clamp(0px, calc((50 / $width) * 100vw), 0px)
+  0
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0;
+}
+//
+//
+// MODAL SIGNALEMENT
+//
+//  
+.signalement_modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  z-index: 200;
+}
+
+.signalement_modal .main_signalement{
+  position: relative;
+  background: $cw;
+  height: auto;
+  width: clamp(12.5px, calc((1200 / $width) * 100vw), 1200px);
+  border-radius: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  border: 3px solid $c2;
+  padding: 
+  clamp(10px, calc((20 / $width) * 100vw), 20px)
+  clamp(20px, calc((40 / $width) * 100vw), 40px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(20px, calc((40 / $width) * 100vw), 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.signalement_modal .main_signalement .close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: clamp(30px, calc((60 / $width) * 100vw), 60px);
+  cursor: pointer;  
+  @extend %center;
+  transition: .5s;
+  &:hover{
+      scale: 1.2;
+  }
 }
 //
 //
@@ -442,7 +736,26 @@ letter-spacing: clamp(0px, calc((3 / $width) * 100vw), 3px) !important;
   @extend %center;
   flex-direction: column;
   gap: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+}
 
+.main_add_recipe section .new_etape{
+  position: relative;
+}
+
+.main_add_recipe section .new_etape .close_etape{
+  position: absolute;
+  font-size: clamp(10px, calc((30 / $width) * 100vw), 30px);
+  background: transparent;
+  color: $cb;
+  top: clamp(5px, calc((10 / $width) * 100vw), 5px);
+  right:clamp(5px, calc((10 / $width) * 100vw), 5px);
+  cursor: pointer;
+  transition: .5s;
+  opacity: 0.5;
+  &:hover{
+    opacity: 1;
+    scale: 1.2;
+  }
 }
 
 .main_add_recipe section .dropdown_recette{
@@ -593,4 +906,586 @@ letter-spacing: clamp(0px, calc((3 / $width) * 100vw), 3px) !important;
     border-top: 2px solid $c2;
     border-bottom: 2px solid $c2;
   }
+}
+//
+//
+// PROFILE
+//
+//
+.main_profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(30px, calc((60 / $width) * 100vw), 60px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_profile .hearder_profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main_profile .hearder_profile .img_profile{
+  position: relative;
+}
+
+.main_profile .hearder_profile .img_profile .option_profile{
+  position: absolute;
+  top: clamp(30px, calc((190 / $width) * 100vw), 190px);
+  right: clamp(30px, calc((30 / $width) * 100vw), 30px);
+}
+
+.main_profile .hearder_profile .button_profile{
+  @extend %center;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px);
+  margin-top: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.main_profile .hearder_profile .button_profile .follower_total{
+  width: clamp(40px, calc((80 / $width) * 100vw), 80px);
+  height: clamp(40px, calc((80 / $width) * 100vw), 80px);
+  border-radius: 50%;
+  background: $c2;
+  @extend %center;
+}
+
+.main_profile .research_profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main_profile .split_profile{
+    @extend %center;
+    padding: 
+    clamp(30px, calc((60 / $width) * 100vw), 60px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(30px, calc((60 / $width) * 100vw), 60px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_profile .split_profile .slide{
+  width: calc($width * 0.5 * 1px);
+  height: clamp(1px, calc((3 / $width) * 100vw), 3px);
+  background: $c2;
+}
+
+.main_profile .split_profile .split_title{
+    padding:
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(30px, calc((60 / $width) * 100vw), 60px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(30px, calc((60 / $width) * 100vw), 60px);
+}
+
+.main_profile .research_profile .list_filter_profile {
+  display: flex;
+  align-items: center;
+  gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
+  padding: 
+  clamp(30px, calc((60 / $width) * 100vw), 60px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_profile .research_profile .list_filter_profile .filter{
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.main_profile .tag_profile {
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  margin-bottom: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  z-index: 1;
+}
+//
+//
+// DASHBORD
+//
+//
+.main_dashbord{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 
+  clamp(5px, calc((10 / $width) * 100vw), 10px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(30px, calc((60 / $width) * 100vw), 60px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_dashbord .research_dashbord{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main_dashbord .split_dashbord{
+    @extend %center;
+    padding: 
+    clamp(30px, calc((60 / $width) * 100vw), 60px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(30px, calc((60 / $width) * 100vw), 60px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_dashbord .split_dashbord .slide{
+  width: calc($width * 0.5 * 1px);
+  height: clamp(1px, calc((3 / $width) * 100vw), 3px);
+  background: $c2;
+}
+
+.main_dashbord .split_dashbord .split_title{
+    padding:
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(30px, calc((60 / $width) * 100vw), 60px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(30px, calc((60 / $width) * 100vw), 60px);
+}
+
+.main_dashbord .research_dashbord .list_filter_dashbord {
+  display: flex;
+  align-items: center;
+  gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
+  padding: 
+  clamp(30px, calc((60 / $width) * 100vw), 60px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_dashbord .research_dashbord .list_filter_dashbord .filter{
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.main_dashbord .tag_dashbord {
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  margin-bottom: clamp(15px, calc((30 / $width) * 100vw), 30px);
+  z-index: 1;
+}
+
+.main_dashbord .needs_calorie{
+  position: relative;
+  height: clamp(125px, calc((250 / $width) * 100vw), 250px);
+  width: clamp(450px, calc((900 / $width) * 100vw), 900px);
+  margin-top: clamp(10px, calc((21 / $width) * 100vw), 21px);
+  @extend %center;
+  border: 3px solid $c2;
+  border-radius: clamp(10px, calc((21 / $width) * 100vw), 21px);
+}
+
+.main_dashbord .needs_calorie .split_calorie{
+  position: absolute;
+  top: clamp(-30px, calc((-30 / $width) * 100vw), 0px);
+  left: clamp(10px, calc((21 / $width) * 100vw), 21px);
+  display: flex;
+  gap: clamp(22.5px, calc((45 / $width) * 100vw), 45px);
+  z-index: 10;
+}
+
+.main_dashbord .needs_calorie .need_calorie_user{
+  @extend %center;
+  gap: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+}
+
+.main_dashbord .needs_calorie .need_calorie_user .button_objectif{
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+  }
+
+.main_dashbord .needs_calorie .pourcentage{
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  padding: 
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(5px, calc((20 / $width) * 100vw), 20px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(5px, calc((20 / $width) * 100vw), 20px);
+  border-left: 2px $c2 solid;
+  border-right: 2px $c2 solid;
+  }
+
+.main_dashbord .needs_calorie .pourcentage span{
+  height: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+  }
+//
+//
+// RECIPE
+//
+//      
+.main_recipe{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 
+  0
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  0
+  clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+.main_recipe .baniere_recipe{
+  position: absolute;
+  top: 0;
+  max-width: calc($width * 1px);
+  width: 100vw;
+  height: clamp(250px, calc((500 / $width) * 100vw), 500px); 
+  @extend %center;
+  background-image:url(../assets/banniere.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 
+  clamp(800px, calc((1600 / $width) * 100vw), 1600px)
+  clamp(250px, calc((500 / $width) * 100vw), 500px);
+  z-index: 5;
+  overflow: hidden;
+}
+
+.main_recipe .baniere_recipe::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.main_recipe .title_header_recipe{
+  position: sticky;
+  top: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  @extend %center;
+  margin-top: clamp(100px, calc((200 / $width) * 100vw), 200px) ;
+  z-index: 10;
+}
+
+.main_recipe .button{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: clamp(85px, calc((170 / $width) * 100vw), 170px);
+  z-index: 5;
+}
+
+.main_recipe .button .social{
+  display: flex;
+}
+
+.main_recipe .button .social .stars {
+  @extend %center;
+  width: clamp(55px, calc((110 / $width) * 100vw), 110px);
+  transition: .5s;
+  cursor: pointer;
+  &:hover{
+  color: $cb;
+  letter-spacing: clamp(0px, calc((2 / $width) * 100vw), 2px);   
+  }
+} 
+
+.main_recipe .button .social .stars.active {
+  color: $cw;
+  &:hover{
+  color: red;
+  }
+} 
+
+.main_recipe .button .social .stars svg{
+  font-size: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.main_recipe .button .social .heart {
+  @extend %center;
+  min-width: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  transition: .5s;
+  cursor: pointer;
+  &:hover{
+  color: $cb;
+  letter-spacing: clamp(0px, calc((2 / $width) * 100vw), 2px);   
+  }
+}   
+
+.main_recipe .button .social .heart.active {
+  color: $cw;
+  &:hover{
+  color: red;
+  }
+}   
+
+.main_recipe .button .social .heart svg,
+.main_recipe .button .social .heart_visitor svg{
+  font-size: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.main_recipe .button .ellipsis{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -150%);
+}
+
+.main_recipe .button .ellipsis .type-dropdown8 .dropdownBox .buttonBox {
+  background: transparent;
+}
+
+.main_recipe .button .ellipsis .type-dropdown8 .dropdownBox .buttonBox svg{
+  font-size: clamp(50px, calc((100 / $width) * 100vw), 100px);
+  &:hover{
+    color: $cw;
+  }
+}
+
+.main_recipe .button .nutri_score{
+  height: clamp(35px, calc((70 / $width) * 100vw), 70px);
+  width: clamp(35px, calc((70 / $width) * 100vw), 70px);
+  background: $c2;
+  border-radius: 50%;
+  @extend %center;
+}
+
+
+
+.main_recipe .top_body_recipe{
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  gap: clamp(20px, calc((40 / $width) * 100vw), 40px); 
+}
+
+.main_recipe .top_body_recipe .top_cooking_process{
+  width: clamp(475px, calc((950 / $width) * 100vw), 950px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_recipe .top_body_recipe .top_cooking_process .title_time{
+  @extend %center;
+  gap: clamp(10px, calc((20 / $width) * 100vw), 20px);
+}
+
+.main_recipe .top_body_recipe .top_cooking_process .title_time .time{
+  height: clamp(17.5px, calc((36 / $width) * 100vw), 36px);
+  width: clamp(60px, calc((120 / $width) * 100vw), 120px);
+  @extend %center;
+  border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+  background: $c2; 
+}
+
+.main_recipe .top_body_recipe .top_cooking_process .creator{
+  @extend %center;
+  gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+}
+
+.main_recipe .top_body_recipe .consumption{
+  @extend %center;
+  gap: clamp(10px, calc((20 / $width) * 100vw), 20px);  
+}
+
+ 
+
+.main_recipe .body_recipe{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding:
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+
+
+
+.main_recipe .left_body_recipe{
+  height: auto;
+  width: clamp(415px, calc((880 / $width) * 100vw), 880px);
+}
+
+.main_recipe .left_body_recipe .body_cooking_process{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  text-align: justify;
+}
+
+.main_recipe .left_body_recipe .body_cooking_process .cooking{
+  list-style-type: disc;
+  margin-top: clamp(10px, calc((20 / $width) * 100vw), 20px);
+  margin-left: clamp(20px, calc((40 / $width) * 100vw), 40px);
+}
+
+.main_recipe .left_body_recipe .box_carousel{
+  width: clamp(415px, calc((880 / $width) * 100vw), 880px);
+  @extend %center;
+  flex-direction: column;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0;
+}
+
+.main_recipe .left_body_recipe .box_carousel .split_recipe{
+  @extend %center;
+  padding: 
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_recipe .left_body_recipe .box_carousel .split_recipe .slide{
+width: clamp(150px, calc((300 / $width) * 100vw), 300px);
+height: clamp(1px, calc((3 / $width) * 100vw), 3px);
+background: $c2;
+margin: 
+clamp(0px, calc((0 / $width) * 100vw), 0px)
+clamp(12.5px, calc((15 / $width) * 100vw), 25px)
+clamp(0px, calc((0 / $width) * 100vw), 0px)
+clamp(12.5px, calc((15 / $width) * 100vw), 25px);
+}
+
+.main_recipe .left_body_recipe .box_comment{
+  width: clamp(415px, calc((880 / $width) * 100vw), 880px);
+  @extend %center;
+  flex-direction: column;
+  padding: 
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0
+  clamp(25px, calc((50 / $width) * 100vw), 50px)
+  0;
+  gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
+}
+
+.main_recipe .left_body_recipe .box_comment .split_recipe{
+  @extend %center;
+}
+
+.main_recipe .left_body_recipe .box_comment .split_recipe .slide{
+width: clamp(125px, calc((250 / $width) * 100vw), 250px);
+height: clamp(1px, calc((3 / $width) * 100vw), 3px);
+background: $c2;
+margin: 
+clamp(0px, calc((0 / $width) * 100vw), 0px)
+clamp(12.5px, calc((25 / $width) * 100vw), 25px)
+clamp(0px, calc((0 / $width) * 100vw), 0px)
+clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+}
+
+.main_recipe .left_body_recipe .box_comment .list_comment{
+display: flex;
+flex-direction: column;
+gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
+  }
+
+.main_recipe .left_body_recipe .box_comment form{
+display: flex;
+align-items: center;
+gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+  }  
+
+
+
+.main_recipe .right_body_recipe{
+  height: auto;
+  min-width: clamp(300px, calc((600 / $width) * 100vw), 600px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(30px, calc((60 / $width) * 100vw), 60px);
+  padding: 
+  clamp(15px, calc((30 / $width) * 100vw), 30px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px)
+  clamp(0px, calc((0 / $width) * 100vw), 0px);
+}
+
+.main_recipe .right_body_recipe .card_menu .type-btn6{
+   color: $cb;
+}
+
+.main_recipe .right_body_recipe .card_menu .bloc_repartition{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(15px, calc((30 / $width) * 100vw), 30px);
+}
+
+  .main_recipe .right_body_recipe .card_menu .bloc_data{
+    max-width: clamp(150px, calc((300 / $width) * 100vw), 300px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+.main_recipe .right_body_recipe .card_menu .bloc_data .line_data{
+    max-height: clamp(25px, calc((70 / $width) * 100vw), 70px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: clamp(5px, calc((10 / $width) * 100vw), 10px);
+    padding: 
+    clamp(5px, calc((10 / $width) * 100vw), 10px)
+    clamp(0px, calc((0 / $width) * 100vw), 0px)
+    clamp(5px, calc((10 / $width) * 100vw), 10px)
+    clamp(7.5px, calc((15 / $width) * 100vw), 15px);
+    border-top: solid 2px $c2;
+  }
+
+.main_recipe .right_body_recipe .card_menu .bloc_data .line_data .title_list{
+  grid-area: 1 / 1 / 3 / 3;
+
+  }
+
+.main_recipe .right_body_recipe .card_menu .bloc_data .line_data .value_list{
+    grid-area: 1 / 3 / 3 / 4;
+    @extend %center;
+  }
+//
+//
+// PAGINATION
+//
+//    
+.navigation_pagination{
+  @extend %center;
+  gap: clamp(10px, calc((20 / $width) * 100vw), 20px);
+}  
+  
+.navigation_pagination .navigation_comment .type-btn2{
+    width: clamp(65px, calc((130 / $width) * 100vw), 130px);
+    }  
+  
+.navigation_pagination .navigation_comment .type-dropdown10{
+    z-index: 2;
+    }  
+//
+//
+// ALL RECIPE
+//
+//  
+.all_recipe{
+  width: 80%;
+  min-height: clamp(150px, calc((300 / $width) * 100vw), 300px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(25px, calc((50 / $width) * 100vw), 50px);
+  margin-bottom: clamp(25px, calc((50 / $width) * 100vw), 50px);  
 }

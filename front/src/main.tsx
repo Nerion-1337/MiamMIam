@@ -4,7 +4,7 @@ import '#css/_map.scss'
 //
 //REDUX
 import { Provider } from 'react-redux'
-import { store } from '#/reducers/store'
+import { store } from '#4_reducers/0_store'
 //
 //
 // RENDER

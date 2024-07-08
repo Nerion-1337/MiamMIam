@@ -1,13 +1,15 @@
 import clsx from "clsx";
-// REACT
-import { useState, useRef, useEffect } from 'react';
+// BUILDER
+import Typo from "#components/build/global/typography";
 // PLUGIN
 import { Calendar } from 'react-date-range';
 import { format } from 'date-fns';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+// REACT
+import { useState, useRef, useEffect } from 'react';
 // TYPAGE
-import { input_type } from "#types/typages";
+import { input_type } from "#0_types/typages";
 //
 //
 //
@@ -26,6 +28,7 @@ export default function Input({
     fonction,
     search,
     data,
+    special,
 }: input_type ) {
 //
 // VARIABLE
@@ -34,6 +37,7 @@ const [isInputFocused, setInputFocus] = useState(false);
 const [selectedDate, setSelectedDate] = useState("");
 const regexDate = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
 const calendarRef = useRef<HTMLDivElement | null>(null);
+const sliderValueRef = useRef<HTMLDivElement>(null);
 let variantStyles = "";
 let sizeStyles = "";
   //
@@ -43,31 +47,31 @@ let sizeStyles = "";
   //
   switch (variant) {
     case "t0":
-      variantStyles = "type-input0";
+      variantStyles = `type-input0-${element}`;
       break;
     case "t1":
-      variantStyles = "type-input1";
+      variantStyles = `type-input1-${element}`;
       break;
     case "t2":
-      variantStyles = "type-input2";
+      variantStyles = `type-input2-${element}`;
       break;
     case "t3":
-      variantStyles = "type-input3";
+      variantStyles = `type-input3-${element}`;
       break;
     case "t4":
-      variantStyles = "type-input4";
+      variantStyles = `type-input4-${element}`;
       break;
     case "t5":
-      variantStyles = "type-input5";
+      variantStyles = `type-input5-${element}`;
       break;
     case "t6":
-      variantStyles = "type-input6";
+      variantStyles = `type-input6-${element}`;
       break;
     case "t7":
-      variantStyles = "type-input7";
+      variantStyles = `type-input7-${element}`;
       break;
     case "t8":
-      variantStyles = "type-input8";
+      variantStyles = `type-input8-${element}`;
       break;
   }
   //
@@ -102,50 +106,62 @@ let sizeStyles = "";
       break;    
   }
 //
-// FONCTION FOCUS INPUT
 //
+// FONCTION
+//
+//
+// FOCUS INPUT
 const handleBlur = () => {
   if (regexDate.test(selectedDate) === false){
     setSelectedDate("")
   }
 };
 //
-// FONCTION ANALYSE VALUE INPUT
-//
+// ANALYSE VALUE INPUT
 const handleonChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
-  setSelectedDate(e.target.value)
+  const value = e.target.value;
+  setSelectedDate(value)
   if (fonction && text) {
     if(unitee){
-      const numbersOnly = e.target.value.replace(/[^\d.,]/g, '').replace(/,/g, ".");
-
+      const numbersOnly = value.replace(/[^\d.,]/g, '').replace(/,/g, ".");
       fonction(variable, numbersOnly);
     } else if (type === "file") {
       if(multiples){
         const media = e.target.files ? e.target.files : "";
-          fonction(variable, media);
+          fonction(variable, media, multiples);
+          setTimeout(()=>{
+          (e.target as HTMLInputElement).value = "";
+          }, 100)
       } else{
       const media = e.target.files ? e.target.files[0] : "";
-      fonction(variable,  media);   
+      fonction(variable,  media); 
+      (e.target as HTMLInputElement).value = "";
       }
       
      } else { 
-      fonction(variable, e.target.value); 
-    }
-    
+      if(element === "range"){
+        fonction(value)
+        moveSpan(value);
+      } else{
+        fonction(variable, value);
+      }
+    } 
   }
 }
 //
-// FONCTION ANALYSE VALUE INPUT
-//
+// ANALYSE VALUE INPUT TEXTERA
 const handleonChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) =>{
   setSelectedDate(e.currentTarget.value)
-  if (fonction && text) {
+  if (fonction) {
       fonction(variable, e.currentTarget.value);
   }
+  if(special === "height_auto"){
+  e.target.style.height = 'auto';
+  e.target.style.height = `clamp(${e.target.scrollHeight / 2}px, calc((${e.target.scrollHeight} / 1600) * 100vw), ${e.target.scrollHeight}px)`;  
+}
 }
 //
 // FONCTION POUR FERME CALENDAR
-//
 const handleClickOutside = (e: MouseEvent) => {
   const targetNode = e.target as Node;
   if (calendarRef.current && !calendarRef.current.contains(targetNode)) {
@@ -160,13 +176,25 @@ useEffect(() => {
 }, []);
 //
 // FONCTION RECHERCHE
-//
 const handleonSearch = (e: React.ChangeEvent<HTMLInputElement>) =>{
   const value = e.target.value;
   if(search){
-   search(data, value) 
+    if(data){
+      search(data, value)
+    } else{
+      search(variable, value)
+    } 
   }
 }
+//
+// DEPLACEMENT DU SPAN SELON THUMB INPUT RANGE
+const moveSpan = (value: string) => {
+  if(sliderValueRef.current){
+  const span = sliderValueRef.current.querySelector('span');
+  if(span) span.style.left = (parseFloat(value)) + "%";
+  
+  }
+};
 //
 //
 // BUILDER
@@ -174,7 +202,7 @@ const handleonSearch = (e: React.ChangeEvent<HTMLInputElement>) =>{
 //
 const inputText =(
   <>
-  {icon && (
+ 
             <div className={clsx(identifiant, variantStyles, sizeStyles)}>
             <small></small>
            <div className="inputBox">
@@ -185,17 +213,17 @@ const inputText =(
               required={true}
               defaultValue={value ? value || "" : ""}
             />
-            <icon.icon />
+             {icon && (<icon.icon />)}
             <span>{text}</span>
           </div>
           </div>
-)}
+
   </>
 )
 //
 const inputDate =(
   <>
-  {icon && (
+  
    <div className={clsx(identifiant, variantStyles, sizeStyles)}>
          <small></small>
           <div className={`inputBox ${isInputFocused ? "active" : ""}`}>
@@ -208,7 +236,7 @@ const inputDate =(
               onChange={handleonChange} 
               required={true}
             />
-            <icon.icon />
+            {icon && (<icon.icon />)}
             <span>{text}</span>  
           </div>
           <div className="calendar" ref={calendarRef}>   
@@ -224,13 +252,12 @@ const inputDate =(
             />
           </div>
         </div>
-)}
   </>
 )
 //
 const inputNumber =(
   <>
-  {icon && unitee && (
+  {unitee && (
             <div className={clsx(identifiant, variantStyles, sizeStyles)}>
             <small></small>
           <div className="inputBox">
@@ -241,7 +268,7 @@ const inputNumber =(
               required={true}
               defaultValue={value ? value + unitee || "" : ""}
             />
-            <icon.icon />
+            {icon && (<icon.icon />)}
             <span>{text}</span>
           </div>
           </div>
@@ -255,7 +282,7 @@ const inputImg =(
             <small></small>
             <label 
             htmlFor={`file_${variable}`} 
-            className={clsx(sizeStyles, `${variantStyles}_label_file`)} 
+            className={clsx(sizeStyles, `${variantStyles}`)} 
             >{text}</label>
             <input
             id={`file_${variable}`}
@@ -271,9 +298,24 @@ const inputImg =(
 )
 //
 const inputSearch=(
-  <>
-  {icon && (
-   <div className={clsx(identifiant, variantStyles)}>
+    <> {special === "global" ? (
+      <div className={clsx(identifiant, variantStyles)}>
+      <small></small>     
+      <div className="inputBox">
+        <input
+         className="input_model" 
+          type={type}
+          onChange={handleonSearch} 
+          required={true}
+          placeholder={text}
+        />
+        <div className="loupe">
+        {icon && (<icon.icon />)}
+        </div>
+      </div>  
+    </div> 
+    ):(
+         <div className={clsx(identifiant, variantStyles)}>
    <small></small>     
    <div className="inputBox">
      <input
@@ -282,66 +324,103 @@ const inputSearch=(
        onChange={handleonSearch} 
        required={true}
      />
-     <icon.icon />
+     {icon && (<icon.icon />)}
      <span>{text}</span>
    </div>  
- </div>  
-)}
-  </>
+ </div> 
+    )} 
+ </> 
 )
 //
 const inputTextera =(
   <>
-  {icon && (
             <div className={clsx(identifiant, variantStyles, sizeStyles)}>
             <small></small>
            <div className="inputBox">
             <textarea
+              rows={1}
               className="input_model"
               onChange={handleonChangeTextarea} 
               required={true}
               defaultValue={value ? value || "" : ""}
             />
-            <icon.icon />
+           {icon && ( <icon.icon /> )}
             <span>{text}</span>
           </div>
           </div>
-)}
+
+  </>
+)
+//
+const inputRange = (
+  <>
+  {value && (
+  <div className={clsx(identifiant, variantStyles, sizeStyles)}>
+                    <div className="slider_value" ref={sliderValueRef}>
+                        <Typo
+                        balise="span"
+                        size="s5"
+                        familly="f2"
+                        weight="w4"
+                        color="cw"
+                        children={selectedDate ? `${selectedDate}%` : `${value}%`}
+                        />
+                    </div>
+
+                    <div className="field">
+                    <Typo
+                        balise="span"
+                        size="s3"
+                        familly="f2"
+                        weight="w4"
+                        color="cb"
+                        children="0%"
+                        className="slider_start"
+                        />
+                    <input 
+                    type="range" 
+                    min="0" 
+                    max="100"
+                    defaultValue="100" 
+                    step="10" 
+                    onChange={handleonChange}
+                    /> 
+                    <Typo
+                        balise="span"
+                        size="s3"
+                        familly="f2"
+                        weight="w4"
+                        color="cb"
+                        children="100%"
+                        className="slider_end"
+                        />   
+                    </div>
+  
+                </div>
+                )}
   </>
 )
 //
 //
 const inputContent = (
   <>
-  {element && (element === "text") ? (
-   inputText
-  ) : (
- <>{(element === "date") ? (
-      inputDate
-    ) : (
-      <> {(element === "number") ? (
-        inputNumber
-      ) : (
-      <>{(element === "img") ? (
-       inputImg
-      ) : (
-        <>{(element === "textarea") ? (
-          inputTextera
-          ) : (
-        inputSearch
-         )}</>
-        )}</>  
-      )}</>
-    )}</>
-  )}
+    {element && (
+      <>
+        {element === "text" && inputText}
+        {element === "date" && inputDate}
+        {element === "number" && inputNumber}
+        {element === "img" && inputImg}
+        {element === "textarea" && inputTextera}
+        {element === "range" && inputRange}
+        {element === "search" && inputSearch}
+      </>
+    )}
   </>
-)
+);
 //
 //
 // RETURN
 //
 //
-    return (
-      inputContent
-    );
+    return inputContent;
 }

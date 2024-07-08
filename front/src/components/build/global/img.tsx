@@ -2,7 +2,7 @@ import clsx from "clsx";
 // BUILDER
 import Navlinks from "#components/build/global/navlink";
 // TYPAGE
-import { img } from "#types/typages";
+import { img } from "#0_types/typages";
 //
 //
 //
@@ -34,8 +34,11 @@ let sizeBlocStyle = "";
 let sizeImgStyle = "";
 let radiusImgStyle = "";  
 //
-// 
-    switch (sizeBloc) {
+//
+// SWITCH
+//
+//
+  switch (sizeBloc) {
         case "s0":
           sizeBlocStyle = "size-bloc-img0";
           break;
@@ -69,7 +72,7 @@ let radiusImgStyle = "";
         case "s10":
           sizeBlocStyle = "size-bloc-img10";
           break;
-      }
+  }
   //
   switch (sizeImg) {
     case "s0":
@@ -107,7 +110,7 @@ let radiusImgStyle = "";
       break;
   }
     //
-    switch (radius) {
+  switch (radius) {
       case "r0":
         radiusImgStyle = "radius-img0";
         break;
@@ -141,7 +144,10 @@ let radiusImgStyle = "";
       case "s10":
         radiusImgStyle = "radius-img10";
         break;
-    }     
+  }     
+  //
+  //
+  // FONCTION
   //
   //
   const handleClick = () => {
@@ -149,7 +155,10 @@ let radiusImgStyle = "";
   };
   //
   //
-  const imgContent =(
+  // BUILDER
+  //
+  //
+  const imgElement = (
     <>
         <figure 
         className={clsx(sizeBlocStyle,radiusImgStyle, className)}
@@ -158,12 +167,12 @@ let radiusImgStyle = "";
             <img className={clsx(classImg, sizeImgStyle)} src={src} alt={alt}/>
         </figure>
     </>
-  )      
-    return(
-<>
-    {href ? (
-        <Navlinks 
-      href={href} 
+  )
+ //
+ const imgLink = (
+  <>
+          <Navlinks 
+      href={href ? href : ""} 
       type={type} 
       active={active} 
       special={special} 
@@ -172,11 +181,16 @@ let radiusImgStyle = "";
       fonction={fonction}
       className={classLink}
       >
-        {imgContent}
+        {imgElement}
         </Navlinks>
-    ) : (
-        imgContent
-    )}
-</>
-    );
+  </>
+ )
+//
+const imgContent = (
+  <>
+  {href && imgLink}
+  {!href && imgElement}
+  </>
+)        
+    return imgContent;
 }

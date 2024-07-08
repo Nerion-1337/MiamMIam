@@ -1,3 +1,15 @@
+.type-btn-icon{
+    background: transparent;
+    color: $c2;
+    transition: .5s;
+    cursor: pointer;
+    &:hover{
+        color: $cb;
+    }    
+}
+//
+//
+//
 .type-btn0{
     position: fixed;
     top: 20px;
@@ -51,9 +63,7 @@
     background: var(--c2, $c2);
     color: var(--cw, $cw);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @extend %center;
     cursor: pointer;
     transition: .5s;
     z-index: 10;
@@ -72,6 +82,10 @@
         transform: scale(1);
         
     }
+    }
+    &.active{
+        background: var(--cw, $cw);
+        color: var(--c2, $c2);
     }
 }
 //
@@ -120,6 +134,30 @@ a.active .type-btn2{
     letter-spacing: clamp(1px, calc((2 / $width) * 100vw), 2px);
 }
 }
+.type-btn2.active{
+    background: var(--cb, $cb);
+    color: var(--c2, $c2);
+    border: 4px solid var(--c2, $c2);
+    transition: background 0s;
+&:after{
+    background: var(--c2, $c2);
+    }
+&:hover{
+    color: var(--cb, $cb);
+    letter-spacing: clamp(1px, calc((2 / $width) * 100vw), 2px);
+    background: var(--c2, $c2);
+    transition: background 1.5s;
+    }
+}
+
+.type-btn2 .icon_left{
+margin-right: clamp(5px, calc((10 / $width) * 100vw), 10px);
+font-size: clamp(12.5px, calc((25 / $width) * 100vw), 25px);
+}
+
+.type-btn2 .icon_right{
+display: none;
+}
 //
 //
 // 
@@ -159,6 +197,19 @@ a.active .type-btn2{
     }
     }
 }
+.type-btn3.active{
+      background: var(--c2, $c2);
+      color: var(--cb, $cb);
+      transition: .5s;
+  &:after{
+      background: var(--cw, $cw);
+      }
+  &:hover{
+      color: var(--cb, $cb);
+      letter-spacing: clamp(1.5px, calc((3 / $width) * 100vw), 3px);
+      background: var(--c2, $c2);
+      }
+  }
 //
 //
 //
@@ -366,6 +417,39 @@ a.active .type-btn2{
 }
 //
 //
+//
+.type-btn9{
+    position: relative;
+    height: clamp(325px, calc((650 / $width) * 100vw), 650px);
+    width: clamp(190px, calc((380 / $width) * 100vw), 380px);
+    background: $cw;
+    border-radius: clamp(7px, calc((14 / $width) * 100vw), 14px);
+    @extend %center;
+    flex-direction: column;
+    text-transform: uppercase;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: .5s;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.type-btn9 span{
+margin-top: clamp(5px, calc((10 / $width) * 100vw), 10px);
+}
+
+.type-btn9 .icon_left{
+    display: none;
+}
+
+.type-btn9 .icon_right{
+    width: clamp(45px, calc((95 / $width) * 100vw), 95px);
+    height: clamp(45px, calc((95 / $width) * 100vw), 95px);
+    color: $c2;
+}
+//
+//
 // SIZE
 //
 //
@@ -502,8 +586,8 @@ $sizeBtnMin4: 15;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeBtnMax5: 17.5;
-$sizeBtnMin5: 35;
+$sizeBtnMax5: 35;
+$sizeBtnMin5: 17.5;
 .size-t5{
     font-size: clamp(calc($sizeBtnMin5 * 1px), calc(($sizeBtnMax5 / $width) * 100vw), calc($sizeBtnMax5 * 1px));
     line-height: clamp(calc($sizeBtnMin5 * 1px), calc(($sizeBtnMax5 / $width) * 100vw), calc($sizeBtnMax5 * 1px));
@@ -512,8 +596,8 @@ $sizeBtnMin5: 35;
     font-family: 'Manrope', sans-serif;
 }
 
-$sizeBtnMax6: 24;
-$sizeBtnMin6: 12;
+$sizeBtnMax6: 40;
+$sizeBtnMin6: 20;
 .size-t6{
     font-size: clamp(calc($sizeBtnMin6 * 1px), calc(($sizeBtnMax6 / $width) * 100vw), calc($sizeBtnMax6 * 1px));
     line-height: clamp(calc($sizeBtnMin6 * 1px), calc(($sizeBtnMax6 / $width) * 100vw), calc($sizeBtnMax6 * 1px));

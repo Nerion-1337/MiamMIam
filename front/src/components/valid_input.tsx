@@ -1,5 +1,5 @@
 // DATA
-import { Regex } from "#data/links";
+import { Regex } from "#1_data/links";
 // REACT
 import React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -373,4 +373,24 @@ export function validInputAdd(data: string) {
       return true;
     }
   }
-  }    
+  }
+//
+//
+export function validCommentAdd(data: string) {
+  const Input = document.querySelector(`.${data}`)?.querySelector("textarea");
+  if(Input){
+  const value = Input.value.trim();
+  
+  
+    if (value === "") {
+      setErreur(data, "Veuillez renseigner du contenu.");
+      return false;
+    } else if (Regex[19].value.test(value) === false) {
+      setErreur(data, "Veuillez entrer entre 2 et 2000 caractères.");
+      return false;
+    } else {
+      setValid(data);
+      return true;
+    }
+  }
+  }      

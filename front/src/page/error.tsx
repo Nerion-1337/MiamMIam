@@ -1,10 +1,10 @@
 // DATA
-import { Route_Client } from "#data/links";
+import { Route_Client } from "#1_data/links";
 // BUILDER
 import Navlinks from "#components/build/global/navlink";
 import Typo from "#components/build/global/typography";
 // TYPAGE
-import { error } from "#types/typages";
+import { error } from "#0_types/typages";
 //
 //
 //
@@ -31,7 +31,7 @@ export default function Error({
           {errorText}
         </Typo>
 
-        <Navlinks href={home.url} type={home.type}>
+        <Navlinks href={home ? home.url : "/"} type={home ? home.type : "intern"}>
           <Typo size="s5" balise="span" color="c3" className="backHomeError404">
             Retourner sur la page d’accueil
           </Typo>

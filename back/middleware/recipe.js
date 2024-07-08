@@ -45,7 +45,22 @@ const validationSchemas = {
   .max(40)
   .pattern(Regex[6].value)
   .pattern(Regex[10].value),
-  };  
+
+  full_number: joi.string()
+  .pattern(Regex[9].value),
+
+  filter_recipe: joi.string()
+  .min(1)
+  .max(20),
+
+  cooking_process: joi.string()
+  .min(1)
+  .max(10)
+  .pattern(Regex[9].value),
+
+  };
+  
+  
 //
 //
 // GET ELEMENT RECIPE
@@ -343,3 +358,77 @@ if (Array.isArray(req.body.ustensil)) {
       res.status(401).json({ error });
   }
 };
+//
+//
+// GET RECIPE
+//
+//  
+exports.get_recipe = (req, res, next) => { 
+  try {
+    if (!req.body) return res.status(401).json("Aucune donnée");
+ 
+    const errors = {};
+ 
+    for (const [key, value] of Object.entries(req.body.formData)) {
+      if (Array.isArray(value)) {
+        // Si la valeur est un tableau, itérer sur chaque élément du tableau
+        for (let i = 0; i < value.length; i++) {
+          const subObj = value[i];
+          for (const [subKey, subValue] of Object.entries(subObj)) {
+            if (subValue !== undefined) {
+              const { error, value: validatedValue } = validationSchemas.filter_recipe.validate(subValue);
+              if (error) {
+                errors[`${key}[${i}].${subKey}_error`] = `La valeur pour ${subKey} de ${key}[${i}] n'est pas valide : ${error.message}`;
+              }
+            }
+          }
+        }
+      } else if (typeof value === 'object') {
+        // Si la valeur est un objet, itérer sur ses propriétés
+        for (const [subKey, subValue] of Object.entries(value)) {
+          if (subValue !== undefined) {
+            const { error, value: validatedValue } = validationSchemas.filter_recipe.validate(subValue);
+            if (error) {
+              errors[`${key}.${subKey}_error`] = `La valeur pour ${subKey} de ${key} n'est pas valide : ${error.message}`;
+            }
+          }
+        }
+      } else {
+        // Si la valeur n'est ni un objet ni un tableau, valider directement la valeur
+        if (value !== undefined) {
+          const { error, value: validatedValue } = validationSchemas.filter_recipe.validate(value);
+          if (error) {
+            errors[`${key}_error`] = `La valeur pour ${key} n'est pas valide : ${error.message}`;
+          }
+        }
+      }
+    }
+ 
+    if (Object.keys(errors).length !== 0) {
+      return res.status(400).json(errors);
+    }
+ 
+    return next();
+  } catch(error) {
+    res.status(401).json({ error });
+  }
+};
+//
+//
+// GET COOKING PROCESS
+//
+//
+exports.get_cooking_process = (req, res, next) => {
+  try {
+   if(!req.body) return res.status(401).json("Aucune donnée");
+
+   const { error: identifiantError, value: identifiant } = validationSchemas.cooking_process.validate(req.headers.id);
+   if (identifiantError) {
+     return res.status(400).json({ error_identifiant: 'Identifiant non valide ! ' });
+   }
+
+   return next();
+  } catch(error) {
+      res.status(401).json({ error });
+  }
+};  

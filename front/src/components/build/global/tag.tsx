@@ -1,14 +1,21 @@
+//BUILDER
+import Img from "#components/build/global/img";
 // DATA
-import { List_icon } from "#data/links";
+import { List_icon } from "#1_data/links";
 // TYPAGE
-import { dropdown_type, dropdown_data, tag } from "#types/typages";
+import { tag } from "#0_types/typages";
 
 export default function Tag({
+    variant,
     value,
     type,
     fonction,
+    quantite,
     close,
     number,
+    formData,
+    tagComponent,
+    img,
 }: tag){
 //
 //
@@ -22,12 +29,12 @@ const icon = List_icon.all[2].icon;
 //
 //
 const closeTag = () => {
-    if(close) close(type, value)
+     if(close) close(type, value, formData, tagComponent)   
 }
 //
 //
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(fonction) fonction(type, value, e.target.value.replace(/,/g, "."))
+    if(fonction) fonction(type, value, e.target.value.replace(/,/g, "."), formData)
 }
 //
 //
@@ -35,14 +42,14 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //
 //
 const tagBasic = (
-    <article className={`tag_component ${type}`}>
+    <article className={`tag_component_${variant} ${type}`}>
     <button onClick={closeTag}><icon.icon /></button>
      <span>{value}</span>
  </article>
     )
 //
 const tagInput = (
-    <article className={`tag_component ${type}`}>
+    <article className={`tag_component_${variant} ${type} ${value}`}>
     <button onClick={closeTag}><icon.icon /></button>
      <span className="spanNumber">{value}</span>
      <div className="tag_input">
@@ -50,18 +57,29 @@ const tagInput = (
      <input
      type="number"
      onChange={handleChange}
+     value={quantite}
      />    
      </div>
  </article>
-   )    
+   )
+//       
+const tagImg = (
+    <article className={`tag_component_${variant} ${type}`}>
+    <button onClick={closeTag}><icon.icon /></button>
+    <Img
+  sizeBloc="s1"
+  sizeImg="s1"
+  radius="r5"
+  src={`${img}`} 
+  />
+ </article>
+    )  
 //
 const tagContent = (
 <>
-{number ? (
-   tagInput
-):(
-   tagBasic
-)}
+{number && tagInput}
+{img && tagImg}
+{!number && !img && tagBasic} 
 </>
 )
 //

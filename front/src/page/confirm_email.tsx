@@ -1,13 +1,13 @@
+// BUILDER
+import Button from "#components/build/global/button";
+import Typo from "#components/build/global/typography";
 // DATA
-import { Route_Client } from "#data/links";
+import { Route_Client } from "#1_data/links";
 // REACT
 import { useParams } from "react-router-dom";
 import { useState, useEffect  } from "react";
 // REQUEST
-import { confirm_email } from "#/api/fetch_register_login"
-// BUILDER
-import Button from "#components/build/global/button";
-import Typo from "#components/build/global/typography";
+import { confirm_email } from "#6_api/fetch_register_login"
 //
 //
 //

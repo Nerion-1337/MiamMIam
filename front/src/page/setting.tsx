@@ -1,6 +1,5 @@
-import React from "react";
-// DATA
-import { Input_setting, Dropdown_sexe, Input_setting_signalement } from "#data/links";
+// API
+import { signalement_setting } from "#6_api/fetch_signalement";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
@@ -8,19 +7,21 @@ import Input from "#components/build/global/input";
 import Dropdown from "#components/build/global/dropdown";
 import Img from "#components/build/global/img";
 import Auth from "#components/build/auth";
-// REACT
-import { useState, useEffect } from "react";
 //COMPONENTS
 import { validIdentifiant, validPassword, validEmail, validFirstName, validLastName, validBirthdate, validHeight, validWeight, validFat, validTitreSignal, validContenuSignal} from "#components/valid_input";
 import Modal_active from "#components/active_redux/modal_active";
+import { handleChange } from "#components/formData";
+// DATA
+import { Input_setting, List_sexe, Input_setting_signalement } from "#1_data/links";
+// REACT
+import React from "react";
+import { useState, useEffect } from "react";
 //REDUX
-import { store } from '#/reducers/store'
-import { getUser, putUser } from '#/actions/user_action'
+import { store } from '#4_reducers/0_store'
+import { getMy, putMy } from '#5_actions/5_user_action'
 import { useSelector } from "react-redux";
-// API
-import { signalement_setting } from "#api/fetch_signalement";
 // TYPAGE
-import { payload_api, token_reducer } from "#types/typages";
+import { payload_api, token_reducer } from "#0_types/typages";
 //
 //
 //
@@ -38,12 +39,12 @@ const user = useSelector((state:  payload_api) => state.userReducer);
 const token = useSelector((state:  token_reducer) => state.tokenReducer);
 //
 //
-// REDUX
+// REQUETTE
 //
 //
 useEffect(() => {
     if (token.token === true) {
-      store.dispatch(getUser())
+      store.dispatch(getMy())
     }
   }, [token]);
 //
@@ -52,11 +53,9 @@ useEffect(() => {
 //
 //
 // SAUVEGARDE DATA USER
-const handleChange = (fieldName: string, newValue: string) => {
-    setFormData((prevState) => {
-        return { ...prevState, [fieldName]: newValue };
-      });
-  };
+const addDataSimply = (fieldName: string, newValue: string) => {
+  handleChange(fieldName, newValue, setFormData)
+}
 //
 // VALIDE ET ENVOIE AU BACK DATA USER
 const handleSubmit = () =>{
@@ -86,7 +85,7 @@ const handleSubmit = () =>{
       if(Object.keys(formData).length === 0){
         Modal_active({active: true, number: 5 });
       } else {
-store.dispatch(putUser(formData))
+store.dispatch(putMy(formData))
          .then((isConfirmer:  boolean | void) => {
              if(isConfirmer === true){
                  Modal_active({active: true, number: 4 });
@@ -99,11 +98,9 @@ store.dispatch(putUser(formData))
  }    
 //
 // SAUVEGARDE DATA SIGNALEMENT
-const handleChangeSignal = (fieldName: string, newValue: string) => {
-  setSignalData((prevState) => {
-      return { ...prevState, [fieldName]: newValue };
-    });
-};
+const addDataSimplySignal = (fieldName: string, newValue: string) => {
+  handleChange(fieldName, newValue, setSignalData)
+}
 //
 // VALIDE ET ENVOIE AU BACK SIGNALEMENT
 const handleSubmitSelect = () =>{
@@ -141,7 +138,7 @@ const contentInput1 = Input_setting.slice(0, 6).map((input, index) =>(
     unitee={input.unitee}
     variable={input.variable}
     identifiant={`setting_${input.text.replace(/\s/g, '_').toLowerCase()}`}
-    fonction={handleChange}
+    fonction={addDataSimply}
     key={index}
         />  
 ))
@@ -155,8 +152,8 @@ const contentInput2 = Input_setting.slice(6, 11).map((input, index) => (
           icon={input.icon}
           text={input.text}
           variable={input.variable}
-          list={Dropdown_sexe}
-          fonction={handleChange}
+          list={List_sexe}
+          fonction={addDataSimply}
           key={index}
         />
       ) : (
@@ -170,7 +167,7 @@ const contentInput2 = Input_setting.slice(6, 11).map((input, index) => (
           unitee={input.unitee}
           variable={input.variable}
           identifiant={`setting_${input.text.replace(/\s/g, '_').toLowerCase()}`}
-          fonction={handleChange}
+          fonction={addDataSimply}
           key={index}
         />
       )}
@@ -190,7 +187,7 @@ const contentInputSignalement = Input_setting_signalement.map((input, index) =>(
           variable={input.variable}
           multiples={input.multiples}
           identifiant={`setting_signal_${input.text.replace(/\s/g, '_').toLowerCase()}`}
-          fonction={handleChangeSignal}
+          fonction={addDataSimplySignal}
           key={index}
         />
 ))
@@ -223,7 +220,7 @@ const contentInputSignalement = Input_setting_signalement.map((input, index) =>(
     unitee={Input_setting[11].unitee}
     variable={Input_setting[11].variable}
     identifiant={`setting_${Input_setting[11].text.replace(/\s/g, '_').toLowerCase()}`}
-    fonction={handleChange}
+    fonction={addDataSimply}
         /> 
           </div>
           <Button

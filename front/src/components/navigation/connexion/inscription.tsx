@@ -1,7 +1,7 @@
 // REACT
 import { useState } from "react";
 // DATA
-import { List_icon, Input_inscription, Route_Server } from "#data/links";
+import { List_icon, Input_inscription, Route_Server } from "#1_data/links";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
@@ -11,7 +11,7 @@ import Button_active from "#components/active_redux/button_active";
 import Modal_active from "#components/active_redux/modal_active";
 import { validIdentifiant, validPassword, validEmail, validCGV} from "#components/valid_input";
 // REQUEST
-import { register_user } from "#/api/fetch_register_login"
+import { register_user } from "#6_api/fetch_register_login"
 //
 //
 //
@@ -113,6 +113,8 @@ const contentInput =  Input_inscription.map((input, index)=> (
     balise="label"
     size="s2"
     color="cw"
+    weight="w5"
+    familly="f1"
     className="condition_utilisation"
     children={(<>J'accepte les <span>conditions d'utilisation</span></>)}
         />
@@ -139,6 +141,7 @@ const contentInput =  Input_inscription.map((input, index)=> (
     size="s7"
     color="cw"
     transform="maj"
+    familly="f2"
     children="ou"
         />
 

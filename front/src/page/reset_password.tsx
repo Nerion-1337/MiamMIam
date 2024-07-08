@@ -1,10 +1,10 @@
 // DATA
-import { Input_inscription } from "#data/links";
+import { Input_inscription } from "#1_data/links";
 // REACT
 import { useParams } from "react-router-dom";
 import { useState  } from "react";
 // REQUEST
-import { reset_password } from "#/api/fetch_register_login"
+import { reset_password } from "#6_api/fetch_register_login"
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
@@ -60,6 +60,7 @@ const handleSubmit = () =>{
 //  
 const contentInput =  Input_inscription.slice(1, 3).map((input, index)=> (
     <Input
+    variable={input.variable}
     type={input.type}
     icon={input.icon}
     text={input.text}

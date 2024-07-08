@@ -1,7 +1,7 @@
 // REACT
 import { useState } from "react";
 // DATA
-import { List_icon, Input_connexion, Route_Server } from "#data/links";
+import { List_icon, Input_connexion, Route_Server } from "#1_data/links";
 // BUILDER
 import Button from "#components/build/global/button";
 import Typo from "#components/build/global/typography";
@@ -10,11 +10,11 @@ import Input from "#components/build/global/input";
 import Button_active from "#components/active_redux/button_active";
 import Modal_active from "#components/active_redux/modal_active";
 // REQUEST
-import { login_user } from "#/api/fetch_register_login"
+import { login_user } from "#6_api/fetch_register_login"
 //REDUX
-import { store } from '#/reducers/store'
+import { store } from '#4_reducers/0_store'
 // ACTION
-import { token_actif } from "#actions/token_action";
+import { token_actif } from "#5_actions/2_token_action";
 //
 //
 //
@@ -98,10 +98,12 @@ function connexion_google(){
             />
          <Typo
     balise="span"
-    size="s2"
+    size="s3"
     color="cw"
     transform="maj"
     className="mdp_oublie"
+    weight="w5"
+    familly="f1"
     children="mot de passe oublié ?"
     fonction={reset_password}
         />
@@ -125,6 +127,7 @@ function connexion_google(){
     size="s7"
     color="cw"
     transform="maj"
+    familly="f2"
     children="ou"
         />
 

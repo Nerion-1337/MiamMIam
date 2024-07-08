@@ -3,10 +3,9 @@ import Button from "#components/build/global/button";
 //COMPONENTS
 import Button_active from "#components/active_redux/button_active";
 //REDUX
-import { store } from '#/reducers/store'
+import { store } from '#4_reducers/0_store'
 // ACTION
-import { resetUser } from '#/actions/user_action'
-import { token_actif } from "#actions/token_action";
+import { token_actif } from "#5_actions/2_token_action";
 //
 //
 //
@@ -18,7 +17,8 @@ export default function Deconnexion(){
 //
 function deconnexion(data:string){
     Button_active({data: data, value: false});
-    store.dispatch(resetUser()); 
+    localStorage.removeItem('token_miam_miam');
+    document.cookie = encodeURIComponent("token_miam_miam") + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; 
     store.dispatch(token_actif());
   }
 //

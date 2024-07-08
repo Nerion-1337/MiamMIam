@@ -1,6 +1,8 @@
 import clsx from "clsx";
 // TYPAGE
-import { spinner } from "#types/typages";
+import { spinner } from "#0_types/typages";
+//
+//
 //
 //
 //
@@ -10,12 +12,18 @@ export default function Spinner({
   icon, 
   children,
 }: spinner) {
-  //
-  //
+//
+//
+// VARIABLE
+//
+//
   let variantStyles = "";
   let sizeStyles = "";
-  //
-  //
+//
+//
+// SWITCH
+//
+//
   switch (variant) {
     case "t1":
       variantStyles = "spinner-1";
@@ -30,7 +38,6 @@ export default function Spinner({
       variantStyles = "spinner-4";
       break;
   }
-  //
   //
   switch (size) {
     case "s0":
@@ -52,26 +59,32 @@ export default function Spinner({
       sizeStyles = "size-spinner5";
       break;
   }
-  //
-  //
+//
+//
+// BUILDER
+//
+//
+const type_spiner = (
+  <>
+  {icon && !children &&  <icon.icon />}
 
-  return (
-    <>
-      <div role="spinner" className={clsx(variantStyles, sizeStyles)}>
-        {icon && !children ? (
-          <icon.icon />
-        ) : (
-          <>
-            {icon && children ? (
-              <>
-                <icon.icon /> {children}
-              </>
-            ) : (
-              <>{children}</>
-            )}
-          </>
-        )}
-      </div>
-    </>
-  );
+  {icon && children &&  <><icon.icon className="left"/> {children}<icon.icon className="right"/></>}
+
+  {!icon && children}
+  </>
+)
+//
+const content_spiner = (
+  <>
+  <div role="spinner" className={clsx(variantStyles, sizeStyles)}>
+  {type_spiner}
+  </div>
+  </>
+)
+//
+//
+// RETURN
+//
+//
+  return content_spiner;
 }

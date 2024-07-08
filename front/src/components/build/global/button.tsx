@@ -1,11 +1,11 @@
 import clsx from "clsx";
-// ICONS
-import { ImSpinner9 } from "react-icons/im";
 // BUILDER
 import Spinner from "#components/build/global/spinner";
 import Navlinks from "#components/build/global/navlink";
+// SPINNER
+import { ImSpinner9 } from "react-icons/im";
 // TYPAGE
-import { button } from "#types/typages";
+import { button } from "#0_types/typages";
 //
 //
 //
@@ -21,32 +21,37 @@ export default function Button({
   item_i,
   className,
   children,
+  children_actif,
+  active_child,
   fonction = () => {
     console.log();
   },
   data_function,
   href,
-  active,
+  active_href,
   type,
   special,
   useRef,
   input,
   value_input,
 }: button) {
-  //
-  //
-  // VARIANT
-  //
-  //
+//
+//
+// VARIABLE
+//
+//
   let variantStyles = "";
   let sizeStyles = "";
   let fontSizeStyles = "";
-  //
-  //
-  // SWITCH
-  //
-  //
+//
+//
+// SWITCH
+//
+//
   switch (variant) {
+    case "icon":
+      variantStyles = "type-btn-icon";
+      break; 
     case "t1":
       variantStyles = "type-btn1";
       break;
@@ -71,8 +76,13 @@ export default function Button({
       case "t8":
         variantStyles = "type-btn8";
         break;
+      case "t9":
+        variantStyles = "type-btn9";
+        break;
+      case "t10":
+        variantStyles = "type-btn10";
+        break;        
   }
-  //
   //
   switch (size) {
     case "s0":
@@ -94,7 +104,6 @@ export default function Button({
       sizeStyles = "size-btn5";
       break;
   }
-  //
   //
   switch (fontSize) {
     case "s0":
@@ -125,48 +134,38 @@ export default function Button({
       fontSizeStyles = "size-t8";
       break;
   }
-  //
-  //
-  // FUNCTION
-  //
-  //
+//
+//
+// FUNCTION
+//
+//
   const handleClick = () => {
     if (fonction) fonction(data_function);
   };
-  //
-  //
-  // BUILDER
-  //
+//
+//
+// BUILDER
+//
+//
+  const content_children = (<>{active_child ? children_actif : children}</>)
   //
   const buttonContent = (
     <>
-      {loading ? (
-        <Spinner variant="t1" size="s1" icon={{ icon: ImSpinner9 }} />
-      ) : (
-        <>
-          {icon && !children ? (
-            <icon.icon />
-          ) : (
-            <>
-              {icon && children ? (
-                <>
-                  <icon.icon className="icon_left"/> {children} <icon.icon className="icon_right"/>
-                </>
-              ) : (
-                <>
-                  {item_i && children ? (
-                    <>
-                      <i className="i_left"/> <span>{children}</span><i className="i_right"/>
-                    </>
-                  ) : (
-                    <>{children}</>
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </>
-      )}
+    {loading && <Spinner variant="t1" size="s1" icon={{ icon: ImSpinner9 }} />}
+
+    {icon && !children && <icon.icon />}
+
+    {icon && children &&  <><icon.icon className="icon_left"/> {
+                            content_children} 
+                            <icon.icon className="icon_right"/></>
+    }
+
+    {item_i && children  && <><i className="i_left"/> 
+                              <span>{content_children}</span>
+                              <i className="i_right"/></>
+    }
+
+    {!loading && !icon && !item_i && children && content_children}
     </>
   );
   //
@@ -188,7 +187,7 @@ export default function Button({
     ):(
       <button
       type="button"
-      className={clsx(variantStyles, sizeStyles, fontSizeStyles, className)}
+      className={clsx(variantStyles, sizeStyles, fontSizeStyles, className,`${active_child ? "active" : ""}`)}
       onClick={handleClick}
       disabled={disabled}
       ref={useRef}
@@ -203,15 +202,15 @@ export default function Button({
   //
   if (href) {
     return (
-      <Navlinks href={href} type={type} active={active} special={special}>
+      <Navlinks href={href} type={type} active={active_href} special={special}>
         {buttonElement}
       </Navlinks>
     );
   } 
-  //
-  //
-  // RETURN
-  //
-  //
+//
+//
+// RETURN
+//
+//
   return buttonElement;
 }
