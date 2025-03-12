@@ -27,9 +27,9 @@ Project personnel d'une application web et mobile de recette participatif et res
 
 [Canevas](https://www.figma.com/file/eIjCNdPVAgHFVdyXtJ9cI9/Untitled?type=design&node-id=0-1&mode=design&t=yVFQxMlNZAkyPM2h-0)
 
-# Visiter
+# Aperçu
 
-EN CONSTRUCTION
+[Youtube](https://www.youtube.com/watch?v=n0g97rHkMho)
 
 # Aperçu
 
